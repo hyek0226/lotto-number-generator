@@ -1,16 +1,22 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class CountPanel extends JPanel implements ActionListener {
+public class CountPanel extends JPanel implements ActionListener { 
 	JTextField palyText;
+	JLabel lblCount;
+	
 	public boolean tryParse(String palyText) {
 		try {
 			Integer.parseInt(palyText); 
@@ -21,6 +27,9 @@ public class CountPanel extends JPanel implements ActionListener {
 	}	
 	
 	public CountPanel(LottoFrame frame) {
+		BoxLayout layout = new BoxLayout(this, BoxLayout.Y_AXIS);
+		setLayout(layout);
+		// 상단
 		JPanel pnl = new JPanel();
 		JLabel lbl = new JLabel("플레이 수 : ");
 
@@ -42,7 +51,22 @@ public class CountPanel extends JPanel implements ActionListener {
 		pnl.add(btn);
 		pnl.add(nextBtn);
 
+		add(Box.createVerticalGlue());
 		add(pnl);
+		
+		// 중간
+		JPanel pnl2 = new JPanel();
+		JLabel lblPlay = new JLabel("수량  : ");	 //수량 출력
+		lblCount = new JLabel();
+		pnl2.setPreferredSize(new Dimension(200, 100));
+		pnl2.setMaximumSize(new Dimension(150, 30)); 
+		pnl2.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		pnl2.add(lblPlay);
+		pnl2.add(lblCount);
+		
+		add(pnl2);
+		add(Box.createVerticalGlue());
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -59,7 +83,7 @@ public class CountPanel extends JPanel implements ActionListener {
 		
 		else { 
 			play = Integer.valueOf(palyText.getText());
-			System.out.println(play);
+				lblCount.setText(String.valueOf(play) + "개");
 			
 			if (play <= 0) {	// 0 또는 마이너스 값 입력 했을 때
 			JOptionPane.showMessageDialog(null, "최소 1번 이상 입력해야합니다.", 
