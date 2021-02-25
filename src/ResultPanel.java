@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneLayout;
 import javax.swing.SwingConstants;
 import javax.swing.text.GapContent;
 
@@ -25,6 +26,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 import java.awt.event.ActionEvent;
@@ -37,60 +39,97 @@ import java.awt.Point;
 import javax.swing.JInternalFrame;
 import java.awt.Rectangle;
 import javax.swing.JScrollBar;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class ResultPanel extends JPanel implements ActionListener {
 	List<Set> resultList = new ArrayList<>();
 	Set<Integer> number = new TreeSet<>();
+	Set<Integer> number2 = new TreeSet<>();
 	TestFrame frame = new TestFrame();
+	Random r = new Random();
+	CurcleList curcleList;
+	int amount = 5;
+	JPanel panel0 = new JPanel();
+	JPanel panel1 = new JPanel();
+	JPanel panel2 = new JPanel();
+	JPanel panel3 = new JPanel();
+	JPanel panel4 = new JPanel();
+	JPanel panel5 = new JPanel();
 	private final JLabel lblNewLabel_1 = new JLabel("당첨 결과");
-	NumberCurcle nc1 = new NumberCurcle(resultList, number);
-	private final JLabel lblNewLabel = new JLabel("당신이 뽑은 숫자");
-	
 	
 	public ResultPanel(LottoFrame frame) {
-		number.add(10);
-		number.add(20);
-		number.add(30);
-		number.add(40);
-		number.add(30);
-		number.add(20);
-		resultList.add(number);
+		
+		number2.add(10);
+		number2.add(20);
+		number2.add(30);
+		number2.add(40);
+		number2.add(35);
+		number2.add(45);
+		
+		panel0.setBackground(Color.gray);
+		panel0.setBounds(50, 100, 700, 80);
+		add(panel0);
+		
+		panel1.setBackground(Color.gray);
+		panel1.setBounds(50, 270, 700, 80);
+		add(panel1);
+		
+		panel2.setBackground(Color.gray);
+		panel2.setBounds(50, 370, 700, 80);
+		add(panel2);
+		
+		panel3.setBackground(Color.gray);
+		panel3.setBounds(50, 470, 700, 80);
+		add(panel3);
+		
+		panel4.setBackground(Color.gray);
+		panel4.setBounds(50, 570, 700, 80);
+		add(panel4);
+		
+		panel5.setBackground(Color.gray);
+		panel5.setBounds(50, 670, 700, 80);
+		add(panel5);
+		
+		
+		
+	
+		randomNumber();
+		System.out.println(number);
 		setPreferredSize(new Dimension(830, 530));
 		setMaximumSize(new Dimension(830, 530));
-		setLayout(null);
-		JPanel panel = new JPanel();
-		panel.setBounds(120, 61, 600, 79);
-		panel.add(nc1);
-		add(panel);
+		curcleList = new CurcleList(number, number2);
 		
+		int x = 10;
+		for (int i = 0; i < 6; i++) {
+			Curcle curcle = curcleList.getResultList().get(i);
+			curcle.setBounds(x, 1, 100, 100);
+			x += 100;
+			panel0.add(curcle);
+		}
 		
-		
-		JButton resultButton = new JButton("당첨 결과 확인");
-		resultButton.setBounds(128, 472, 153, 29);
-		resultButton.addActionListener(this);
-		add(resultButton);
+		loopResult();
 		
 		JButton btnNewButton_1 = new JButton("처음으로");
-		btnNewButton_1.setBounds(553, 472, 105, 29);
+		btnNewButton_1.setBounds(671, 15, 142, 40);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.changeMainPanel();
 			}
 		});
+		setLayout(null);
+		setLayout(null);
 		add(btnNewButton_1);
-		lblNewLabel_1.setBounds(328, 10, 78, 21);
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JLabel lblNewLabel = new JLabel("로또 결과");
+		lblNewLabel.setBounds(370, 39, 82, 21);
+		add(lblNewLabel);
+		lblNewLabel_1.setBounds(380, 220, 82, 21);
 		
 		add(lblNewLabel_1);
-		lblNewLabel.setBounds(343, 164, 138, 21);
-		add(lblNewLabel);
-		NumberList list = new NumberList(resultList, number);
-		list.setBounds(174, 200, 500, 100);
-		add(list);
-		
-		NumberList list_1 = new NumberList(resultList, number);
-		list_1.setBounds(174, 325, 500, 100);
-		add(list_1);
 		
 	}
 
@@ -99,5 +138,56 @@ public class ResultPanel extends JPanel implements ActionListener {
 		JDialog dialog = new JDialog(frame);
 		dialog.setSize(100, 100);
 		dialog.setVisible(true);
+	}
+	
+	public void randomNumber() {
+		int i = 0;
+		while (i < 7) {
+			int ranNum = r.nextInt(45) + 1;
+			if (number.add(ranNum)) {
+				++i;
+				continue;
+			} else {
+				number.add(ranNum);
+			}
+		}
+	}
+	public void curcleResult(String a, int h, JPanel panel, List<Boolean> bList) {
+		curcleList = new CurcleList(number, number2);
+		int x = 10;
+		int count = 0;
+		JLabel alphabet = new JLabel(a);
+		panel.add(alphabet);
+		for (int i = 0; i < 6; i++) {
+			Curcle curcle = curcleList.getSelectList().get(i);
+			curcle.setBounds(x, h, 100, 100);
+			x += 100;
+			panel.add(curcle);
+			if (bList.get(i) == true) {
+				++count;
+			}
+		}
+		JLabel rank = new JLabel(String.valueOf(count) + "등");
+		panel.add(rank);
+		
+	}
+	public void loopResult() {
+		switch (5) {
+			case 5:
+				curcleResult("A", 100, panel1, curcleList.getList2());
+				System.out.println("1");
+			case 4:
+				curcleResult("B", 200, panel2, curcleList.getList2());
+				System.out.println("2");
+			case 3:
+				curcleResult("C", 300, panel3, curcleList.getList2());
+				System.out.println("3");
+			case 2:
+				curcleResult("D", 400, panel4, curcleList.getList2());
+				System.out.println("4");
+			case 1:
+				curcleResult("E", 500, panel5, curcleList.getList2());
+				System.out.println("5");
+		}
 	}
 }
