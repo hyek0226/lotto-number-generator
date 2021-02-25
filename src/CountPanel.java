@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
+ // 지금 새로 불러오면서 master 브랜치에 되어가지구 제가 민정씨 브랜치로 변경할게요!!아 넵!
 public class CountPanel extends JPanel implements ActionListener {
 	JTextField palyText;
 	public boolean tryParse(String palyText) {
@@ -21,6 +21,7 @@ public class CountPanel extends JPanel implements ActionListener {
 	}	
 	
 	public CountPanel(LottoFrame frame) {
+		// 상단
 		JPanel pnl = new JPanel();
 		JLabel lbl = new JLabel("플레이 수 : ");
 
@@ -43,6 +44,19 @@ public class CountPanel extends JPanel implements ActionListener {
 		pnl.add(nextBtn);
 
 		add(pnl);
+		
+		// 하단
+		JPanel pnl2 = new JPanel();
+		JLabel lblPlay = new JLabel("플레이 수 : ");	// 플레이 수 글자 출력부분
+		JLabel lblCount = new JLabel();
+		
+		pnl2.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		pnl2.add(lblPlay);
+		pnl2.add(lblCount);
+		
+		add(pnl2, "South");
+		
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
