@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 public class SelectPanel extends JPanel {
+	private JLabel lblSelectedNumDescD;
 	public SelectPanel(LottoFrame frame) {
 		setBounds(100, 100, 830, 532);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -39,26 +40,26 @@ public class SelectPanel extends JPanel {
 		pnlNumber.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("금액");
-		lblNewLabel.setBounds(25, 8, 30, 37);
-		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 14));
-		panel.add(lblNewLabel);
+		JLabel lblPriceDesc = new JLabel("금액");
+		lblPriceDesc.setBounds(25, 8, 30, 37);
+		lblPriceDesc.setFont(new Font("굴림", Font.BOLD, 14));
+		panel.add(lblPriceDesc);
 		
-		JLabel lblNewLabel_4_1 = new JLabel("0");
-		lblNewLabel_4_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_4_1.setFont(new Font("굴림", Font.BOLD, 15));
-		lblNewLabel_4_1.setBounds(192, 8, 57, 37);
-		panel.add(lblNewLabel_4_1);
+		JLabel lblPrice = new JLabel("0");
+		lblPrice.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblPrice.setFont(new Font("굴림", Font.BOLD, 15));
+		lblPrice.setBounds(192, 8, 57, 37);
+		panel.add(lblPrice);
 		
-		JLabel lblNewLabel_4_1_1 = new JLabel("원");
-		lblNewLabel_4_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4_1_1.setFont(new Font("굴림", Font.BOLD, 15));
-		lblNewLabel_4_1_1.setBounds(261, 8, 30, 37);
-		panel.add(lblNewLabel_4_1_1);
+		JLabel lblWon = new JLabel("원");
+		lblWon.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWon.setFont(new Font("굴림", Font.BOLD, 15));
+		lblWon.setBounds(261, 8, 30, 37);
+		panel.add(lblWon);
 		
-		JButton btnNewButton_1 = new JButton("확인");
-		btnNewButton_1.setBounds(252, 364, 77, 23);
-		pnlNumber.add(btnNewButton_1);
+		JButton btnConfirmNum = new JButton("확인");
+		btnConfirmNum.setBounds(252, 364, 77, 23);
+		pnlNumber.add(btnConfirmNum);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("1");
 		chckbxNewCheckBox.setFont(new Font("굴림", Font.BOLD, 13));
@@ -222,7 +223,7 @@ public class SelectPanel extends JPanel {
 		chckbxNewCheckBox_5_4.setBounds(241, 196, 42, 23);
 		pnlNumber.add(chckbxNewCheckBox_5_4);
 		
-		JCheckBox chckbxNewCheckBox_5_1_3 = new JCheckBox("7");
+		JCheckBox chckbxNewCheckBox_5_1_3 = new JCheckBox("28");
 		chckbxNewCheckBox_5_1_3.setHorizontalAlignment(SwingConstants.LEFT);
 		chckbxNewCheckBox_5_1_3.setFont(new Font("굴림", Font.BOLD, 13));
 		chckbxNewCheckBox_5_1_3.setBounds(287, 196, 42, 23);
@@ -330,21 +331,21 @@ public class SelectPanel extends JPanel {
 		chckbxNewCheckBox_2_6.setBounds(102, 306, 42, 23);
 		pnlNumber.add(chckbxNewCheckBox_2_6);
 		
-		JButton btnSelectNum = new JButton("수동");
-		btnSelectNum.setBackground(new Color(176, 224, 230));
-		btnSelectNum.setFont(new Font("돋움", Font.BOLD, 20));
-		btnSelectNum.addActionListener(new ActionListener() {
+		JButton btnManualNum = new JButton("수동");
+		btnManualNum.setBackground(new Color(176, 224, 230));
+		btnManualNum.setFont(new Font("돋움", Font.BOLD, 20));
+		btnManualNum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnSelectNum.setBounds(12, 150, 137, 134);
-		add(btnSelectNum);
+		btnManualNum.setBounds(12, 150, 137, 134);
+		add(btnManualNum);
 		
-		JButton btnCreateNum = new JButton("자동");
-		btnCreateNum.setBackground(new Color(176, 224, 230));
-		btnCreateNum.setFont(new Font("돋움", Font.BOLD, 20));
-		btnCreateNum.setBounds(12, 314, 137, 134);
-		add(btnCreateNum);
+		JButton btnRandomNum = new JButton("자동");
+		btnRandomNum.setBackground(new Color(176, 224, 230));
+		btnRandomNum.setFont(new Font("돋움", Font.BOLD, 20));
+		btnRandomNum.setBounds(12, 314, 137, 134);
+		add(btnRandomNum);
 		
 		JPanel pnlCount = new JPanel();
 		pnlCount.setBackground(Color.WHITE);
@@ -352,98 +353,98 @@ public class SelectPanel extends JPanel {
 		add(pnlCount);
 		pnlCount.setLayout(null);
 		
-		JLabel lblNewLabel_4 = new JLabel("0");
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_4.setFont(new Font("굴림", Font.BOLD, 15));
-		lblNewLabel_4.setBounds(103, 25, 9, 18);
-		pnlCount.add(lblNewLabel_4);
+		JLabel lblCount = new JLabel("0");
+		lblCount.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCount.setFont(new Font("굴림", Font.BOLD, 15));
+		lblCount.setBounds(103, 25, 9, 18);
+		pnlCount.add(lblCount);
 		
-		JLabel lblNewLabel_3 = new JLabel("수량");
-		lblNewLabel_3.setFont(new Font("돋움", Font.BOLD, 14));
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(23, 9, 46, 49);
-		pnlCount.add(lblNewLabel_3);
+		JLabel lblCountDesc = new JLabel("수량");
+		lblCountDesc.setFont(new Font("돋움", Font.BOLD, 14));
+		lblCountDesc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCountDesc.setBounds(23, 9, 46, 49);
+		pnlCount.add(lblCountDesc);
 		
-		JButton btnNewButton_2 = new JButton("당첨 확인");
-		btnNewButton_2.setBackground(new Color(255, 192, 203));
-		btnNewButton_2.setBounds(678, 458, 117, 23);
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton btnNextPage = new JButton("당첨 확인");
+		btnNextPage.setBackground(new Color(255, 192, 203));
+		btnNextPage.setBounds(672, 455, 120, 31);
+		btnNextPage.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.changeResultPanel();
 			}
 		});
-		add(btnNewButton_2);
+		add(btnNextPage);
 		
-		JButton btnNewButton_3 = new JButton("[ 수정 ]");
-		btnNewButton_3.setBorder(null);
-		btnNewButton_3.setBackground(new Color(211, 211, 211));
-		btnNewButton_3.setOpaque(false);
-		btnNewButton_3.setBounds(726, 108, 66, 31);
-		add(btnNewButton_3);
+		JButton btnEditNumA = new JButton("[ 수정 ]");
+		btnEditNumA.setBorder(null);
+		btnEditNumA.setBackground(new Color(211, 211, 211));
+		btnEditNumA.setOpaque(false);
+		btnEditNumA.setBounds(726, 108, 66, 31);
+		add(btnEditNumA);
 		
-		JButton btnNewButton_3_1 = new JButton("[ 삭제 ]");
-		btnNewButton_3_1.setBorder(null);
-		btnNewButton_3_1.setBackground(new Color(220, 220, 220));
-		btnNewButton_3_1.setOpaque(false);
-		btnNewButton_3_1.setBounds(726, 137, 66, 31);
-		add(btnNewButton_3_1);
+		JButton btnDeleteNumA = new JButton("[ 삭제 ]");
+		btnDeleteNumA.setBorder(null);
+		btnDeleteNumA.setBackground(new Color(220, 220, 220));
+		btnDeleteNumA.setOpaque(false);
+		btnDeleteNumA.setBounds(726, 137, 66, 31);
+		add(btnDeleteNumA);
 		
-		JButton btnNewButton_3_2 = new JButton("[ 수정 ]");
-		btnNewButton_3_2.setOpaque(false);
-		btnNewButton_3_2.setBorder(null);
-		btnNewButton_3_2.setBackground(new Color(211, 211, 211));
-		btnNewButton_3_2.setBounds(726, 177, 66, 31);
-		add(btnNewButton_3_2);
+		JButton btnEditNumB = new JButton("[ 수정 ]");
+		btnEditNumB.setOpaque(false);
+		btnEditNumB.setBorder(null);
+		btnEditNumB.setBackground(new Color(211, 211, 211));
+		btnEditNumB.setBounds(726, 177, 66, 31);
+		add(btnEditNumB);
 		
-		JButton btnNewButton_3_1_1 = new JButton("[ 삭제 ]");
-		btnNewButton_3_1_1.setOpaque(false);
-		btnNewButton_3_1_1.setBorder(null);
-		btnNewButton_3_1_1.setBackground(new Color(220, 220, 220));
-		btnNewButton_3_1_1.setBounds(726, 206, 66, 31);
-		add(btnNewButton_3_1_1);
+		JButton btnDeleteNumB = new JButton("[ 삭제 ]");
+		btnDeleteNumB.setOpaque(false);
+		btnDeleteNumB.setBorder(null);
+		btnDeleteNumB.setBackground(new Color(220, 220, 220));
+		btnDeleteNumB.setBounds(726, 206, 66, 31);
+		add(btnDeleteNumB);
 		
-		JButton btnNewButton_3_3 = new JButton("[ 수정 ]");
-		btnNewButton_3_3.setOpaque(false);
-		btnNewButton_3_3.setBorder(null);
-		btnNewButton_3_3.setBackground(new Color(211, 211, 211));
-		btnNewButton_3_3.setBounds(726, 243, 66, 31);
-		add(btnNewButton_3_3);
+		JButton btnEditNumC = new JButton("[ 수정 ]");
+		btnEditNumC.setOpaque(false);
+		btnEditNumC.setBorder(null);
+		btnEditNumC.setBackground(new Color(211, 211, 211));
+		btnEditNumC.setBounds(726, 243, 66, 31);
+		add(btnEditNumC);
 		
-		JButton btnNewButton_3_1_2 = new JButton("[ 삭제 ]");
-		btnNewButton_3_1_2.setOpaque(false);
-		btnNewButton_3_1_2.setBorder(null);
-		btnNewButton_3_1_2.setBackground(new Color(220, 220, 220));
-		btnNewButton_3_1_2.setBounds(726, 272, 66, 31);
-		add(btnNewButton_3_1_2);
+		JButton btnDeleteNumC = new JButton("[ 삭제 ]");
+		btnDeleteNumC.setOpaque(false);
+		btnDeleteNumC.setBorder(null);
+		btnDeleteNumC.setBackground(new Color(220, 220, 220));
+		btnDeleteNumC.setBounds(726, 272, 66, 31);
+		add(btnDeleteNumC);
 		
-		JButton btnNewButton_3_4 = new JButton("[ 수정 ]");
-		btnNewButton_3_4.setOpaque(false);
-		btnNewButton_3_4.setBorder(null);
-		btnNewButton_3_4.setBackground(new Color(211, 211, 211));
-		btnNewButton_3_4.setBounds(726, 311, 66, 31);
-		add(btnNewButton_3_4);
+		JButton btnEditNumD = new JButton("[ 수정 ]");
+		btnEditNumD.setOpaque(false);
+		btnEditNumD.setBorder(null);
+		btnEditNumD.setBackground(new Color(211, 211, 211));
+		btnEditNumD.setBounds(726, 311, 66, 31);
+		add(btnEditNumD);
 		
-		JButton btnNewButton_3_1_3 = new JButton("[ 삭제 ]");
-		btnNewButton_3_1_3.setOpaque(false);
-		btnNewButton_3_1_3.setBorder(null);
-		btnNewButton_3_1_3.setBackground(new Color(220, 220, 220));
-		btnNewButton_3_1_3.setBounds(726, 340, 66, 31);
-		add(btnNewButton_3_1_3);
+		JButton btnDeleteNumD = new JButton("[ 삭제 ]");
+		btnDeleteNumD.setOpaque(false);
+		btnDeleteNumD.setBorder(null);
+		btnDeleteNumD.setBackground(new Color(220, 220, 220));
+		btnDeleteNumD.setBounds(726, 340, 66, 31);
+		add(btnDeleteNumD);
 		
-		JButton btnNewButton_3_5 = new JButton("[ 수정 ]");
-		btnNewButton_3_5.setOpaque(false);
-		btnNewButton_3_5.setBorder(null);
-		btnNewButton_3_5.setBackground(new Color(211, 211, 211));
-		btnNewButton_3_5.setBounds(726, 377, 66, 31);
-		add(btnNewButton_3_5);
+		JButton btnEditNumE = new JButton("[ 수정 ]");
+		btnEditNumE.setOpaque(false);
+		btnEditNumE.setBorder(null);
+		btnEditNumE.setBackground(new Color(211, 211, 211));
+		btnEditNumE.setBounds(726, 377, 66, 31);
+		add(btnEditNumE);
 		
-		JButton btnNewButton_3_1_4 = new JButton("[ 삭제 ]");
-		btnNewButton_3_1_4.setOpaque(false);
-		btnNewButton_3_1_4.setBorder(null);
-		btnNewButton_3_1_4.setBackground(new Color(220, 220, 220));
-		btnNewButton_3_1_4.setBounds(726, 406, 66, 31);
-		add(btnNewButton_3_1_4);
+		JButton btnDeleteNumE = new JButton("[ 삭제 ]");
+		btnDeleteNumE.setOpaque(false);
+		btnDeleteNumE.setBorder(null);
+		btnDeleteNumE.setBackground(new Color(220, 220, 220));
+		btnDeleteNumE.setBounds(726, 406, 66, 31);
+		add(btnDeleteNumE);
 		
 		JPanel pnlSelectedNum = new JPanel();
 		pnlSelectedNum.setBackground(Color.WHITE);
@@ -451,96 +452,85 @@ public class SelectPanel extends JPanel {
 		add(pnlSelectedNum);
 		pnlSelectedNum.setLayout(null);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(240, 248, 255));
-		panel_1.setBounds(0, 58, 234, 58);
-		pnlSelectedNum.add(panel_1);
-		panel_1.setLayout(null);
+		JPanel pnlSelectedNumA = new JPanel();
+		pnlSelectedNumA.setBackground(new Color(240, 248, 255));
+		pnlSelectedNumA.setBounds(0, 58, 234, 58);
+		pnlSelectedNum.add(pnlSelectedNumA);
+		pnlSelectedNumA.setLayout(null);
 		
-		JLabel lblNewLabel_2 = new JLabel("A");
-		lblNewLabel_2.setOpaque(true);
-		lblNewLabel_2.setBackground(new Color(255, 255, 255));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("굴림", Font.BOLD, 15));
-		lblNewLabel_2.setBounds(0, 0, 23, 58);
-		panel_1.add(lblNewLabel_2);
+		JLabel lblSelectedNumDescA = new JLabel("A");
+		lblSelectedNumDescA.setOpaque(true);
+		lblSelectedNumDescA.setBackground(new Color(255, 255, 255));
+		lblSelectedNumDescA.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSelectedNumDescA.setFont(new Font("굴림", Font.BOLD, 15));
+		lblSelectedNumDescA.setBounds(0, 0, 23, 58);
+		pnlSelectedNumA.add(lblSelectedNumDescA);
 		
-		JLabel lblNewLabel_1 = new JLabel("선택 번호 확인");
-		lblNewLabel_1.setFont(new Font("굴림", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(12, 19, 116, 28);
-		pnlSelectedNum.add(lblNewLabel_1);
+		JLabel lblSelectedNumDesc = new JLabel("선택 번호 확인");
+		lblSelectedNumDesc.setFont(new Font("굴림", Font.BOLD, 14));
+		lblSelectedNumDesc.setBounds(12, 19, 116, 28);
+		pnlSelectedNum.add(lblSelectedNumDesc);
 		
-		JButton btnNewButton = new JButton("초기화");
-		btnNewButton.setBackground(new Color(255, 192, 203));
-		btnNewButton.setBounds(209, 24, 81, 23);
-		pnlSelectedNum.add(btnNewButton);
+		JButton btnResetAllNum = new JButton("초기화");
+		btnResetAllNum.setBackground(new Color(255, 192, 203));
+		btnResetAllNum.setBounds(209, 24, 81, 23);
+		pnlSelectedNum.add(btnResetAllNum);
 		
-		JPanel panel_1_1 = new JPanel();
-		panel_1_1.setBackground(new Color(240, 248, 255));
-		panel_1_1.setBounds(0, 126, 234, 58);
-		pnlSelectedNum.add(panel_1_1);
-		panel_1_1.setLayout(null);
+		JPanel pnlSelectedNumB = new JPanel();
+		pnlSelectedNumB.setBackground(new Color(240, 248, 255));
+		pnlSelectedNumB.setBounds(0, 126, 234, 58);
+		pnlSelectedNum.add(pnlSelectedNumB);
+		pnlSelectedNumB.setLayout(null);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("B");
-		lblNewLabel_2_1.setOpaque(true);
-		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1.setFont(new Font("굴림", Font.BOLD, 15));
-		lblNewLabel_2_1.setBackground(Color.WHITE);
-		lblNewLabel_2_1.setBounds(0, 0, 23, 58);
-		panel_1_1.add(lblNewLabel_2_1);
+		JLabel lblSelectedNumDescB = new JLabel("B");
+		lblSelectedNumDescB.setOpaque(true);
+		lblSelectedNumDescB.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSelectedNumDescB.setFont(new Font("굴림", Font.BOLD, 15));
+		lblSelectedNumDescB.setBackground(Color.WHITE);
+		lblSelectedNumDescB.setBounds(0, 0, 23, 58);
+		pnlSelectedNumB.add(lblSelectedNumDescB);
 		
-		JPanel panel_1_2 = new JPanel();
-		panel_1_2.setBackground(new Color(240, 248, 255));
-		panel_1_2.setBounds(0, 194, 234, 58);
-		pnlSelectedNum.add(panel_1_2);
-		panel_1_2.setLayout(null);
+		JPanel pnlSelectedNumC = new JPanel();
+		pnlSelectedNumC.setBackground(new Color(240, 248, 255));
+		pnlSelectedNumC.setBounds(0, 194, 234, 58);
+		pnlSelectedNum.add(pnlSelectedNumC);
+		pnlSelectedNumC.setLayout(null);
 		
-		JLabel lblNewLabel_2_2 = new JLabel("C");
-		lblNewLabel_2_2.setOpaque(true);
-		lblNewLabel_2_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_2.setFont(new Font("굴림", Font.BOLD, 15));
-		lblNewLabel_2_2.setBackground(Color.WHITE);
-		lblNewLabel_2_2.setBounds(0, 0, 23, 58);
-		panel_1_2.add(lblNewLabel_2_2);
+		JLabel lblSelectedNumDescC = new JLabel("C");
+		lblSelectedNumDescC.setOpaque(true);
+		lblSelectedNumDescC.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSelectedNumDescC.setFont(new Font("굴림", Font.BOLD, 15));
+		lblSelectedNumDescC.setBackground(Color.WHITE);
+		lblSelectedNumDescC.setBounds(0, 0, 23, 58);
+		pnlSelectedNumC.add(lblSelectedNumDescC);
 		
-		JPanel panel_1_3 = new JPanel();
-		panel_1_3.setBackground(new Color(240, 248, 255));
-		panel_1_3.setBounds(0, 262, 234, 58);
-		pnlSelectedNum.add(panel_1_3);
-		panel_1_3.setLayout(null);
+		JPanel pnlSelectedNumD = new JPanel();
+		pnlSelectedNumD.setBackground(new Color(240, 248, 255));
+		pnlSelectedNumD.setBounds(0, 262, 234, 58);
+		pnlSelectedNum.add(pnlSelectedNumD);
+		pnlSelectedNumD.setLayout(null);
 		
-		JLabel lblNewLabel_2_3 = new JLabel("D");
-		lblNewLabel_2_3.setOpaque(true);
-		lblNewLabel_2_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_3.setFont(new Font("굴림", Font.BOLD, 15));
-		lblNewLabel_2_3.setBackground(Color.WHITE);
-		lblNewLabel_2_3.setBounds(0, 0, 23, 58);
-		panel_1_3.add(lblNewLabel_2_3);
+		lblSelectedNumDescD = new JLabel("D");
+		lblSelectedNumDescD.setOpaque(true);
+		lblSelectedNumDescD.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSelectedNumDescD.setFont(new Font("굴림", Font.BOLD, 15));
+		lblSelectedNumDescD.setBackground(Color.WHITE);
+		lblSelectedNumDescD.setBounds(0, 0, 23, 58);
+		pnlSelectedNumD.add(lblSelectedNumDescD);
 		
-		JPanel panel_1_4 = new JPanel();
-		panel_1_4.setBackground(new Color(240, 248, 255));
-		panel_1_4.setBounds(0, 327, 234, 58);
-		pnlSelectedNum.add(panel_1_4);
-		panel_1_4.setLayout(null);
+		JPanel pnlSelectedNumE = new JPanel();
+		pnlSelectedNumE.setBackground(new Color(240, 248, 255));
+		pnlSelectedNumE.setBounds(0, 327, 234, 58);
+		pnlSelectedNum.add(pnlSelectedNumE);
+		pnlSelectedNumE.setLayout(null);
 		
-		JLabel lblNewLabel_2_4 = new JLabel("E");
-		lblNewLabel_2_4.setOpaque(true);
-		lblNewLabel_2_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_4.setFont(new Font("굴림", Font.BOLD, 15));
-		lblNewLabel_2_4.setBackground(Color.WHITE);
-		lblNewLabel_2_4.setBounds(0, 0, 23, 58);
-		panel_1_4.add(lblNewLabel_2_4);
-		
-		JButton btn = new JButton("다음");
-		btn.setBounds(42, 488, 129, 29);
-		btn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		add(btn);
+		JLabel lblSelectedNumDescE = new JLabel("E");
+		lblSelectedNumDescE.setOpaque(true);
+		lblSelectedNumDescE.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSelectedNumDescE.setFont(new Font("굴림", Font.BOLD, 15));
+		lblSelectedNumDescE.setBackground(Color.WHITE);
+		lblSelectedNumDescE.setBounds(0, 0, 23, 58);
+		pnlSelectedNumE.add(lblSelectedNumDescE);
 		
 	}
 }
