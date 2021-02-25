@@ -20,6 +20,8 @@ public class SelectPanel extends JPanel implements ActionListener {
 	List<TreeSet> listSelectedNum = new ArrayList<>();
 	TreeSet<Integer> selectedNum = new TreeSet<Integer>();
 	private JButton btnConfirmNum;
+	private JLabel lblCount;
+	
 	public SelectPanel(LottoFrame frame) {
 		setBounds(100, 100, 830, 532);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -118,13 +120,13 @@ public class SelectPanel extends JPanel implements ActionListener {
 		add(pnlCount);
 		pnlCount.setLayout(null);
 		
-		JLabel lblCount = new JLabel("0");
+		lblCount = new JLabel();	// 수량
 		lblCount.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCount.setFont(new Font("굴림", Font.BOLD, 15));
-		lblCount.setBounds(103, 25, 9, 18);
+		lblCount.setBounds(103, 25, 9, 18);	
 		pnlCount.add(lblCount);
 		
-		JLabel lblCountDesc = new JLabel("수량");
+		JLabel lblCountDesc = new JLabel("수량"); 
 		lblCountDesc.setFont(new Font("돋움", Font.BOLD, 14));
 		lblCountDesc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCountDesc.setBounds(23, 9, 46, 49);
@@ -310,12 +312,9 @@ public class SelectPanel extends JPanel implements ActionListener {
 		}
 	}
 	
-//	@Override
-//	public void actionPerformed(ActionEvent e) {
-//		
-//	}
-	
-	
+	public void setLabelText(int play) {
+		lblCount.setText(String.valueOf(play));
+	}
 }
 
 
