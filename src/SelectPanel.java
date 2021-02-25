@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -15,6 +17,9 @@ import java.awt.GridLayout;
 
 public class SelectPanel extends JPanel {
 	private JLabel lblSelectedNumDescD;
+	List<int[]> resultList = new ArrayList<>();
+	int[] number = { 1, 2, 3, 4, 5, 6 };
+	Number numberClass;
 	public SelectPanel(LottoFrame frame) {
 		setBounds(100, 100, 830, 532);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -279,4 +284,5 @@ public class SelectPanel extends JPanel {
 		pnlSelectedNumE.add(lblSelectedNumDescE);
 		
 	}
+	
 }

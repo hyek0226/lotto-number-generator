@@ -20,8 +20,13 @@ import javax.swing.JFrame;
 
 import java.awt.event.ActionListener;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import java.awt.FlowLayout;
@@ -30,28 +35,29 @@ import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Point;
 import javax.swing.JInternalFrame;
+import java.awt.Rectangle;
+import javax.swing.JScrollBar;
 
 public class ResultPanel extends JPanel implements ActionListener {
+	List<Set> resultList = new ArrayList<>();
+	Set<Integer> number = new TreeSet<>();
 	TestFrame frame = new TestFrame();
 	private final JLabel lblNewLabel_1 = new JLabel("당첨 결과");
-	private final JScrollPane scrollPane = new JScrollPane();
-	private final JPanel panel_1 = new JPanel();
-	NumberCurcle nc1 = new NumberCurcle();
-	NumberCurcle nc6 = new NumberCurcle();
+	NumberCurcle nc1 = new NumberCurcle(resultList, number);
 	private final JLabel lblNewLabel = new JLabel("당신이 뽑은 숫자");
-	private final JPanel panel_2 = new JPanel();
-	private final JPanel panel_2_1 = new JPanel();
-	private final NumberCurcle nc6_1 = new NumberCurcle();
+	
 	
 	public ResultPanel(LottoFrame frame) {
-		
-		URL imgURL = this.getClass().getResource("curcle.jpg");
-
-		ImageIcon image = new ImageIcon(imgURL);
+		number.add(10);
+		number.add(20);
+		number.add(30);
+		number.add(40);
+		number.add(30);
+		number.add(20);
+		resultList.add(number);
 		setPreferredSize(new Dimension(830, 530));
 		setMaximumSize(new Dimension(830, 530));
 		setLayout(null);
-		
 		JPanel panel = new JPanel();
 		panel.setBounds(120, 61, 600, 79);
 		panel.add(nc1);
@@ -76,33 +82,15 @@ public class ResultPanel extends JPanel implements ActionListener {
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		add(lblNewLabel_1);
-		scrollPane.setBounds(120, 200, 600, 210);
-		
-		add(scrollPane);
-		panel_1.setPreferredSize(new Dimension(500, 700));
-		panel_1.setMaximumSize(new Dimension(500, 32767));
-
-		scrollPane.setViewportView(panel_1);
-		panel_2.setPreferredSize(new Dimension(500, 100));
-		
-		panel_1.add(panel_2);
-		SpringLayout sl_panel_2 = new SpringLayout();
-		sl_panel_2.putConstraint(SpringLayout.NORTH, nc6, 10, SpringLayout.NORTH, panel_2);
-		sl_panel_2.putConstraint(SpringLayout.EAST, nc6, -65, SpringLayout.EAST, panel_2);
-		panel_2.setLayout(sl_panel_2);
-		panel_2.add(nc6);
-		panel_2_1.setPreferredSize(new Dimension(500, 100));
-		
-		panel_1.add(panel_2_1);
-		SpringLayout sl_panel_2_1 = new SpringLayout();
-		sl_panel_2_1.putConstraint(SpringLayout.NORTH, nc6_1, 10, SpringLayout.NORTH, panel_2_1);
-		sl_panel_2_1.putConstraint(SpringLayout.EAST, nc6_1, -53, SpringLayout.EAST, panel_2_1);
-		panel_2_1.setLayout(sl_panel_2_1);
-		
-		panel_2_1.add(nc6_1);
 		lblNewLabel.setBounds(343, 164, 138, 21);
-		
 		add(lblNewLabel);
+		NumberList list = new NumberList(resultList, number);
+		list.setBounds(174, 200, 500, 100);
+		add(list);
+		
+		NumberList list_1 = new NumberList(resultList, number);
+		list_1.setBounds(174, 325, 500, 100);
+		add(list_1);
 		
 	}
 
