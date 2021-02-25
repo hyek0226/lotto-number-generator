@@ -19,38 +19,44 @@ public class Curcle extends JPanel {
 	Map<Integer, Color> colorMap = new HashMap<>();
 	Random r = new Random();
 	JLabel lblNewLabel;
-	
-	public Curcle(Set<Integer> num) {
-
-		
+	boolean b = false;
+	public Curcle(int n, boolean b) {
+		number = n;
+		this.b = b;
+		setBackground(new Color(0,0,0,0));
 		setPreferredSize(new Dimension(60, 60));
 		setSize(new Dimension(176, 176));
 		setMinimumSize(new Dimension(60, 60));
 		setMaximumSize(new Dimension(60, 60));
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
-		lblNewLabel = new JLabel(String.valueOf(number));
-		add(lblNewLabel);
 		
-		lblNewLabel.setBackground(new Color(0, 0, 0, 0));
-		lblNewLabel.setFont(new Font("Bodoni MT", Font.BOLD, 30));
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setOpaque(true);
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 10, SpringLayout.NORTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 24, SpringLayout.WEST, this);
+		
+		JLabel label = new JLabel(String.valueOf(n));
+		springLayout.putConstraint(SpringLayout.NORTH, label, 10, SpringLayout.NORTH, this);
+		springLayout.putConstraint(SpringLayout.WEST, label, 20, SpringLayout.WEST, this);
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Arial", Font.PLAIN, 30));
+		add(label);
 	}
 		
 	@Override
 	protected void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);
-		if (number < 16) {
-			g.setColor(Color.red);
-		} else if (number < 31) {
-			g.setColor(Color.blue);
-		} else if (number < 46) {
-			g.setColor(Color.CYAN);
+		if (!b) {
+			g.setColor(new Color(1, 1, 1, 0));
+		} else {
+			if (number < 16) {
+				g.setColor(Color.DARK_GRAY);
+			} else if (number < 31) {
+				g.setColor(Color.blue);
+			} else if (number < 46) {
+				g.setColor(Color.CYAN);
+			}
 		}
+		
+		
 		
 		g.fillOval(0, 0, 60, 60);
 	}
