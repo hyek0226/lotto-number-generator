@@ -37,11 +37,6 @@ public class ResultPanel extends JPanel implements ActionListener {
 	private final JScrollPane scrollPane = new JScrollPane();
 	private final JPanel panel_1 = new JPanel();
 	NumberCurcle nc1 = new NumberCurcle();
-	NumberCurcle nc2 = new NumberCurcle();
-	NumberCurcle nc3 = new NumberCurcle();
-	NumberCurcle nc4 = new NumberCurcle();
-	NumberCurcle nc5 = new NumberCurcle();
-	NumberCurcle nc6 = new NumberCurcle();
 	private final JLabel lblNewLabel = new JLabel("당신이 뽑은 숫자");
 	
 	public ResultPanel(LottoFrame frame) {
@@ -84,11 +79,6 @@ public class ResultPanel extends JPanel implements ActionListener {
 		panel_1.setMaximumSize(new Dimension(500, 32767));
 
 		scrollPane.setViewportView(panel_1);
-		panel_1.add(nc2);
-		panel_1.add(nc3);
-		panel_1.add(nc4);
-		panel_1.add(nc5);
-		panel_1.add(nc6);
 		lblNewLabel.setBounds(343, 164, 138, 21);
 		
 		add(lblNewLabel);

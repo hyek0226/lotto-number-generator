@@ -11,6 +11,7 @@ import javax.swing.SpringLayout;
 import java.awt.Font;
 
 public class Curcle extends JPanel {
+	int number = 45;
 	Map<Integer, Color> colorMap = new HashMap<>();
 	Random r = new Random();
 	int randomKey = r.nextInt(6);
@@ -28,7 +29,7 @@ public class Curcle extends JPanel {
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
-		JLabel lblNewLabel = new JLabel("1");
+		JLabel lblNewLabel = new JLabel(String.valueOf(number));
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 10, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 24, SpringLayout.WEST, this);
 		lblNewLabel.setBackground(new Color(0, 0, 0, 0));
@@ -41,7 +42,14 @@ public class Curcle extends JPanel {
 	protected void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);
-		g.setColor(colorMap.get(randomKey));
+		if (number < 16) {
+			g.setColor(Color.red);
+		} else if (number < 31) {
+			g.setColor(Color.blue);
+		} else if (number < 46) {
+			g.setColor(Color.CYAN);
+		}
+		
 		g.fillOval(0, 0, 60, 60);
 		g.setColor(Color.white);
 	}
