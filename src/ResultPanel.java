@@ -37,7 +37,11 @@ public class ResultPanel extends JPanel implements ActionListener {
 	private final JScrollPane scrollPane = new JScrollPane();
 	private final JPanel panel_1 = new JPanel();
 	NumberCurcle nc1 = new NumberCurcle();
+	NumberCurcle nc6 = new NumberCurcle();
 	private final JLabel lblNewLabel = new JLabel("당신이 뽑은 숫자");
+	private final JPanel panel_2 = new JPanel();
+	private final JPanel panel_2_1 = new JPanel();
+	private final NumberCurcle nc6_1 = new NumberCurcle();
 	
 	public ResultPanel(LottoFrame frame) {
 		
@@ -79,6 +83,23 @@ public class ResultPanel extends JPanel implements ActionListener {
 		panel_1.setMaximumSize(new Dimension(500, 32767));
 
 		scrollPane.setViewportView(panel_1);
+		panel_2.setPreferredSize(new Dimension(500, 100));
+		
+		panel_1.add(panel_2);
+		SpringLayout sl_panel_2 = new SpringLayout();
+		sl_panel_2.putConstraint(SpringLayout.NORTH, nc6, 10, SpringLayout.NORTH, panel_2);
+		sl_panel_2.putConstraint(SpringLayout.EAST, nc6, -65, SpringLayout.EAST, panel_2);
+		panel_2.setLayout(sl_panel_2);
+		panel_2.add(nc6);
+		panel_2_1.setPreferredSize(new Dimension(500, 100));
+		
+		panel_1.add(panel_2_1);
+		SpringLayout sl_panel_2_1 = new SpringLayout();
+		sl_panel_2_1.putConstraint(SpringLayout.NORTH, nc6_1, 10, SpringLayout.NORTH, panel_2_1);
+		sl_panel_2_1.putConstraint(SpringLayout.EAST, nc6_1, -53, SpringLayout.EAST, panel_2_1);
+		panel_2_1.setLayout(sl_panel_2_1);
+		
+		panel_2_1.add(nc6_1);
 		lblNewLabel.setBounds(343, 164, 138, 21);
 		
 		add(lblNewLabel);
