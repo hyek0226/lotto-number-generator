@@ -28,7 +28,6 @@ public class MainPanel extends JPanel {
 		lbl1.setBorder(BorderFactory.createLineBorder(Color.black));
 		lbl2.setBorder(BorderFactory.createLineBorder(Color.black));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		lbl1.setPreferredSize(new Dimension(100,100));
 	
 		btn1.addActionListener(new ActionListener() {
 			@Override
