@@ -5,7 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-// 3조 lotto
+// 3議� lotto
+// 김은채 
 public class LottoFrame extends JFrame {
 
 	private JPanel contentPane;
