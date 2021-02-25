@@ -2,7 +2,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+// 어떠신가욥?
+//잘된거같아요!ㅎ 넵! 그러면 합치는거 할게요!
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
