@@ -1,21 +1,27 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeSet;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 
-public class SelectPanel extends JPanel {
+public class SelectPanel extends JPanel implements ActionListener {
 	private JLabel lblSelectedNumDescD;
+	List<JCheckBox> chkbxNum = new ArrayList<>();
+	List<TreeSet> listSelectedNum = new ArrayList<>();
+	TreeSet<Integer> selectedNum = new TreeSet<Integer>();
+	private JButton btnConfirmNum;
 	private JLabel lblCount;
+	
 	public SelectPanel(LottoFrame frame) {
 		setBounds(100, 100, 830, 532);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -65,26 +71,14 @@ public class SelectPanel extends JPanel {
 		pnlCenter.add(pnlNum);
 		pnlNum.setLayout(new GridLayout(0, 7));
 		
-		JButton btnConfirmNum = new JButton("확인");
+		btnConfirmNum = new JButton("확인");
 		btnConfirmNum.setBounds(245, 368, 77, 23);
+		btnConfirmNum.setEnabled(false);
 		pnlCenter.add(btnConfirmNum);
-		
-		int num = 1;
-		for (int i = 0; i < 45; i++) {
-			String stringNum = Integer.toString(num);
-			JCheckBox chkbxNum = new JCheckBox(stringNum);
-			pnlNum.add(chkbxNum);
-			chkbxNum.setFont(new Font("굴림", Font.BOLD, 13));
-			num++;
-		}
 		
 		JButton btnManualNum = new JButton("수동");
 		btnManualNum.setBackground(new Color(176, 224, 230));
 		btnManualNum.setFont(new Font("돋움", Font.BOLD, 20));
-		btnManualNum.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnManualNum.setBounds(12, 150, 137, 134);
 		add(btnManualNum);
 		
@@ -94,6 +88,32 @@ public class SelectPanel extends JPanel {
 		btnRandomNum.setBounds(12, 314, 137, 134);
 		add(btnRandomNum);
 		
+		
+		// 1 ~ 45 로또 선택 숫자 (기본 : 비활성화)
+		int num = 1;
+		for (int i = 0; i < 45; i++) {
+			String stringNum = Integer.toString(num);
+			chkbxNum.add(new JCheckBox(stringNum));
+			pnlNum.add(chkbxNum.get(i));
+			chkbxNum.get(i).setEnabled(false);
+			chkbxNum.get(i).setFont(new Font("굴림", Font.BOLD, 13));
+			num++;
+			chkbxNum.get(i).addActionListener(this);
+		}
+
+		
+		
+		btnManualNum.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < 45; i++) {
+					chkbxNum.get(i).setEnabled(true);
+				}
+			}
+		});
+		add(btnRandomNum);
+		
+
 		JPanel pnlCount = new JPanel();
 		pnlCount.setBackground(Color.WHITE);
 		pnlCount.setBounds(12, 51, 137, 73);
@@ -278,10 +298,36 @@ public class SelectPanel extends JPanel {
 		lblSelectedNumDescE.setBackground(Color.WHITE);
 		lblSelectedNumDescE.setBounds(0, 0, 23, 58);
 		pnlSelectedNumE.add(lblSelectedNumDescE);
-		
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		for(int i = 0; i < 45; i++) {
+			if (chkbxNum.get(i).isSelected()) {
+				if (selectedNum.size() < 5) {
+					selectedNum.add(Integer.parseInt(chkbxNum.get(i).getText()));
+				} else {
+					btnConfirmNum.setEnabled(true);
+				}
+			}
+		}
 	}
 	
 	public void setLabelText(int play) {
 		lblCount.setText(String.valueOf(play));
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

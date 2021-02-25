@@ -13,9 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
-
 public class CountPanel extends JPanel implements ActionListener { 
+	SelectPanel selectPanel;
 	JTextField palyText;
 	JLabel lblCount;
 	int play = 0;
