@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class CountPanel extends JPanel implements ActionListener {
+	SelectPanel selectPanel;
 	JTextField palyText;
 	public boolean tryParse(String palyText) {
 		try {
@@ -57,7 +58,7 @@ public class CountPanel extends JPanel implements ActionListener {
 					"문자열은 안됩니다 숫자 숫자", JOptionPane.WARNING_MESSAGE);
 			}
 		
-		else { 
+		else {
 			play = Integer.valueOf(palyText.getText());
 			System.out.println(play);
 			
@@ -69,8 +70,6 @@ public class CountPanel extends JPanel implements ActionListener {
 				JOptionPane.showMessageDialog(null, "너무 많이하는건 좋지않아요", 
 						"너무 많이하지마", JOptionPane.WARNING_MESSAGE);
 			}
-	
 		}
 	}
-
 }
