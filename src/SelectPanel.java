@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 public class SelectPanel extends JPanel {
 	private JLabel lblSelectedNumDescD;
@@ -28,308 +30,52 @@ public class SelectPanel extends JPanel {
 		lblSelectNumDesc.setBounds(12, 134, 137, 15);
 		add(lblSelectNumDesc);
 		
-		JPanel pnlNumber = new JPanel();
-		pnlNumber.setBackground(Color.WHITE);
-		pnlNumber.setBounds(155, 51, 335, 397);
-		add(pnlNumber);
-		pnlNumber.setLayout(null);
+		JPanel pnlCenter = new JPanel();
+		pnlCenter.setBackground(Color.WHITE);
+		pnlCenter.setBounds(155, 51, 334, 397);
+		add(pnlCenter);
+		pnlCenter.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(240, 248, 255));
-		panel.setBounds(12, 10, 317, 57);
-		pnlNumber.add(panel);
-		panel.setLayout(null);
+		JPanel pnlPrice = new JPanel();
+		pnlPrice.setBackground(new Color(240, 248, 255));
+		pnlPrice.setBounds(12, 10, 310, 57);
+		pnlCenter.add(pnlPrice);
+		pnlPrice.setLayout(null);
 		
 		JLabel lblPriceDesc = new JLabel("금액");
 		lblPriceDesc.setBounds(25, 8, 30, 37);
 		lblPriceDesc.setFont(new Font("굴림", Font.BOLD, 14));
-		panel.add(lblPriceDesc);
+		pnlPrice.add(lblPriceDesc);
 		
 		JLabel lblPrice = new JLabel("0");
 		lblPrice.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPrice.setFont(new Font("굴림", Font.BOLD, 15));
 		lblPrice.setBounds(192, 8, 57, 37);
-		panel.add(lblPrice);
+		pnlPrice.add(lblPrice);
 		
 		JLabel lblWon = new JLabel("원");
 		lblWon.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWon.setFont(new Font("굴림", Font.BOLD, 15));
 		lblWon.setBounds(261, 8, 30, 37);
-		panel.add(lblWon);
+		pnlPrice.add(lblWon);
+		
+		JPanel pnlNum = new JPanel();
+		pnlNum.setBounds(12, 74, 310, 288);
+		pnlCenter.add(pnlNum);
+		pnlNum.setLayout(new GridLayout(0, 7));
 		
 		JButton btnConfirmNum = new JButton("확인");
-		btnConfirmNum.setBounds(252, 364, 77, 23);
-		pnlNumber.add(btnConfirmNum);
+		btnConfirmNum.setBounds(245, 368, 77, 23);
+		pnlCenter.add(btnConfirmNum);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("1");
-		chckbxNewCheckBox.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox.setBounds(6, 86, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox);
-		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("2");
-		chckbxNewCheckBox_1.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_1.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_1.setBounds(55, 86, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_1);
-		
-		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("3");
-		chckbxNewCheckBox_2.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_2.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_2.setBounds(102, 86, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_2);
-		
-		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("4");
-		chckbxNewCheckBox_3.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_3.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_3.setBounds(149, 86, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_3);
-		
-		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("5");
-		chckbxNewCheckBox_4.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_4.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_4.setBounds(196, 86, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_4);
-		
-		JCheckBox chckbxNewCheckBox_5 = new JCheckBox("6");
-		chckbxNewCheckBox_5.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_5.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_5.setBounds(241, 86, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_5);
-		
-		JCheckBox chckbxNewCheckBox_5_1 = new JCheckBox("7");
-		chckbxNewCheckBox_5_1.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_5_1.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_5_1.setBounds(287, 86, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_5_1);
-		
-		JCheckBox chckbxNewCheckBox_6 = new JCheckBox("8");
-		chckbxNewCheckBox_6.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_6.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_6.setBounds(6, 121, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_6);
-		
-		JCheckBox chckbxNewCheckBox_1_1 = new JCheckBox("9");
-		chckbxNewCheckBox_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_1_1.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_1_1.setBounds(55, 121, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_1_1);
-		
-		JCheckBox chckbxNewCheckBox_2_1 = new JCheckBox("10");
-		chckbxNewCheckBox_2_1.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_2_1.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_2_1.setBounds(102, 121, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_2_1);
-		
-		JCheckBox chckbxNewCheckBox_3_1 = new JCheckBox("11");
-		chckbxNewCheckBox_3_1.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_3_1.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_3_1.setBounds(149, 121, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_3_1);
-		
-		JCheckBox chckbxNewCheckBox_4_1 = new JCheckBox("12");
-		chckbxNewCheckBox_4_1.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_4_1.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_4_1.setBounds(196, 121, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_4_1);
-		
-		JCheckBox chckbxNewCheckBox_5_2 = new JCheckBox("13");
-		chckbxNewCheckBox_5_2.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_5_2.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_5_2.setBounds(241, 121, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_5_2);
-		
-		JCheckBox chckbxNewCheckBox_5_1_1 = new JCheckBox("14");
-		chckbxNewCheckBox_5_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_5_1_1.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_5_1_1.setBounds(287, 121, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_5_1_1);
-		
-		JCheckBox chckbxNewCheckBox_7 = new JCheckBox("15");
-		chckbxNewCheckBox_7.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_7.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_7.setBounds(6, 159, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_7);
-		
-		JCheckBox chckbxNewCheckBox_1_2 = new JCheckBox("16");
-		chckbxNewCheckBox_1_2.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_1_2.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_1_2.setBounds(55, 159, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_1_2);
-		
-		JCheckBox chckbxNewCheckBox_2_2 = new JCheckBox("17");
-		chckbxNewCheckBox_2_2.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_2_2.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_2_2.setBounds(102, 159, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_2_2);
-		
-		JCheckBox chckbxNewCheckBox_3_2 = new JCheckBox("18");
-		chckbxNewCheckBox_3_2.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_3_2.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_3_2.setBounds(149, 159, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_3_2);
-		
-		JCheckBox chckbxNewCheckBox_4_2 = new JCheckBox("19");
-		chckbxNewCheckBox_4_2.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_4_2.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_4_2.setBounds(196, 159, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_4_2);
-		
-		JCheckBox chckbxNewCheckBox_5_3 = new JCheckBox("20");
-		chckbxNewCheckBox_5_3.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_5_3.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_5_3.setBounds(241, 159, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_5_3);
-		
-		JCheckBox chckbxNewCheckBox_5_1_2 = new JCheckBox("21");
-		chckbxNewCheckBox_5_1_2.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_5_1_2.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_5_1_2.setBounds(287, 159, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_5_1_2);
-		
-		JCheckBox chckbxNewCheckBox_8 = new JCheckBox("22");
-		chckbxNewCheckBox_8.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_8.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_8.setBounds(6, 196, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_8);
-		
-		JCheckBox chckbxNewCheckBox_1_3 = new JCheckBox("23");
-		chckbxNewCheckBox_1_3.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_1_3.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_1_3.setBounds(55, 196, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_1_3);
-		
-		JCheckBox chckbxNewCheckBox_2_3 = new JCheckBox("24");
-		chckbxNewCheckBox_2_3.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_2_3.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_2_3.setBounds(102, 196, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_2_3);
-		
-		JCheckBox chckbxNewCheckBox_3_3 = new JCheckBox("25");
-		chckbxNewCheckBox_3_3.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_3_3.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_3_3.setBounds(149, 196, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_3_3);
-		
-		JCheckBox chckbxNewCheckBox_4_3 = new JCheckBox("26");
-		chckbxNewCheckBox_4_3.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_4_3.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_4_3.setBounds(196, 196, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_4_3);
-		
-		JCheckBox chckbxNewCheckBox_5_4 = new JCheckBox("27");
-		chckbxNewCheckBox_5_4.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_5_4.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_5_4.setBounds(241, 196, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_5_4);
-		
-		JCheckBox chckbxNewCheckBox_5_1_3 = new JCheckBox("28");
-		chckbxNewCheckBox_5_1_3.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_5_1_3.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_5_1_3.setBounds(287, 196, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_5_1_3);
-		
-		JCheckBox chckbxNewCheckBox_9 = new JCheckBox("29");
-		chckbxNewCheckBox_9.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_9.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_9.setBounds(6, 233, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_9);
-		
-		JCheckBox chckbxNewCheckBox_1_4 = new JCheckBox("30");
-		chckbxNewCheckBox_1_4.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_1_4.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_1_4.setBounds(55, 233, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_1_4);
-		
-		JCheckBox chckbxNewCheckBox_2_4 = new JCheckBox("31");
-		chckbxNewCheckBox_2_4.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_2_4.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_2_4.setBounds(102, 233, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_2_4);
-		
-		JCheckBox chckbxNewCheckBox_3_4 = new JCheckBox("32");
-		chckbxNewCheckBox_3_4.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_3_4.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_3_4.setBounds(149, 233, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_3_4);
-		
-		JCheckBox chckbxNewCheckBox_4_4 = new JCheckBox("33");
-		chckbxNewCheckBox_4_4.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_4_4.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_4_4.setBounds(196, 233, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_4_4);
-		
-		JCheckBox chckbxNewCheckBox_5_5 = new JCheckBox("34");
-		chckbxNewCheckBox_5_5.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_5_5.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_5_5.setBounds(241, 233, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_5_5);
-		
-		JCheckBox chckbxNewCheckBox_5_1_4 = new JCheckBox("35");
-		chckbxNewCheckBox_5_1_4.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_5_1_4.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_5_1_4.setBounds(287, 233, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_5_1_4);
-		
-		JCheckBox chckbxNewCheckBox_10 = new JCheckBox("36");
-		chckbxNewCheckBox_10.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_10.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_10.setBounds(6, 271, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_10);
-		
-		JCheckBox chckbxNewCheckBox_1_5 = new JCheckBox("37");
-		chckbxNewCheckBox_1_5.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_1_5.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_1_5.setBounds(55, 271, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_1_5);
-		
-		JCheckBox chckbxNewCheckBox_2_5 = new JCheckBox("38");
-		chckbxNewCheckBox_2_5.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_2_5.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_2_5.setBounds(102, 271, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_2_5);
-		
-		JCheckBox chckbxNewCheckBox_3_5 = new JCheckBox("39");
-		chckbxNewCheckBox_3_5.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_3_5.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_3_5.setBounds(149, 271, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_3_5);
-		
-		JCheckBox chckbxNewCheckBox_4_5 = new JCheckBox("40");
-		chckbxNewCheckBox_4_5.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_4_5.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_4_5.setBounds(196, 271, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_4_5);
-		
-		JCheckBox chckbxNewCheckBox_5_6 = new JCheckBox("41");
-		chckbxNewCheckBox_5_6.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_5_6.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_5_6.setBounds(241, 271, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_5_6);
-		
-		JCheckBox chckbxNewCheckBox_5_1_5 = new JCheckBox("42");
-		chckbxNewCheckBox_5_1_5.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_5_1_5.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_5_1_5.setBounds(287, 271, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_5_1_5);
-		
-		JCheckBox chckbxNewCheckBox_11 = new JCheckBox("43");
-		chckbxNewCheckBox_11.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_11.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_11.setBounds(6, 306, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_11);
-		
-		JCheckBox chckbxNewCheckBox_1_6 = new JCheckBox("44");
-		chckbxNewCheckBox_1_6.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_1_6.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_1_6.setBounds(55, 306, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_1_6);
-		
-		JCheckBox chckbxNewCheckBox_2_6 = new JCheckBox("45");
-		chckbxNewCheckBox_2_6.setHorizontalAlignment(SwingConstants.LEFT);
-		chckbxNewCheckBox_2_6.setFont(new Font("굴림", Font.BOLD, 13));
-		chckbxNewCheckBox_2_6.setBounds(102, 306, 42, 23);
-		pnlNumber.add(chckbxNewCheckBox_2_6);
+		int num = 1;
+		for (int i = 0; i < 45; i++) {
+			String stringNum = Integer.toString(num);
+			JCheckBox chkbxNum = new JCheckBox(stringNum);
+			pnlNum.add(chkbxNum);
+			chkbxNum.setFont(new Font("굴림", Font.BOLD, 13));
+			num++;
+		}
 		
 		JButton btnManualNum = new JButton("수동");
 		btnManualNum.setBackground(new Color(176, 224, 230));
