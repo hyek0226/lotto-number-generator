@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeSet;
 
 import javax.swing.JButton;
@@ -33,6 +34,9 @@ public class SelectPanel extends JPanel implements ActionListener {
 	
 	// 선택된 6개 번호 담는 배열 A ~ E
 	TreeSet<Integer> selectedNum = new TreeSet<Integer>();
+	Set<Integer> temp = new TreeSet<>();
+	int play = 0;
+	private JButton btnNextPage;
 	TreeSet<Integer> selectedNumA = new TreeSet<Integer>();
 	TreeSet<Integer> selectedNumB = new TreeSet<Integer>();
 	TreeSet<Integer> selectedNumC = new TreeSet<Integer>();
@@ -50,6 +54,13 @@ public class SelectPanel extends JPanel implements ActionListener {
 	
 	// 생성자
 	public SelectPanel(LottoFrame frame) {
+		temp.add(7);
+		temp.add(8);
+		temp.add(9);
+		temp.add(10);
+		temp.add(11);
+		temp.add(12);
+	
 		setBounds(100, 100, 830, 532);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
@@ -202,7 +213,9 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnNextPage.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.changeResultPanel();
+				frame.changeResultPanel(play);
+				frame.getResultPanel().setPlayTest(Integer.parseInt(lblCount.getText()));
+				System.out.println(lblCount.getText());
 			}
 		});
 		add(btnNextPage);
@@ -453,9 +466,12 @@ public class SelectPanel extends JPanel implements ActionListener {
 	
 	public void setLabelText(int play) {
 		lblCount.setText(String.valueOf(play));
-		lblPrice.setText(String.valueOf(play * 1000));
+		this.play = play;
 	}
-
+	
+	public Set<Integer> getTemp() {
+		return temp;
+	}
 	// count 만큼 게임 진행
 	public void playGame(int count) {
 		for (int i = 0; i < count; i++) {
