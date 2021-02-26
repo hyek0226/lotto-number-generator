@@ -14,6 +14,7 @@ public class LottoFrame extends JFrame {
 	private SelectPanel selectPanel;
 	JScrollPane scroll;
 	private ResultPanel resultPanel;
+	private CountPanel countPanel;
 	/**
 	 * Launch the application.
 	 */
@@ -37,12 +38,11 @@ public class LottoFrame extends JFrame {
 		selectPanel = new SelectPanel(this);
 		resultPanel = new ResultPanel(this, selectPanel.getTemp());
 		scroll = new JScrollPane(resultPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(10, 10, 830, 530);
 		getContentPane().setLayout(cards);
-		getContentPane().add("Main", new MainPanel(this)); 
-		getContentPane().add("Count", new CountPanel(this));
+		getContentPane().add("Main", new MainPanel(this));
+		getContentPane().add("Count", countPanel);
 		getContentPane().add("Select", selectPanel); 
 		getContentPane().add("Result", scroll);
 	}
@@ -55,6 +55,7 @@ public class LottoFrame extends JFrame {
 
 	public void changeMainPanel() {
 		cards.show(this.getContentPane(), "Main");
+		countPanel.resetInput();
 	}
 
 	public void changeCountPanel() {
@@ -64,6 +65,7 @@ public class LottoFrame extends JFrame {
 	public void changeSelectPanel(int play) { 
 		cards.show(this.getContentPane(), "Select");
 		selectPanel.setLabelText(play);
+		selectPanel.playGame(play);
 	}
 	public void changeResultPanel(int play) {
 		cards.show(this.getContentPane(), "Result");
@@ -84,4 +86,3 @@ public class LottoFrame extends JFrame {
 	}
 
 }
-

@@ -100,18 +100,18 @@ public class ResultPanel extends JPanel implements ActionListener {
 		panel5.setBounds(50, 670, 700, 80);
 		add(panel5);
 		
+	
+		randomNumber();
 		System.out.println(number);
 		setPreferredSize(new Dimension(830, 800));
 		setMaximumSize(new Dimension(830, 800));
 		
-		randomNumber();
-		loopResult();
 		
 		JButton btnNewButton_1 = new JButton("처음으로");
 		btnNewButton_1.setBounds(671, 15, 142, 40);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.changeMainPanel();
+				frame.changeMainPanel();	
 			}
 		});
 		setLayout(null);
