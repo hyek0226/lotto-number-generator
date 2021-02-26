@@ -26,11 +26,11 @@ public class SelectPanel extends JPanel implements ActionListener {
 	
 
 	void randomnum() {
-		TreeSet<Integer> set = new TreeSet<Integer>();
-		while(set.size() < 6) {
-			set.add((int) (Math.random() * 45) + 1);
+		TreeSet<Integer> randomSelectedNum = new TreeSet<Integer>();
+		while(randomSelectedNum.size() < 6) {
+			randomSelectedNum.add((int) (Math.random() * 45) + 1);
 		}
-		str = set.toString();
+		str = randomSelectedNum.toString();
 	}
 		
 	List<JCheckBox> chkbxNum = new ArrayList<>();

@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 // 3조 lotto
 public class LottoFrame extends JFrame {
-
 	private JPanel contentPane;
 	private CardLayout cards = new CardLayout();
 	private SelectPanel selectPanel;
@@ -40,6 +39,7 @@ public class LottoFrame extends JFrame {
 		getContentPane().add("Select", selectPanel); 
 		getContentPane().add("Result", new ResultPanel(this));
 	}
+	
 	public void changeMainPanel() {
 		cards.show(this.getContentPane(), "Main");
 	}
@@ -59,4 +59,3 @@ public class LottoFrame extends JFrame {
 	}
 
 }
-
