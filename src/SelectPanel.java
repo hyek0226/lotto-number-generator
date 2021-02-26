@@ -13,17 +13,23 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
+import java.awt.GridLayout;
+// 임시 주석
 public class SelectPanel extends JPanel implements ActionListener {
 	private JLabel lblSelectedNumDescD;
+	private JLabel lblSelectedNumA;
+	private JLabel lblSelectedNumB;
+	private JLabel lblSelectedNumC;
+	private JLabel lblSelectedNumD;
+	private JLabel lblSelectedNumE;
+	private String str;
 	private JButton btnConfirmNum;
 	private JLabel lblCount;
-	private JLabel lblSelectedNumA;
 	private JButton btnManualNum;
 	private JButton btnRandomNum;
 	private JLabel lblPrice;
-	
 	List<JCheckBox> chkbxNum = new ArrayList<>();
+	List<TreeSet> listSelectedNum = new ArrayList<>();
 	
 	// 선택된 6개 번호 담는 배열 A ~ E
 	TreeSet<Integer> selectedNum = new TreeSet<Integer>();
@@ -33,6 +39,14 @@ public class SelectPanel extends JPanel implements ActionListener {
 	TreeSet<Integer> selectedNumD = new TreeSet<Integer>();
 	TreeSet<Integer> selectedNumE = new TreeSet<Integer>();
 	
+
+	void randomnum() {
+		TreeSet<Integer> randomSelectedNum = new TreeSet<Integer>();
+		while(randomSelectedNum.size() < 6) {
+			randomSelectedNum.add((int) (Math.random() * 45) + 1);
+		}
+		str = randomSelectedNum.toString();
+	}
 	
 	// 생성자
 	public SelectPanel(LottoFrame frame) {
@@ -102,15 +116,29 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnManualNum.setFont(new Font("돋움", Font.BOLD, 20));
 		btnManualNum.setBounds(12, 150, 137, 134);
 		add(btnManualNum);
-		
+
+
+//여기 버튼 수정했어요
 		btnRandomNum = new JButton("자동");
+		btnRandomNum.setActionCommand("자동");
 		btnRandomNum.setBackground(new Color(176, 224, 230));
 		btnRandomNum.setFont(new Font("돋움", Font.BOLD, 20));
 		btnRandomNum.setBounds(12, 314, 137, 134);
+		btnRandomNum.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i = 0;
+				if(e.getActionCommand().equals("자동")) {
+					randomnum();
+					lblSelectedNumA.setText(str);
+//					lblSelectedNumA = new JLabel(lblSelectedNumA.getText());
+				}
+			}
+		});
+		
 		add(btnRandomNum);
-		
-		
-		// 1 ~ 45 숫자 체크박스 출력 (기본 : 비활성화)
+
+
+		// 1 ~ 45 로또 선택 숫자 (기본 : 비활성화)
 		int num = 1;
 		for (int i = 0; i < 45; i++) {
 			String stringNum = Integer.toString(num);
@@ -257,11 +285,18 @@ public class SelectPanel extends JPanel implements ActionListener {
 		add(pnlSelectedNum);
 		pnlSelectedNum.setLayout(null);
 		
-		JPanel pnlSelectedNumA = new JPanel();
+		JPanel pnlSelectedNumA = new JPanel(); 
 		pnlSelectedNumA.setBackground(new Color(240, 248, 255));
 		pnlSelectedNumA.setBounds(0, 58, 234, 58);
 		pnlSelectedNum.add(pnlSelectedNumA);
 		pnlSelectedNumA.setLayout(null);
+		
+		
+		//여기서부터 A~E 라벨을 새로 만들었어요 총 5번 만든것이에요!
+		lblSelectedNumA = new JLabel("과연 숫자는?!");
+		lblSelectedNumA.setBounds(50, 0, 1000, 48);
+		lblSelectedNumA.setFont(new Font("굴림", Font.BOLD, 15));
+		pnlSelectedNumA.add(lblSelectedNumA);
 		
 		JLabel lblSelectedNumDescA = new JLabel("A");
 		lblSelectedNumDescA.setOpaque(true);
@@ -293,6 +328,11 @@ public class SelectPanel extends JPanel implements ActionListener {
 		pnlSelectedNum.add(pnlSelectedNumB);
 		pnlSelectedNumB.setLayout(null);
 		
+		lblSelectedNumB = new JLabel("과연 숫자는?!");
+		lblSelectedNumB.setBounds(50, 0, 1000, 48);
+		lblSelectedNumB.setFont(new Font("굴림", Font.BOLD, 15));
+		pnlSelectedNumB.add(lblSelectedNumB);
+		
 		JLabel lblSelectedNumDescB = new JLabel("B");
 		lblSelectedNumDescB.setOpaque(true);
 		lblSelectedNumDescB.setHorizontalAlignment(SwingConstants.CENTER);
@@ -306,6 +346,11 @@ public class SelectPanel extends JPanel implements ActionListener {
 		pnlSelectedNumC.setBounds(0, 194, 234, 58);
 		pnlSelectedNum.add(pnlSelectedNumC);
 		pnlSelectedNumC.setLayout(null);
+		
+		lblSelectedNumC = new JLabel("과연 숫자는?!");
+		lblSelectedNumC.setBounds(50, 0, 1000, 48);
+		lblSelectedNumC.setFont(new Font("굴림", Font.BOLD, 15));
+		pnlSelectedNumC.add(lblSelectedNumC);
 		
 		JLabel lblSelectedNumDescC = new JLabel("C");
 		lblSelectedNumDescC.setOpaque(true);
@@ -321,6 +366,11 @@ public class SelectPanel extends JPanel implements ActionListener {
 		pnlSelectedNum.add(pnlSelectedNumD);
 		pnlSelectedNumD.setLayout(null);
 		
+		lblSelectedNumD = new JLabel("과연 숫자는?!");
+		lblSelectedNumD.setBounds(50, 0, 1000, 48);
+		lblSelectedNumD.setFont(new Font("굴림", Font.BOLD, 15));
+		pnlSelectedNumD.add(lblSelectedNumD);
+		
 		lblSelectedNumDescD = new JLabel("D");
 		lblSelectedNumDescD.setOpaque(true);
 		lblSelectedNumDescD.setHorizontalAlignment(SwingConstants.CENTER);
@@ -334,6 +384,11 @@ public class SelectPanel extends JPanel implements ActionListener {
 		pnlSelectedNumE.setBounds(0, 327, 234, 58);
 		pnlSelectedNum.add(pnlSelectedNumE);
 		pnlSelectedNumE.setLayout(null);
+		
+		lblSelectedNumE = new JLabel("과연 숫자는?!");
+		lblSelectedNumE.setBounds(50, 0, 1000, 48);
+		lblSelectedNumE.setFont(new Font("굴림", Font.BOLD, 15));
+		pnlSelectedNumE.add(lblSelectedNumE);
 		
 		JLabel lblSelectedNumDescE = new JLabel("E");
 		lblSelectedNumDescE.setOpaque(true);

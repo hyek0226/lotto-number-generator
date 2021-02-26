@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class CountPanel extends JPanel implements ActionListener { 
-	SelectPanel selectPanel;
+//	SelectPanel selectPanel;
 	JTextField palyText;
 	JLabel lblCount;
 	int play = 0;
@@ -26,7 +26,13 @@ public class CountPanel extends JPanel implements ActionListener {
 		} catch (NumberFormatException e) {
 			return false;
 		}
-	}	
+	}
+	
+	public void resetInput() { 
+		palyText.setText("");
+		lblCount.setText("");
+		play = 0 ;
+	}
 	
 	public CountPanel(LottoFrame frame) {
 		BoxLayout layout = new BoxLayout(this, BoxLayout.Y_AXIS);
@@ -43,7 +49,13 @@ public class CountPanel extends JPanel implements ActionListener {
 		nextBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.changeSelectPanel(play);	// 수량 넘어가는 부분
+				if(play == 0) {
+					JOptionPane.showMessageDialog(null, "적어도 한 개 이상은 해야겠죠??", 
+							"구매 안하고는 못해여", JOptionPane.WARNING_MESSAGE);
+				}
+				else {
+					frame.changeSelectPanel(play);	// 수량 넘어가는 부분
+				}
 			} 
 		});
 		btn.addActionListener(this);
@@ -90,7 +102,7 @@ public class CountPanel extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(null, "최소 1번 이상 입력해야합니다.", 
 					"경고창임", JOptionPane.WARNING_MESSAGE);
 			}
-			else if(play > 10) {	// 10번까지 가능
+			else if(play > 5) {	// 10번까지 가능
 				JOptionPane.showMessageDialog(null, "너무 많이 하는건 좋지않아요", 
 						"너무 많이 하지마", JOptionPane.WARNING_MESSAGE);
 			}

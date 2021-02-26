@@ -93,9 +93,6 @@ public class ResultPanel extends JPanel implements ActionListener {
 		panel5.setBackground(Color.gray);
 		panel5.setBounds(50, 670, 700, 80);
 		add(panel5);
-		
-		
-		
 	
 		randomNumber();
 		System.out.println(number);
@@ -117,7 +114,7 @@ public class ResultPanel extends JPanel implements ActionListener {
 		btnNewButton_1.setBounds(671, 15, 142, 40);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.changeMainPanel();
+				frame.changeMainPanel();	
 			}
 		});
 		setLayout(null);
