@@ -5,12 +5,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 // 3조 lotto
 public class LottoFrame extends JFrame {
 
 	private JPanel contentPane;
 	private CardLayout cards = new CardLayout();
+	private SelectPanel selectPanel;
 	/**
 	 * Launch the application.
 	 */
@@ -31,15 +31,15 @@ public class LottoFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public LottoFrame() {
+		selectPanel = new SelectPanel(this);	 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(10, 10, 830, 530);
 		getContentPane().setLayout(cards);
-		getContentPane().add("Main", new MainPanel(this));
+		getContentPane().add("Main", new MainPanel(this)); 
 		getContentPane().add("Count", new CountPanel(this));
-		getContentPane().add("Select", new SelectPanel(this));
+		getContentPane().add("Select", selectPanel); 
 		getContentPane().add("Result", new ResultPanel(this));
 	}
-	
 	public void changeMainPanel() {
 		cards.show(this.getContentPane(), "Main");
 	}
@@ -48,8 +48,10 @@ public class LottoFrame extends JFrame {
 		cards.show(this.getContentPane(), "Count");
 	}
 	
-	public void changeSelectPanel() {
+	public void changeSelectPanel(int play) { 
 		cards.show(this.getContentPane(), "Select");
+		selectPanel.setLabelText(play);
+		
 	}
 	
 	public void changeResultPanel() {
@@ -57,3 +59,4 @@ public class LottoFrame extends JFrame {
 	}
 
 }
+

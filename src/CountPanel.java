@@ -1,16 +1,24 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class CountPanel extends JPanel implements ActionListener {
+public class CountPanel extends JPanel implements ActionListener { 
+	SelectPanel selectPanel;
 	JTextField palyText;
+	JLabel lblCount;
+	int play = 0;
+	
 	public boolean tryParse(String palyText) {
 		try {
 			Integer.parseInt(palyText); 
@@ -21,6 +29,9 @@ public class CountPanel extends JPanel implements ActionListener {
 	}	
 	
 	public CountPanel(LottoFrame frame) {
+		BoxLayout layout = new BoxLayout(this, BoxLayout.Y_AXIS);
+		setLayout(layout);
+		// 상단
 		JPanel pnl = new JPanel();
 		JLabel lbl = new JLabel("플레이 수 : ");
 
@@ -28,12 +39,12 @@ public class CountPanel extends JPanel implements ActionListener {
 		palyText.setBorder(BorderFactory.createLineBorder(Color.black));
 
 		JButton btn = new JButton("입력");
-		JButton nextBtn = new JButton("다음");
+		JButton nextBtn = new JButton("다음");	// 클릭 시 화면이 넘어가고 입력했던 수량도 같이 넘어간다.
 		nextBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.changeSelectPanel();
-			}
+				frame.changeSelectPanel(play);	// 수량 넘어가는 부분
+			} 
 		});
 		btn.addActionListener(this);
 
@@ -42,35 +53,47 @@ public class CountPanel extends JPanel implements ActionListener {
 		pnl.add(btn);
 		pnl.add(nextBtn);
 
+		add(Box.createVerticalGlue());
+		
 		add(pnl);
+		
+		// 중간
+		JPanel pnl2 = new JPanel();
+		JLabel lblPlay = new JLabel("수량  : ");	 // 수량 글자 출력
+		lblCount = new JLabel();
+		pnl2.setPreferredSize(new Dimension(200, 100));
+		pnl2.setMaximumSize(new Dimension(150, 30)); 
+		pnl2.setBorder(BorderFactory.createLineBorder(Color.black));
+		
+		pnl2.add(lblPlay);
+		pnl2.add(lblCount);
+		
+		add(pnl2);
+		add(Box.createVerticalGlue());
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int play = 0;	
-		if (palyText.getText() == null || palyText.getText().isEmpty()) {
-			// 빈칸일 때
+			
+		if (palyText.getText() == null || palyText.getText().isEmpty()) { // 빈칸일 때
 			JOptionPane.showMessageDialog(null, "빈칸은 안됩니다! 돈 안벌꺼니!!!", 
 					"왜 입력안하니", JOptionPane.WARNING_MESSAGE);
 		} 
 		else if(tryParse(palyText.getText()) == false){ // 문자열 입력일 때
 			JOptionPane.showMessageDialog(null, "숫자로 입력해주세요!",
-					"문자열은 안됩니다 숫자 숫자", JOptionPane.WARNING_MESSAGE);
+					"문자열은 안됩니다 숫자 숫자!!", JOptionPane.WARNING_MESSAGE);
 			}
-		
 		else { 
 			play = Integer.valueOf(palyText.getText());
-			System.out.println(play);
+			lblCount.setText(String.valueOf(play) + "개");
 			
 			if (play <= 0) {	// 0 또는 마이너스 값 입력 했을 때
 			JOptionPane.showMessageDialog(null, "최소 1번 이상 입력해야합니다.", 
 					"경고창임", JOptionPane.WARNING_MESSAGE);
 			}
 			else if(play > 10) {	// 10번까지 가능
-				JOptionPane.showMessageDialog(null, "너무 많이하는건 좋지않아요", 
-						"너무 많이하지마", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "너무 많이 하는건 좋지않아요", 
+						"너무 많이 하지마", JOptionPane.WARNING_MESSAGE);
 			}
-	
 		}
 	}
-
 }

@@ -1,28 +1,21 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeSet;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 
-//확인부탁드려요~!! 넵!!
-// A~E의 선택번호 확인 칸에 A라벨 ~ E라벨 (과연 숫자는?!) 을 생성했어요.
-//[자동] 버튼 1번 클릭시 => (A자리에 라벨A(랜덤숫자))를 구현했습니다.
-//[자동] 2번 클릭 == (B자리에 라벨B(랜덤숫자)))식으로 구현을 하려고 했으나,
-//[수동]으로 숫자를 생성 한 뒤, 2번째로 [자동]을 눌렀을때 A자리에 숫자가 겹칠것이라는 문제점이 생깁니다.ㅠㅠ
-// 잠시 코드좀 확인할게요!! 네! 저 그리고 2번 클릭했을때 구현하는건 아직 못했어요 ㅎㅅㅎ 넵!!
-public class SelectPanel extends JPanel {
+public class SelectPanel extends JPanel implements ActionListener {
 	private JLabel lblSelectedNumDescD;
 	private JLabel lblSelectedNumA;
 	private JLabel lblSelectedNumB;
@@ -40,6 +33,12 @@ public class SelectPanel extends JPanel {
 		str = set.toString();
 	}
 		
+	List<JCheckBox> chkbxNum = new ArrayList<>();
+	List<TreeSet> listSelectedNum = new ArrayList<>();
+	TreeSet<Integer> selectedNum = new TreeSet<Integer>();
+	
+	private JButton btnConfirmNum;
+	private JLabel lblCount;
 	public SelectPanel(LottoFrame frame) {
 		setBounds(100, 100, 830, 532);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -89,26 +88,14 @@ public class SelectPanel extends JPanel {
 		pnlCenter.add(pnlNum);
 		pnlNum.setLayout(new GridLayout(0, 7));
 		
-		JButton btnConfirmNum = new JButton("확인");
+		btnConfirmNum = new JButton("확인");
 		btnConfirmNum.setBounds(245, 368, 77, 23);
+		btnConfirmNum.setEnabled(false);
 		pnlCenter.add(btnConfirmNum);
-		
-		int num = 1;
-		for (int i = 0; i < 45; i++) {
-			String stringNum = Integer.toString(num);
-			JCheckBox chkbxNum = new JCheckBox(stringNum);
-			pnlNum.add(chkbxNum);
-			chkbxNum.setFont(new Font("굴림", Font.BOLD, 13));
-			num++;
-		}
 		
 		JButton btnManualNum = new JButton("수동");
 		btnManualNum.setBackground(new Color(176, 224, 230));
 		btnManualNum.setFont(new Font("돋움", Font.BOLD, 20));
-		btnManualNum.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnManualNum.setBounds(12, 150, 137, 134);
 		add(btnManualNum);
 
@@ -133,19 +120,45 @@ public class SelectPanel extends JPanel {
 		add(btnRandomNum);
 		
 		
+
+		// 1 ~ 45 로또 선택 숫자 (기본 : 비활성화)
+		int num = 1;
+		for (int i = 0; i < 45; i++) {
+			String stringNum = Integer.toString(num);
+			chkbxNum.add(new JCheckBox(stringNum));
+			pnlNum.add(chkbxNum.get(i));
+			chkbxNum.get(i).setEnabled(false);
+			chkbxNum.get(i).setFont(new Font("굴림", Font.BOLD, 13));
+			num++;
+			chkbxNum.get(i).addActionListener(this);
+		}
+
+		
+		
+		btnManualNum.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < 45; i++) {
+					chkbxNum.get(i).setEnabled(true);
+				}
+			}
+		});
+		add(btnRandomNum);
+		
+
 		JPanel pnlCount = new JPanel();
 		pnlCount.setBackground(Color.WHITE);
 		pnlCount.setBounds(12, 51, 137, 73);
 		add(pnlCount);
 		pnlCount.setLayout(null);
 		
-		JLabel lblCount = new JLabel("0");
+		lblCount = new JLabel();	// 수량
 		lblCount.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCount.setFont(new Font("굴림", Font.BOLD, 15));
-		lblCount.setBounds(103, 25, 9, 18);
+		lblCount.setBounds(103, 25, 9, 18);	
 		pnlCount.add(lblCount);
 		
-		JLabel lblCountDesc = new JLabel("수량");
+		JLabel lblCountDesc = new JLabel("수량"); 
 		lblCountDesc.setFont(new Font("돋움", Font.BOLD, 14));
 		lblCountDesc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCountDesc.setBounds(23, 9, 46, 49);
@@ -344,6 +357,37 @@ public class SelectPanel extends JPanel {
 		lblSelectedNumDescE.setBackground(Color.WHITE);
 		lblSelectedNumDescE.setBounds(0, 0, 23, 58);
 		pnlSelectedNumE.add(lblSelectedNumDescE);
-		
 	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		for(int i = 0; i < 45; i++) {
+			if (chkbxNum.get(i).isSelected()) {
+				if (selectedNum.size() < 5) {
+					selectedNum.add(Integer.parseInt(chkbxNum.get(i).getText()));
+				} else {
+					btnConfirmNum.setEnabled(true);
+				}
+			}
+		}
+	}
+	
+	public void setLabelText(int play) {
+		lblCount.setText(String.valueOf(play));
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
