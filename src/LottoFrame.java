@@ -37,6 +37,7 @@ public class LottoFrame extends JFrame {
 	public LottoFrame() {
 		selectPanel = new SelectPanel(this);
 		resultPanel = new ResultPanel(this, selectPanel.getTemp());
+		countPanel = new CountPanel(this);
 		scroll = new JScrollPane(resultPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(10, 10, 830, 530);
