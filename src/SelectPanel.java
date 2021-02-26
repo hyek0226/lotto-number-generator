@@ -313,13 +313,14 @@ public class SelectPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		for(int i = 0; i < 45; i++) {
 			if (chkbxNum.get(i).isSelected()) {
-				if (selectedNum.size() < 5) {
+				if (selectedNum.size() < 6) {
 					selectedNum.add(Integer.parseInt(chkbxNum.get(i).getText()));
 				} else {
 					btnConfirmNum.setEnabled(true);
 				}
 			}
 		}
+		System.out.println(selectedNum);
 	}
 	
 	public void setLabelText(int play) {
