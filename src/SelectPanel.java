@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
-
+// 임시 주석
 public class SelectPanel extends JPanel implements ActionListener {
 	private JLabel lblSelectedNumDescD;
 	private JLabel lblSelectedNumA;
