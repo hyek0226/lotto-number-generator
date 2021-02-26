@@ -2,20 +2,44 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-// 어떠신가욥?
-//잘된거같아요!ㅎ 넵! 그러면 합치는거 할게요!
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.HashSet;
+import java.util.TreeSet;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
+//확인부탁드려요~!! 넵!!
+// A~E의 선택번호 확인 칸에 A라벨 ~ E라벨 (과연 숫자는?!) 을 생성했어요.
+//[자동] 버튼 1번 클릭시 => (A자리에 라벨A(랜덤숫자))를 구현했습니다.
+//[자동] 2번 클릭 == (B자리에 라벨B(랜덤숫자)))식으로 구현을 하려고 했으나,
+//[수동]으로 숫자를 생성 한 뒤, 2번째로 [자동]을 눌렀을때 A자리에 숫자가 겹칠것이라는 문제점이 생깁니다.ㅠㅠ
+// 잠시 코드좀 확인할게요!! 네! 저 그리고 2번 클릭했을때 구현하는건 아직 못했어요 ㅎㅅㅎ 넵!!
 public class SelectPanel extends JPanel {
 	private JLabel lblSelectedNumDescD;
+	private JLabel lblSelectedNumA;
+	private JLabel lblSelectedNumB;
+	private JLabel lblSelectedNumC;
+	private JLabel lblSelectedNumD;
+	private JLabel lblSelectedNumE;
+	private String str;
+	
+
+	void randomnum() {
+		TreeSet<Integer> set = new TreeSet<Integer>();
+		while(set.size() < 6) {
+			set.add((int) (Math.random() * 45) + 1);
+		}
+		str = set.toString();
+	}
+		
 	public SelectPanel(LottoFrame frame) {
 		setBounds(100, 100, 830, 532);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -87,12 +111,27 @@ public class SelectPanel extends JPanel {
 		});
 		btnManualNum.setBounds(12, 150, 137, 134);
 		add(btnManualNum);
-		
+
+//여기 버튼 수정했어요
 		JButton btnRandomNum = new JButton("자동");
+		btnRandomNum.setActionCommand("자동");
 		btnRandomNum.setBackground(new Color(176, 224, 230));
 		btnRandomNum.setFont(new Font("돋움", Font.BOLD, 20));
 		btnRandomNum.setBounds(12, 314, 137, 134);
+		btnRandomNum.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i = 0;
+				if(e.getActionCommand().equals("자동")) {
+					randomnum();
+					lblSelectedNumA.setText(str);
+					lblSelectedNumA = new JLabel(lblSelectedNumA.getText());
+					lblSelectedNumA.setEnabled(true);
+				}
+			}
+		});
+		
 		add(btnRandomNum);
+		
 		
 		JPanel pnlCount = new JPanel();
 		pnlCount.setBackground(Color.WHITE);
@@ -199,11 +238,18 @@ public class SelectPanel extends JPanel {
 		add(pnlSelectedNum);
 		pnlSelectedNum.setLayout(null);
 		
-		JPanel pnlSelectedNumA = new JPanel();
+		JPanel pnlSelectedNumA = new JPanel(); 
 		pnlSelectedNumA.setBackground(new Color(240, 248, 255));
 		pnlSelectedNumA.setBounds(0, 58, 234, 58);
 		pnlSelectedNum.add(pnlSelectedNumA);
 		pnlSelectedNumA.setLayout(null);
+		
+		
+		//여기서부터 A~E 라벨을 새로 만들었어요 총 5번 만든것이에요!
+		lblSelectedNumA = new JLabel("과연 숫자는?!");
+		lblSelectedNumA.setBounds(50, 0, 1000, 48);
+		lblSelectedNumA.setFont(new Font("굴림", Font.BOLD, 15));
+		pnlSelectedNumA.add(lblSelectedNumA);
 		
 		JLabel lblSelectedNumDescA = new JLabel("A");
 		lblSelectedNumDescA.setOpaque(true);
@@ -229,6 +275,11 @@ public class SelectPanel extends JPanel {
 		pnlSelectedNum.add(pnlSelectedNumB);
 		pnlSelectedNumB.setLayout(null);
 		
+		lblSelectedNumB = new JLabel("과연 숫자는?!");
+		lblSelectedNumB.setBounds(50, 0, 1000, 48);
+		lblSelectedNumB.setFont(new Font("굴림", Font.BOLD, 15));
+		pnlSelectedNumB.add(lblSelectedNumB);
+		
 		JLabel lblSelectedNumDescB = new JLabel("B");
 		lblSelectedNumDescB.setOpaque(true);
 		lblSelectedNumDescB.setHorizontalAlignment(SwingConstants.CENTER);
@@ -242,6 +293,11 @@ public class SelectPanel extends JPanel {
 		pnlSelectedNumC.setBounds(0, 194, 234, 58);
 		pnlSelectedNum.add(pnlSelectedNumC);
 		pnlSelectedNumC.setLayout(null);
+		
+		lblSelectedNumC = new JLabel("과연 숫자는?!");
+		lblSelectedNumC.setBounds(50, 0, 1000, 48);
+		lblSelectedNumC.setFont(new Font("굴림", Font.BOLD, 15));
+		pnlSelectedNumC.add(lblSelectedNumC);
 		
 		JLabel lblSelectedNumDescC = new JLabel("C");
 		lblSelectedNumDescC.setOpaque(true);
@@ -257,6 +313,11 @@ public class SelectPanel extends JPanel {
 		pnlSelectedNum.add(pnlSelectedNumD);
 		pnlSelectedNumD.setLayout(null);
 		
+		lblSelectedNumD = new JLabel("과연 숫자는?!");
+		lblSelectedNumD.setBounds(50, 0, 1000, 48);
+		lblSelectedNumD.setFont(new Font("굴림", Font.BOLD, 15));
+		pnlSelectedNumD.add(lblSelectedNumD);
+		
 		lblSelectedNumDescD = new JLabel("D");
 		lblSelectedNumDescD.setOpaque(true);
 		lblSelectedNumDescD.setHorizontalAlignment(SwingConstants.CENTER);
@@ -270,6 +331,11 @@ public class SelectPanel extends JPanel {
 		pnlSelectedNumE.setBounds(0, 327, 234, 58);
 		pnlSelectedNum.add(pnlSelectedNumE);
 		pnlSelectedNumE.setLayout(null);
+		
+		lblSelectedNumE = new JLabel("과연 숫자는?!");
+		lblSelectedNumE.setBounds(50, 0, 1000, 48);
+		lblSelectedNumE.setFont(new Font("굴림", Font.BOLD, 15));
+		pnlSelectedNumE.add(lblSelectedNumE);
 		
 		JLabel lblSelectedNumDescE = new JLabel("E");
 		lblSelectedNumDescE.setOpaque(true);
