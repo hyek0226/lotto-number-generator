@@ -11,8 +11,42 @@
 /ResultPanel.class
 /SelectPanel$1.class
 /SelectPanel$2.class
-/SelectPanel$3.class
 /SelectPanel.class
 /TestFrame$1.class
 /TestFrame.class
 /curcle.jpg
+<<<<<<< HEAD
+/SelectPanel$3.class
+/SelectPanel$4.class
+=======
+/MyNumber.class
+/MyNumberList.class
+/MㅛList.class
+/MYList.class
+/MyList.class
+/NumberList.class
+/Main.class
+/Number.class
+/Number.class
+/MainMain.class
+/AClass.class
+/Curcles.class
+<<<<<<< HEAD
+/CurcleList.class
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/hyek0226/lotto-number-generator.git
+=======
+=======
+/CurcleList.class
+>>>>>>> 7c5cb388a11dfb229f0fa5dd16a526704a591752
+<<<<<<< HEAD
+/SelectPanel$4.class
+=======
+>>>>>>> f7135e700e2f137f15cccb3b2c6589a1bb118b6c
+>>>>>>> branch 'master' of https://github.com/hyek0226/lotto-number-generator.git
+/SelectPanel$5.class
+/SelectPanel$6.class
+/SelectPanel$7.class
+/SelectPanel$8.class
+/SelectPanel$9.class
+/SelectPanel$10.class
