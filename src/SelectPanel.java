@@ -102,7 +102,6 @@ public class SelectPanel extends JPanel implements ActionListener {
 		}
 
 		
-		
 		btnManualNum.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -111,6 +110,17 @@ public class SelectPanel extends JPanel implements ActionListener {
 				}
 			}
 		});
+		
+		btnRandomNum.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < 45; i++) {
+					chkbxNum.get(i).setEnabled(false);
+				}
+			}
+		});
+		
+		add(btnManualNum);
 		add(btnRandomNum);
 		
 
