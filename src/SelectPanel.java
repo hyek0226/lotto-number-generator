@@ -216,6 +216,12 @@ public class SelectPanel extends JPanel implements ActionListener {
 		add(btnEditNumA);
 		
 		JButton btnDeleteNumA = new JButton("[ 삭제 ]");
+		btnDeleteNumA.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lblSelectedNumA.setText("");
+			}
+		});
 		btnDeleteNumA.setBorder(null);
 		btnDeleteNumA.setBackground(new Color(220, 220, 220));
 		btnDeleteNumA.setOpaque(false);
@@ -230,6 +236,12 @@ public class SelectPanel extends JPanel implements ActionListener {
 		add(btnEditNumB);
 		
 		JButton btnDeleteNumB = new JButton("[ 삭제 ]");
+		btnDeleteNumB.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lblSelectedNumB.setText("");
+			}
+		});
 		btnDeleteNumB.setOpaque(false);
 		btnDeleteNumB.setBorder(null);
 		btnDeleteNumB.setBackground(new Color(220, 220, 220));
@@ -244,6 +256,12 @@ public class SelectPanel extends JPanel implements ActionListener {
 		add(btnEditNumC);
 		
 		JButton btnDeleteNumC = new JButton("[ 삭제 ]");
+		btnDeleteNumC.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lblSelectedNumC.setText("");
+			}
+		});
 		btnDeleteNumC.setOpaque(false);
 		btnDeleteNumC.setBorder(null);
 		btnDeleteNumC.setBackground(new Color(220, 220, 220));
@@ -258,6 +276,12 @@ public class SelectPanel extends JPanel implements ActionListener {
 		add(btnEditNumD);
 		
 		JButton btnDeleteNumD = new JButton("[ 삭제 ]");
+		btnDeleteNumD.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lblSelectedNumD.setText("");
+			}
+		});
 		btnDeleteNumD.setOpaque(false);
 		btnDeleteNumD.setBorder(null);
 		btnDeleteNumD.setBackground(new Color(220, 220, 220));
@@ -272,6 +296,12 @@ public class SelectPanel extends JPanel implements ActionListener {
 		add(btnEditNumE);
 		
 		JButton btnDeleteNumE = new JButton("[ 삭제 ]");
+		btnDeleteNumE.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lblSelectedNumE.setText("");
+			}
+		});
 		btnDeleteNumE.setOpaque(false);
 		btnDeleteNumE.setBorder(null);
 		btnDeleteNumE.setBackground(new Color(220, 220, 220));
@@ -305,7 +335,6 @@ public class SelectPanel extends JPanel implements ActionListener {
 		lblSelectedNumDescA.setFont(new Font("굴림", Font.BOLD, 15));
 		lblSelectedNumDescA.setBounds(0, 0, 23, 58);
 		pnlSelectedNumA.add(lblSelectedNumDescA);
-		
 		lblSelectedNumA = new JLabel("");
 		lblSelectedNumA.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelectedNumA.setFont(new Font("굴림", Font.BOLD, 14));
