@@ -72,8 +72,8 @@ public class LottoFrame extends JFrame {
 		System.out.println(count);
 		if (count >= 1) {
 			resultPanel.clearPanel();
-			resultPanel.randomNumber();
 			resultPanel.removeRandomList();
+			resultPanel.randomNumber();
 			resultPanel.loopResult();
 		}
 		++count;
