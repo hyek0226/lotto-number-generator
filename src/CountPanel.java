@@ -19,6 +19,10 @@ public class CountPanel extends JPanel implements ActionListener {
 	JLabel lblCount;
 	int play = 0;
 	
+	public int getPlay() {
+		return play;
+	}
+
 	public boolean tryParse(String palyText) {
 		try {
 			Integer.parseInt(palyText); 

@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeSet;
 
 import javax.swing.JButton;
@@ -28,17 +29,19 @@ public class SelectPanel extends JPanel implements ActionListener {
 	private JButton btnManualNum;
 	private JButton btnRandomNum;
 	private JLabel lblPrice;
+	List<Boolean> actionBoolean;
 	List<JCheckBox> chkbxNum = new ArrayList<>();
 	List<TreeSet> listSelectedNum = new ArrayList<>();
 	
 	// 선택된 6개 번호 담는 배열 A ~ E
-	TreeSet<Integer> selectedNum = new TreeSet<Integer>();
+	List<Integer> selectedNum = new ArrayList<Integer>();
 	TreeSet<Integer> selectedNumA = new TreeSet<Integer>();
 	TreeSet<Integer> selectedNumB = new TreeSet<Integer>();
 	TreeSet<Integer> selectedNumC = new TreeSet<Integer>();
 	TreeSet<Integer> selectedNumD = new TreeSet<Integer>();
 	TreeSet<Integer> selectedNumE = new TreeSet<Integer>();
-	
+	int countAction = 1;
+	int count = 0;
 
 	void randomnum() {
 		TreeSet<Integer> randomSelectedNum = new TreeSet<Integer>();
@@ -50,6 +53,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 	
 	// 생성자
 	public SelectPanel(LottoFrame frame) {
+		actionBoolean = new ArrayList<>();
 		setBounds(100, 100, 830, 532);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
@@ -117,9 +121,14 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnManualNum.setBounds(12, 150, 137, 134);
 		add(btnManualNum);
 
-
+		
+		
 //여기 버튼 수정했어요
 		btnRandomNum = new JButton("자동");
+		System.out.println(getCount());
+		if (getCount() <= 0) {
+			btnRandomNum.setEnabled(false);
+		}
 		btnRandomNum.setActionCommand("자동");
 		btnRandomNum.setBackground(new Color(176, 224, 230));
 		btnRandomNum.setFont(new Font("돋움", Font.BOLD, 20));
@@ -131,7 +140,12 @@ public class SelectPanel extends JPanel implements ActionListener {
 					randomnum();
 					lblSelectedNumA.setText(str);
 //					lblSelectedNumA = new JLabel(lblSelectedNumA.getText());
+					actionBoolean.add(false);
 				}
+				System.out.println(actionBoolean);
+				--count;
+				System.out.println(count);
+				
 			}
 		});
 		
@@ -157,8 +171,14 @@ public class SelectPanel extends JPanel implements ActionListener {
 				for (int i = 0; i < 45; i++) {
 					chkbxNum.get(i).setEnabled(true);
 				}
+//				++countAction;
+//				System.out.println(countAction);
+//				if (countAction > 0) {
+//					System.out.println("눌렀음!");
+//				}
 			}
 		});
+		
 		
 		// 자동 버튼 - 액션리스너 : 자동 버튼 누르면 체크박스 비활성화
 		btnRandomNum.addActionListener(new ActionListener() {
@@ -398,14 +418,26 @@ public class SelectPanel extends JPanel implements ActionListener {
 		lblSelectedNumDescE.setBounds(0, 0, 23, 58);
 		pnlSelectedNumE.add(lblSelectedNumDescE);
 		
+		if (count <= 0) {
+			btnConfirmNum.setEnabled(false);
+		}
+		
 		// 확인 버튼 - 액션리스너 : 선택된 번호 담긴 배열을 label에 출력
 		ActionListener confirmNumber = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				lblSelectedNumA.setText(selectedNum.toString());
+				actionBoolean.add(true);
+				--count;
+				System.out.println(count);
+				
+				System.out.println(actionBoolean);
+
 			}
+			
 		};
 		btnConfirmNum.addActionListener(confirmNumber);
+		
 	}
 	
 	// 수동 - 숫자 6개 선택
@@ -413,7 +445,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		for(int i = 0; i < 45; i++) {
 			if (chkbxNum.get(i).isSelected()) {
-				if (selectedNum.size() < 6) {
+				if (selectedNum.size() < 5) {
 					selectedNum.add(Integer.parseInt(chkbxNum.get(i).getText()));
 				} else {
 					btnConfirmNum.setEnabled(true);
@@ -427,15 +459,28 @@ public class SelectPanel extends JPanel implements ActionListener {
 		lblPrice.setText(String.valueOf(play * 1000));
 	}
 
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 	// count 만큼 게임 진행
-	public void playGame(int count) {
-		for (int i = 0; i < count; i++) {
-			if (btnManualNum.isSelected() && btnConfirmNum.isEnabled()) {
-				System.out.println("수동");
-			} else if (btnRandomNum.isSelected() && !(btnConfirmNum.isEnabled())) {
-				System.out.println("자동");
-			}
-		}
+//	public void playGame(int count) {
+//		for (int i = 0; i < count; i++) {
+//			Set<Integer> selectedNum = new TreeSet<Integer>();
+//			while (selectedNum.size() < 6) {
+//				int num = (int)(Math.random() * 45 + 1);
+//				selectedNum.add(num);
+//			}
+//			System.out.println(selectedNum);
+//		}
+//	}
+	
+	public void setActionBoolean() {
+		
 	}
 }
 
