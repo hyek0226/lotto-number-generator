@@ -206,7 +206,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 			}
 		});
 		add(btnNextPage);
-		
+		// 민정씨 혹시 이 폴더 위치 열어주실 수 있으신가요!? 넵 ㅠㅠ 이게 지금 합병하려는데, 그..깃허브 웹 상에서 처리가 불가능해서 커맨드로 처리할려고 해요! 잠시만 기다려 주세요! 넵 
 		// A ~ E 까지 수정, 삭제 버튼
 		JButton btnEditNumA = new JButton("[ 수정 ]");
 		btnEditNumA.setBorder(null);
