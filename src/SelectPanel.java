@@ -19,9 +19,9 @@ public class SelectPanel extends JPanel implements ActionListener {
 	List<JCheckBox> chkbxNum = new ArrayList<>();
 	List<TreeSet> listSelectedNum = new ArrayList<>();
 	TreeSet<Integer> selectedNum = new TreeSet<Integer>();
+	
 	private JButton btnConfirmNum;
 	private JLabel lblCount;
-	
 	public SelectPanel(LottoFrame frame) {
 		setBounds(100, 100, 830, 532);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -326,6 +326,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 	public void setLabelText(int play) {
 		lblCount.setText(String.valueOf(play));
 	}
+	
 }
 
 
