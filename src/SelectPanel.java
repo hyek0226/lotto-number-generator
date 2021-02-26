@@ -111,15 +111,12 @@ public class SelectPanel extends JPanel implements ActionListener {
 				if(e.getActionCommand().equals("자동")) {
 					randomnum();
 					lblSelectedNumA.setText(str);
-					lblSelectedNumA = new JLabel(lblSelectedNumA.getText());
-					lblSelectedNumA.setEnabled(true);
+//					lblSelectedNumA = new JLabel(lblSelectedNumA.getText());
 				}
 			}
 		});
 		
 		add(btnRandomNum);
-		
-		
 
 		// 1 ~ 45 로또 선택 숫자 (기본 : 비활성화)
 		int num = 1;
