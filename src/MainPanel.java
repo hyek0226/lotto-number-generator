@@ -38,7 +38,7 @@ public class MainPanel extends JPanel {
 		btn2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.changeResultPanel(0);
+				frame.changeBeforeResultPanel();
 			}
 		});	
 

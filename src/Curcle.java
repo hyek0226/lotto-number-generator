@@ -31,7 +31,6 @@ public class Curcle extends JPanel {
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
-		
 		JLabel label = new JLabel(String.valueOf(n));
 		springLayout.putConstraint(SpringLayout.NORTH, label, 10, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, label, 20, SpringLayout.WEST, this);
@@ -42,12 +41,13 @@ public class Curcle extends JPanel {
 		
 	@Override
 	protected void paintComponent(Graphics g) {
-		
 		super.paintComponent(g);
 		if (!b) {
 			g.setColor(new Color(1, 1, 1, 0));
 		} else {
-			if (number < 16) {
+			if (number <= 0) {
+				g.setColor(new Color(0, 0, 0, 0));
+			} else if (number < 16) {
 				g.setColor(Color.DARK_GRAY);
 			} else if (number < 31) {
 				g.setColor(Color.blue);
@@ -55,9 +55,6 @@ public class Curcle extends JPanel {
 				g.setColor(Color.CYAN);
 			}
 		}
-		
-		
-		
 		g.fillOval(0, 0, 60, 60);
 	}
 }
