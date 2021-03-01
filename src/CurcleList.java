@@ -9,7 +9,8 @@ public class CurcleList {
 	List<Integer> resultList;
 	List<Integer> selectList;
 	List<Integer> equalList;
-	int i = 0;
+	boolean oneTwo = false;
+	int count = 0;
 	public CurcleList(Set<Integer> num, Set<Integer> num2) {
 		list = new ArrayList<>();
 		list2 = new ArrayList<>();
@@ -32,15 +33,23 @@ public class CurcleList {
 			for (int j = 0; j < 6; j++) {
 				if (resultList.get(i) == selectList.get(j)) {
 					equalList.add(selectList.get(j));
-					System.out.println(equalList);
+					System.out.println("같은 거" + equalList + equalList.size());
 				}
+				if (equalList.size() == 6 && selectList.get(5) == resultList.get(6)) {
+					System.out.println("같은 거 갯수" + equalList.size());
+					oneTwo = true;
+				} 
 			}
 		}
+		
+		
+		
 		for (int i = 0; i < 6; i++) {
 			list2.add(false);
 			for (int j = 0; j < equalList.size(); j++) {
 				if (selectList.get(i) == equalList.get(j)) {
 					list2.set(i, true);
+					count++;
 				}
 			}
 		}
@@ -73,5 +82,15 @@ public class CurcleList {
 	public List<Boolean> getList2() {
 		return list2;
 	}
+
+	public boolean isOneTwo() {
+		return oneTwo;
+	}
+
+	public int getCount() {
+		return count;
+	}
+	
+	
 	
 }

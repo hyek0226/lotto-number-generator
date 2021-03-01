@@ -108,4 +108,13 @@ public class CountPanel extends JPanel implements ActionListener {
 			}
 		}
 	}
+
+	public int getPlay() {
+		return play;
+	}
+
+	public void setPlay(int play) {
+		this.play = play;
+	}
+	
 }
