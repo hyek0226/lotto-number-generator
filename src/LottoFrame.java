@@ -94,9 +94,9 @@ public class LottoFrame extends JFrame {
 	public void changeResultPanel(int play) {
 		cards.show(this.getContentPane(), "Result");
 		resultPanel.setPlayTest(countPanel.getPlay());
-//		resultPanel.removeRandomList();
+		resultPanel.removeRandomList();
 		resultPanel.clearPanel();
-//		resultPanel.randomNumber();
+		resultPanel.randomNumber();
 		resultPanel.createRandomCurcle();
 		resultPanel.loopResult();
 		System.out.println(count);
