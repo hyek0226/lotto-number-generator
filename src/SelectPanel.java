@@ -283,7 +283,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnDeleteNumA.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//숫자를 입력하기 전엔 "과연 숫자는?!" 부분은 삭제를 눌러도 삭제되면 안된다.
+				// 숫자를 입력하기 전엔 "과연 숫자는?!" 부분은 삭제를 눌러도 삭제되면 안된다.
 				if(lblSelectedNumA.getText() != "과연 숫자는?!")	
 				lblSelectedNumA.setText("");
 			}
@@ -507,7 +507,6 @@ public class SelectPanel extends JPanel implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				count++;
 				System.out.println(count);
-				setLabelText(selectedNum);
 				
 //				lblSelectedNumA.setText(selectedNum.toString());
 //				actionBoolean.add(true);
