@@ -47,8 +47,19 @@ public class LottoFrame extends JFrame {
 		selectPanel = new SelectPanel(this);
 		countPanel = new CountPanel(this);
 		selectPanel = new SelectPanel(this);
-		resultPanel = new ResultPanel(this, selectPanel.getSelectNumber1(), selectPanel.getSelectNumber2(), selectPanel.getSelectNumber3(), selectPanel.getSelectNumber4(), selectPanel.getSelectNumber5());
-		beforeResultPanel = new BeforeResultPanel(this, selectPanel.getSelectNumber1(), selectPanel.getSelectNumber2(), selectPanel.getSelectNumber3(), selectPanel.getSelectNumber4(), selectPanel.getSelectNumber5());
+		resultPanel = new ResultPanel(
+				this, selectPanel.getSelectNumber1(), 
+				selectPanel.getSelectNumber2(), 
+				selectPanel.getSelectNumber3(), 
+				selectPanel.getSelectNumber4(), 
+				selectPanel.getSelectNumber5());
+		
+		beforeResultPanel = new BeforeResultPanel(
+				this, selectPanel.getSelectNumber1(), 
+				selectPanel.getSelectNumber2(), 
+				selectPanel.getSelectNumber3(), 
+				selectPanel.getSelectNumber4(), 
+				selectPanel.getSelectNumber5());
 		resultMap.put(count, resultPanel);
 		
 		scroll = new JScrollPane(resultPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -82,6 +93,7 @@ public class LottoFrame extends JFrame {
 	public void changeSelectPanel(int play) { 
 		cards.show(this.getContentPane(), "Select");
 		selectPanel.setPlay(play);
+		selectPanel.setFinalPlay(play);
 		selectPanel.setLabelText();
 	}
 	
@@ -91,7 +103,15 @@ public class LottoFrame extends JFrame {
 		beforeResultPanel.removeRandomList();
 		beforeResultPanel.clearPanel();
 		beforeResultPanel.createRandomCurcle(resultPanel.getNumber(), count);
-		beforeResultPanel.loopResult(resultPanel.getPlayTest(), resultPanel.getNumber(), resultPanel.getNumber2(), resultPanel.getNumber3(), resultPanel.getNumber4(), resultPanel.getNumber5(), resultPanel.getNumber6(), resultPanel.getCurcleList());
+		beforeResultPanel.loopResult(
+				resultPanel.getPlayTest(), 
+				resultPanel.getNumber(), 
+				resultPanel.getNumber2(), 
+				resultPanel.getNumber3(), 
+				resultPanel.getNumber4(), 
+				resultPanel.getNumber5(), 
+				resultPanel.getNumber6(), 
+				resultPanel.getCurcleList());
 	}
 	
 	public void changeResultPanel(int play) {
