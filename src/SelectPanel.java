@@ -416,11 +416,24 @@ public class SelectPanel extends JPanel implements ActionListener {
 		lblSelectedNumDesc.setBounds(12, 19, 116, 28);
 		pnlSelectedNum.add(lblSelectedNumDesc);
 		
+		//초기화버튼 기능 추가
 		JButton btnResetAllNum = new JButton("초기화");
 		btnResetAllNum.setBackground(new Color(255, 192, 203));
+		btnResetAllNum.setActionCommand("초기화");
 		btnResetAllNum.setBounds(209, 24, 81, 23);
 		pnlSelectedNum.add(btnResetAllNum);
-		
+		btnResetAllNum.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(btnResetAllNum.getActionCommand().equals("초기화")) {
+					resetNum();
+				}
+				count = 0;
+				add(btnManualNum);
+				add(btnRandomNum);
+				}
+			});
+
+				
 		JPanel pnlSelectedNumB = new JPanel();
 		pnlSelectedNumB.setBackground(new Color(240, 248, 255));
 		pnlSelectedNumB.setBounds(0, 126, 234, 58);

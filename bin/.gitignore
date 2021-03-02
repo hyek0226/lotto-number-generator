@@ -1,4 +1,5 @@
-<<<<<<< HEAD
+/BeforeResultPanel$1.class
+/BeforeResultPanel.class
 /CountPanel$1.class
 /CountPanel.class
 /Curcle.class
@@ -11,14 +12,8 @@
 /Number.class
 /ResultPanel$1.class
 /ResultPanel.class
-=======
->>>>>>> branch 'master' of https://github.com/hyek0226/lotto-number-generator.git
 /SelectPanel$1.class
 /SelectPanel$10.class
-<<<<<<< HEAD
-/SelectPanel$11.class
-=======
->>>>>>> branch 'master' of https://github.com/hyek0226/lotto-number-generator.git
 /SelectPanel$2.class
 /SelectPanel$3.class
 /SelectPanel$4.class
@@ -27,17 +22,9 @@
 /SelectPanel$7.class
 /SelectPanel$8.class
 /SelectPanel$9.class
-<<<<<<< HEAD
 /SelectPanel.class
 /TestFrame$1.class
 /TestFrame.class
 /curcle.jpg
-=======
-/ResultPanel$1.class
-/BeforeResultPanel$1.class
-/BeforeResultPanel.class
-/CountPanel$1.class
-/MainPanel$1.class
-/MainPanel.class
-/LottoFrame$1.class
->>>>>>> branch 'master' of https://github.com/hyek0226/lotto-number-generator.git
+/SelectPanel$11.class
+/SelectPanel$10$1.class
