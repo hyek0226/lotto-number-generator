@@ -41,28 +41,61 @@ public class SelectPanel extends JPanel implements ActionListener {
 	// 선택된 6개 번호 담는 배열 A ~ E
 	TreeSet<Integer> selectedNum = new TreeSet<Integer>();
 	Set<Integer> temp = new TreeSet<>();
+	
+	Set<Integer> selectNumber1 = new TreeSet<>();
+	Set<Integer> selectNumber2 = new TreeSet<>();
+	Set<Integer> selectNumber3 = new TreeSet<>();
+	Set<Integer> selectNumber4 = new TreeSet<>();
+	Set<Integer> selectNumber5 = new TreeSet<>();
+	
 	private JButton btnNextPage;
 
-	TreeSet<Integer> selectedNumA = new TreeSet<Integer>();
-	TreeSet<Integer> selectedNumB = new TreeSet<Integer>();
-	TreeSet<Integer> selectedNumC = new TreeSet<Integer>();
-	TreeSet<Integer> selectedNumD = new TreeSet<Integer>();
-	TreeSet<Integer> selectedNumE = new TreeSet<Integer>();
-	
-//	int countAction = 1;
 
-
+	public void resetNum() {	//처음으로 돌아왔을 때 초기 화면에 뜨게 할 내용임
+		lblSelectedNumA.setText("과연 숫자는?!");
+		lblSelectedNumB.setText("과연 숫자는?!");
+		lblSelectedNumC.setText("과연 숫자는?!");
+		lblSelectedNumD.setText("과연 숫자는?!");
+		lblSelectedNumE.setText("과연 숫자는?!");
+	}
 	
 	// 생성자
 	public SelectPanel(LottoFrame frame) {
-		actionBoolean = new ArrayList<>();
-		temp.add(7);
-		temp.add(8);
-		temp.add(9);
-		temp.add(10);
-		temp.add(11);
-		temp.add(12);
+		selectNumber1.add(1);
+		selectNumber1.add(2);
+		selectNumber1.add(3);
+		selectNumber1.add(4);
+		selectNumber1.add(5);
+		selectNumber1.add(6);
+		
+		selectNumber2.add(1);
+		selectNumber2.add(2);
+		selectNumber2.add(3);
+		selectNumber2.add(4);
+		selectNumber2.add(5);
+		selectNumber2.add(7);
 	
+		selectNumber3.add(1);
+		selectNumber3.add(2);
+		selectNumber3.add(3);
+		selectNumber3.add(4);
+		selectNumber3.add(5);
+		selectNumber3.add(45);
+		
+		selectNumber4.add(1);
+		selectNumber4.add(2);
+		selectNumber4.add(3);
+		selectNumber4.add(4);
+		selectNumber4.add(43);
+		selectNumber4.add(45);
+		
+		selectNumber5.add(1);
+		selectNumber5.add(2);
+		selectNumber5.add(3);
+		selectNumber5.add(42);
+		selectNumber5.add(43);
+		selectNumber5.add(45);
+		
 		setBounds(100, 100, 830, 532);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
@@ -150,7 +183,6 @@ public class SelectPanel extends JPanel implements ActionListener {
 					}
 					count++;
 					setLabelText(randomnum());
-					actionBoolean.add(false);
 				}
 				System.out.println(actionBoolean);
 				
@@ -239,7 +271,6 @@ public class SelectPanel extends JPanel implements ActionListener {
 			}
 		});
 		add(btnNextPage);
-		// 민정씨 혹시 이 폴더 위치 열어주실 수 있으신가요!? 넵 ㅠㅠ 이게 지금 합병하려는데, 그..깃허브 웹 상에서 처리가 불가능해서 커맨드로 처리할려고 해요! 잠시만 기다려 주세요! 넵 
 		// A ~ E 까지 수정, 삭제 버튼
 		JButton btnEditNumA = new JButton("[ 수정 ]");
 		btnEditNumA.setBorder(null);
@@ -252,6 +283,8 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnDeleteNumA.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//숫자를 입력하기 전엔 "과연 숫자는?!" 부분은 삭제를 눌러도 삭제되면 안된다.
+				if(lblSelectedNumA.getText() != "과연 숫자는?!")	
 				lblSelectedNumA.setText("");
 			}
 		});
@@ -272,6 +305,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnDeleteNumB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(lblSelectedNumB.getText() != "과연 숫자는?!")
 				lblSelectedNumB.setText("");
 			}
 		});
@@ -292,6 +326,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnDeleteNumC.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(lblSelectedNumC.getText() != "과연 숫자는?!")
 				lblSelectedNumC.setText("");
 			}
 		});
@@ -312,6 +347,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnDeleteNumD.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(lblSelectedNumD.getText() != "과연 숫자는?!")
 				lblSelectedNumD.setText("");
 			}
 		});
@@ -332,6 +368,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnDeleteNumE.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(lblSelectedNumE.getText() != "과연 숫자는?!")
 				lblSelectedNumE.setText("");
 			}
 		});
@@ -368,11 +405,11 @@ public class SelectPanel extends JPanel implements ActionListener {
 		lblSelectedNumDescA.setFont(new Font("굴림", Font.BOLD, 15));
 		lblSelectedNumDescA.setBounds(0, 0, 23, 58);
 		pnlSelectedNumA.add(lblSelectedNumDescA);
-		lblSelectedNumA = new JLabel("");
-		lblSelectedNumA.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSelectedNumA.setFont(new Font("굴림", Font.BOLD, 14));
-		lblSelectedNumA.setBounds(35, 11, 187, 36);
-		pnlSelectedNumA.add(lblSelectedNumA);
+//		lblSelectedNumA = new JLabel(""); 
+//		lblSelectedNumA.setHorizontalAlignment(SwingConstants.CENTER);
+//		lblSelectedNumA.setFont(new Font("굴림", Font.BOLD, 14));
+//		lblSelectedNumA.setBounds(35, 11, 187, 36);
+//		pnlSelectedNumA.add(lblSelectedNumA); 
 		
 		JLabel lblSelectedNumDesc = new JLabel("선택 번호 확인");
 		lblSelectedNumDesc.setFont(new Font("굴림", Font.BOLD, 14));
@@ -475,13 +512,14 @@ public class SelectPanel extends JPanel implements ActionListener {
 //				lblSelectedNumA.setText(selectedNum.toString());
 //				actionBoolean.add(true);
 //				System.out.println(actionBoolean);
+				lblSelectedNumA.setText(selectedNum.toString());
+				lblSelectedNumA.setText("");
 			}
 		};
 		btnConfirmNum.addActionListener(confirmNumber);
 	}
 	
-	
-	// 수동 버튼 
+	// 수동 - 숫자 6개 선택
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		for(int i = 0; i < 45; i++) {
@@ -533,6 +571,39 @@ public class SelectPanel extends JPanel implements ActionListener {
 			lblSelectedNumE.setText(selectedNum.toString());
 		}
 	}
+			
+	// count 만큼 게임 진행
+	public void playGame(int count) {
+		for (int i = 0; i < count; i++) {
+			if (btnManualNum.isSelected() && btnConfirmNum.isEnabled()) {
+				System.out.println("수동");
+			} else if (btnRandomNum.isSelected() && !(btnConfirmNum.isEnabled())) {
+				System.out.println("자동");
+			}
+		}
+	}
+
+	public Set<Integer> getSelectNumber1() {
+		return selectNumber1;
+	}
+
+	public Set<Integer> getSelectNumber2() {
+		return selectNumber2;
+	}
+
+	public Set<Integer> getSelectNumber3() {
+		return selectNumber3;
+	}
+
+	public Set<Integer> getSelectNumber4() {
+		return selectNumber4;
+	}
+
+	public Set<Integer> getSelectNumber5() {
+		return selectNumber5;
+	}
+	
+	
 }
 
 
