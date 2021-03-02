@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 // 3조 lotto
 public class LottoFrame extends JFrame {
-	int play = 0;
 	int count;
 	private JPanel contentPane;
 	private CardLayout cards = new CardLayout();
@@ -18,6 +17,7 @@ public class LottoFrame extends JFrame {
 	JScrollPane scroll2;
 	private ResultPanel resultPanel;
 	private CountPanel countPanel;
+	int play = 0;
 	Map<Integer, ResultPanel> resultMap = new HashMap<>();
 	BeforeResultPanel beforeResultPanel;
 
@@ -44,8 +44,22 @@ public class LottoFrame extends JFrame {
 	public LottoFrame() {
 		countPanel = new CountPanel(this);
 		selectPanel = new SelectPanel(this);
-		resultPanel = new ResultPanel(this, selectPanel.getSelectNumber1(), selectPanel.getSelectNumber2(), selectPanel.getSelectNumber3(), selectPanel.getSelectNumber4(), selectPanel.getSelectNumber5());
-		beforeResultPanel = new BeforeResultPanel(this, selectPanel.getSelectNumber1(), selectPanel.getSelectNumber2(), selectPanel.getSelectNumber3(), selectPanel.getSelectNumber4(), selectPanel.getSelectNumber5());
+		selectPanel = new SelectPanel(this);
+		countPanel = new CountPanel(this);
+		selectPanel = new SelectPanel(this);
+		resultPanel = new ResultPanel(
+				this, selectPanel.getSelectNumber1(), 
+				selectPanel.getSelectNumber2(), 
+				selectPanel.getSelectNumber3(), 
+				selectPanel.getSelectNumber4(), 
+				selectPanel.getSelectNumber5());
+		
+		beforeResultPanel = new BeforeResultPanel(
+				this, selectPanel.getSelectNumber1(), 
+				selectPanel.getSelectNumber2(), 
+				selectPanel.getSelectNumber3(), 
+				selectPanel.getSelectNumber4(), 
+				selectPanel.getSelectNumber5());
 		resultMap.put(count, resultPanel);
 		
 		scroll = new JScrollPane(resultPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -60,7 +74,6 @@ public class LottoFrame extends JFrame {
 //		getContentPane().add("BeforeResult", resultMap.get(0));
 		getContentPane().add("Result", scroll);
 	}
-	
 	
 	
 	public ResultPanel getResultPanel() {
@@ -79,8 +92,9 @@ public class LottoFrame extends JFrame {
 	
 	public void changeSelectPanel(int play) { 
 		cards.show(this.getContentPane(), "Select");
-		selectPanel.setLabelText(play);
-		selectPanel.playGame(play);
+		selectPanel.setPlay(play);
+		selectPanel.setFinalPlay(play);
+		selectPanel.setLabelText();
 	}
 	
 	public void changeBeforeResultPanel() {
@@ -89,7 +103,15 @@ public class LottoFrame extends JFrame {
 		beforeResultPanel.removeRandomList();
 		beforeResultPanel.clearPanel();
 		beforeResultPanel.createRandomCurcle(resultPanel.getNumber(), count);
-		beforeResultPanel.loopResult(resultPanel.getPlayTest(), resultPanel.getNumber(), resultPanel.getNumber2(), resultPanel.getNumber3(), resultPanel.getNumber4(), resultPanel.getNumber5(), resultPanel.getNumber6(), resultPanel.getCurcleList());
+		beforeResultPanel.loopResult(
+				resultPanel.getPlayTest(), 
+				resultPanel.getNumber(), 
+				resultPanel.getNumber2(), 
+				resultPanel.getNumber3(), 
+				resultPanel.getNumber4(), 
+				resultPanel.getNumber5(), 
+				resultPanel.getNumber6(), 
+				resultPanel.getCurcleList());
 	}
 	
 	public void changeResultPanel(int play) {
