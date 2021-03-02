@@ -549,6 +549,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 				selectedNum.remove(Integer.parseInt(chkbxNum.get(i).getText()));
 			}
 		}
+		System.out.println(selectedNum);
 	}
 	
 	public TreeSet randomnum() {
