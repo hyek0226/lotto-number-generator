@@ -18,7 +18,7 @@ public class CountPanel extends JPanel implements ActionListener {
 	JTextField palyText;
 	JLabel lblCount;
 	int play = 0;
-
+	
 	public boolean tryParse(String palyText) {
 		try {
 			Integer.parseInt(palyText); 
@@ -31,7 +31,7 @@ public class CountPanel extends JPanel implements ActionListener {
 	public void resetInput() { 
 		palyText.setText("");
 		lblCount.setText("");
-		play = 0 ;
+		play = 0;
 	}
 	
 	public CountPanel(LottoFrame frame) {

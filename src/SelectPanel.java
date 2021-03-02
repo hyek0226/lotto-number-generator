@@ -38,6 +38,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 	
 	int count = 0; // 진행 횟수
 	int play; // 총 횟수
+
 	
 	// 선택된 6개 번호 담는 배열 A ~ E
 	TreeSet<Integer> selectedNum = new TreeSet<Integer>();
@@ -426,18 +427,27 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnResetAllNum.setActionCommand("초기화");
 		btnResetAllNum.setBounds(209, 24, 81, 23);
 		pnlSelectedNum.add(btnResetAllNum);
+		
+		
 		btnResetAllNum.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(btnResetAllNum.getActionCommand().equals("초기화")) {
-					resetNum();
+				resetNum();
+				count = 0;	
+				if(getPlay() == 0) {
+					play += 5;
+					lblCount.setText(String.valueOf(getPlay()));
+					lblPrice.setText(String.valueOf(getPlay() * 1000));
 				}
-				count = 0;
-				add(btnManualNum);
-				add(btnRandomNum);
+				btnRandomNum.setEnabled(true);
+				btnManualNum.setEnabled(true);
+				btnConfirmNum.setEnabled(true);
+			
 				}
+			}
 			});
-
-				
+		
 		JPanel pnlSelectedNumB = new JPanel();
 		pnlSelectedNumB.setBackground(new Color(240, 248, 255));
 		pnlSelectedNumB.setBounds(0, 126, 234, 58);
@@ -558,6 +568,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 		return randomSelectedNum;
 	}
 	
+	
 	public void setLabelText() {
 		lblCount.setText(String.valueOf(getPlay()));
 		lblPrice.setText(String.valueOf(getPlay() * 1000));
@@ -636,6 +647,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 			btnConfirmNum.setEnabled(false);
 		}
 	}
+
 	
 	public void ResetCheckBoxNum() {
 		for (int i = 0; i < 45; i++) {
@@ -656,6 +668,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 	public void setPlay(int play) {
 		this.play = play;
 	}
+
 	
 }
 
