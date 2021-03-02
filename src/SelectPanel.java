@@ -12,11 +12,14 @@ import java.util.TreeSet;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import javax.swing.JComboBox;
+import javax.swing.UIManager;
+import java.awt.SystemColor;
 // 임시 주석
 public class SelectPanel extends JPanel implements ActionListener {
 	LottoFrame lottoFrame;
@@ -62,67 +65,27 @@ public class SelectPanel extends JPanel implements ActionListener {
 	
 	// 생성자
 	public SelectPanel(LottoFrame frame) {
-//		selectNumber1.add(1);
-//		selectNumber1.add(2);
-//		selectNumber1.add(3);
-//		selectNumber1.add(4);
-//		selectNumber1.add(5);
-//		selectNumber1.add(6);
-//		
-//		selectNumber2.add(1);
-//		selectNumber2.add(2);
-//		selectNumber2.add(3);
-//		selectNumber2.add(4);
-//		selectNumber2.add(5);
-//		selectNumber2.add(7);
-//	
-//		selectNumber3.add(1);
-//		selectNumber3.add(2);
-//		selectNumber3.add(3);
-//		selectNumber3.add(4);
-//		selectNumber3.add(5);
-//		selectNumber3.add(45);
-//		
-//		selectNumber4.add(1);
-//		selectNumber4.add(2);
-//		selectNumber4.add(3);
-//		selectNumber4.add(4);
-//		selectNumber4.add(43);
-//		selectNumber4.add(45);
-//		
-//		selectNumber5.add(1);
-//		selectNumber5.add(2);
-//		selectNumber5.add(3);
-//		selectNumber5.add(42);
-//		selectNumber5.add(43);
-//		selectNumber5.add(45);
-		
+		setBackground(UIManager.getColor("Button.background"));
 		setBounds(100, 100, 830, 532);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
 		
-		// Label : 자동 & 수동 설명
-		JLabel lblCreateNumDesc = new JLabel("자동 번호로 발급 받기");
-		lblCreateNumDesc.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCreateNumDesc.setBounds(12, 300, 137, 15);
-		add(lblCreateNumDesc);
-		
 		JLabel lblSelectNumDesc = new JLabel("원하는 번호 직접 선택");
 		lblSelectNumDesc.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSelectNumDesc.setBounds(12, 134, 137, 15);
+		lblSelectNumDesc.setBounds(14, 137, 137, 15);
 		add(lblSelectNumDesc);
 		
 		// Panel : 중앙 흰색 패널
 		JPanel pnlCenter = new JPanel();
-		pnlCenter.setBackground(Color.WHITE);
-		pnlCenter.setBounds(155, 51, 334, 397);
+		pnlCenter.setBackground(new Color(255, 255, 255));
+		pnlCenter.setBounds(155, 34, 338, 428);
 		add(pnlCenter);
 		pnlCenter.setLayout(null);
 		
 		// Panel : 가격 구성요소 패널
 		JPanel pnlPrice = new JPanel();
-		pnlPrice.setBackground(new Color(240, 248, 255));
-		pnlPrice.setBounds(12, 10, 310, 57);
+		pnlPrice.setBackground(new Color(224, 255, 255));
+		pnlPrice.setBounds(12, 25, 310, 57);
 		pnlCenter.add(pnlPrice);
 		pnlPrice.setLayout(null);
 		
@@ -145,23 +108,24 @@ public class SelectPanel extends JPanel implements ActionListener {
 		
 		// Panel : 1 ~ 45 숫자 체크박스 담는 패널
 		JPanel pnlNum = new JPanel();
-		pnlNum.setBounds(12, 74, 310, 288);
+		pnlNum.setBounds(12, 99, 310, 288);
 		pnlCenter.add(pnlNum);
 		pnlNum.setLayout(new GridLayout(0, 7));
 		
 		
 		// Button : 번호 선택 후 확인 버튼
 		btnConfirmNum = new JButton("확인");
-		btnConfirmNum.setBounds(245, 368, 77, 23);
+		btnConfirmNum.setBackground(SystemColor.menu);
+		btnConfirmNum.setBounds(237, 395, 85, 23);
 		btnConfirmNum.setEnabled(false);
 		pnlCenter.add(btnConfirmNum);
 		
 		
 		// Button : 수동 & 자동 버튼
 		btnManualNum = new JButton("수동");
-		btnManualNum.setBackground(new Color(176, 224, 230));
+		btnManualNum.setBackground(new Color(175, 238, 238));
 		btnManualNum.setFont(new Font("돋움", Font.BOLD, 20));
-		btnManualNum.setBounds(12, 150, 137, 134);
+		btnManualNum.setBounds(16, 158, 137, 100);
 		add(btnManualNum);
 
 		
@@ -169,13 +133,10 @@ public class SelectPanel extends JPanel implements ActionListener {
 //여기 버튼 수정했어요
 		btnRandomNum = new JButton("자동");
 		System.out.println(getCount());
-//		if (getCount() <= 0) {
-//			btnRandomNum.setEnabled(false);
-//		}
 		btnRandomNum.setActionCommand("자동");
-		btnRandomNum.setBackground(new Color(176, 224, 230));
+		btnRandomNum.setBackground(new Color(175, 238, 238));
 		btnRandomNum.setFont(new Font("돋움", Font.BOLD, 20));
-		btnRandomNum.setBounds(12, 314, 137, 134);
+		btnRandomNum.setBounds(16, 313, 137, 106);
 		btnRandomNum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getActionCommand().equals("자동")) {
@@ -214,11 +175,6 @@ public class SelectPanel extends JPanel implements ActionListener {
 				for (int i = 0; i < 45; i++) {
 					chkbxNum.get(i).setEnabled(true);
 				}
-//				++countAction;
-//				System.out.println(countAction);
-//				if (countAction > 0) {
-//					System.out.println("눌렀음!");
-//				}
 			}
 		});
 		
@@ -241,8 +197,8 @@ public class SelectPanel extends JPanel implements ActionListener {
 
 		// Panel : 게임 수 구성요소 담는 패널
 		JPanel pnlCount = new JPanel();
-		pnlCount.setBackground(Color.WHITE);
-		pnlCount.setBounds(12, 51, 137, 73);
+		pnlCount.setBackground(new Color(255, 255, 255));
+		pnlCount.setBounds(12, 34, 147, 428);
 		add(pnlCount);
 		pnlCount.setLayout(null);
 		
@@ -250,147 +206,30 @@ public class SelectPanel extends JPanel implements ActionListener {
 		lblCount = new JLabel();
 		lblCount.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCount.setFont(new Font("굴림", Font.BOLD, 15));
-		lblCount.setBounds(103, 29, 22, 18);	
+		lblCount.setBounds(103, 47, 22, 18);	
 		pnlCount.add(lblCount);
 		
 		JLabel lblCountDesc = new JLabel("수량"); 
 		lblCountDesc.setFont(new Font("돋움", Font.BOLD, 14));
 		lblCountDesc.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCountDesc.setBounds(12, 13, 46, 49);
+		lblCountDesc.setBounds(12, 31, 46, 49);
 		pnlCount.add(lblCountDesc);
 		
-		
-		// Button : 당첨 확인 버튼 , 다음 페이지 전환
-		// 게임 끝나기 전 까지 비활해야함
-		JButton btnNextPage = new JButton("당첨 확인");
-		btnNextPage.setBackground(new Color(255, 192, 203));
-		btnNextPage.setBounds(672, 455, 120, 31);
-		btnNextPage.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				count = 0;
-				frame.changeResultPanel(play);
-				frame.getResultPanel().setPlayTest(Integer.parseInt(lblCount.getText()));
-				System.out.println(lblCount.getText());
-			}
-		});
-		add(btnNextPage);
-		// A ~ E 까지 수정, 삭제 버튼
-		JButton btnEditNumA = new JButton("[ 수정 ]");
-		btnEditNumA.setBorder(null);
-		btnEditNumA.setBackground(new Color(211, 211, 211));
-		btnEditNumA.setOpaque(false);
-		btnEditNumA.setBounds(726, 108, 66, 31);
-		add(btnEditNumA);
-		
-		JButton btnDeleteNumA = new JButton("[ 삭제 ]");
-		btnDeleteNumA.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//숫자를 입력하기 전엔 "과연 숫자는?!" 부분은 삭제를 눌러도 삭제되면 안된다.
-				if(lblSelectedNumA.getText() != "과연 숫자는?!")	
-				lblSelectedNumA.setText("");
-			}
-		});
-		btnDeleteNumA.setBorder(null);
-		btnDeleteNumA.setBackground(new Color(220, 220, 220));
-		btnDeleteNumA.setOpaque(false);
-		btnDeleteNumA.setBounds(726, 137, 66, 31);
-		add(btnDeleteNumA);
-		
-		JButton btnEditNumB = new JButton("[ 수정 ]");
-		btnEditNumB.setOpaque(false);
-		btnEditNumB.setBorder(null);
-		btnEditNumB.setBackground(new Color(211, 211, 211));
-		btnEditNumB.setBounds(726, 177, 66, 31);
-		add(btnEditNumB);
-		
-		JButton btnDeleteNumB = new JButton("[ 삭제 ]");
-		btnDeleteNumB.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(lblSelectedNumB.getText() != "과연 숫자는?!")
-				lblSelectedNumB.setText("");
-			}
-		});
-		btnDeleteNumB.setOpaque(false);
-		btnDeleteNumB.setBorder(null);
-		btnDeleteNumB.setBackground(new Color(220, 220, 220));
-		btnDeleteNumB.setBounds(726, 206, 66, 31);
-		add(btnDeleteNumB);
-		
-		JButton btnEditNumC = new JButton("[ 수정 ]");
-		btnEditNumC.setOpaque(false);
-		btnEditNumC.setBorder(null);
-		btnEditNumC.setBackground(new Color(211, 211, 211));
-		btnEditNumC.setBounds(726, 243, 66, 31);
-		add(btnEditNumC);
-		
-		JButton btnDeleteNumC = new JButton("[ 삭제 ]");
-		btnDeleteNumC.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(lblSelectedNumC.getText() != "과연 숫자는?!")
-				lblSelectedNumC.setText("");
-			}
-		});
-		btnDeleteNumC.setOpaque(false);
-		btnDeleteNumC.setBorder(null);
-		btnDeleteNumC.setBackground(new Color(220, 220, 220));
-		btnDeleteNumC.setBounds(726, 272, 66, 31);
-		add(btnDeleteNumC);
-		
-		JButton btnEditNumD = new JButton("[ 수정 ]");
-		btnEditNumD.setOpaque(false);
-		btnEditNumD.setBorder(null);
-		btnEditNumD.setBackground(new Color(211, 211, 211));
-		btnEditNumD.setBounds(726, 311, 66, 31);
-		add(btnEditNumD);
-		
-		JButton btnDeleteNumD = new JButton("[ 삭제 ]");
-		btnDeleteNumD.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(lblSelectedNumD.getText() != "과연 숫자는?!")
-				lblSelectedNumD.setText("");
-			}
-		});
-		btnDeleteNumD.setOpaque(false);
-		btnDeleteNumD.setBorder(null);
-		btnDeleteNumD.setBackground(new Color(220, 220, 220));
-		btnDeleteNumD.setBounds(726, 340, 66, 31);
-		add(btnDeleteNumD);
-		
-		JButton btnEditNumE = new JButton("[ 수정 ]");
-		btnEditNumE.setOpaque(false);
-		btnEditNumE.setBorder(null);
-		btnEditNumE.setBackground(new Color(211, 211, 211));
-		btnEditNumE.setBounds(726, 377, 66, 31);
-		add(btnEditNumE);
-		
-		JButton btnDeleteNumE = new JButton("[ 삭제 ]");
-		btnDeleteNumE.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(lblSelectedNumE.getText() != "과연 숫자는?!")
-				lblSelectedNumE.setText("");
-			}
-		});
-		btnDeleteNumE.setOpaque(false);
-		btnDeleteNumE.setBorder(null);
-		btnDeleteNumE.setBackground(new Color(220, 220, 220));
-		btnDeleteNumE.setBounds(726, 406, 66, 31);
-		add(btnDeleteNumE);
+		// Label : 자동 & 수동 설명
+		JLabel lblCreateNumDesc = new JLabel("자동 번호로 발급 받기");
+		lblCreateNumDesc.setBounds(2, 261, 137, 15);
+		pnlCount.add(lblCreateNumDesc);
+		lblCreateNumDesc.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		
 		JPanel pnlSelectedNum = new JPanel();
-		pnlSelectedNum.setBackground(Color.WHITE);
-		pnlSelectedNum.setBounds(493, 51, 302, 397);
+		pnlSelectedNum.setBackground(new Color(255, 255, 255));
+		pnlSelectedNum.setBounds(493, 34, 311, 428);
 		add(pnlSelectedNum);
 		pnlSelectedNum.setLayout(null);
 		
 		JPanel pnlSelectedNumA = new JPanel(); 
-		pnlSelectedNumA.setBackground(new Color(240, 248, 255));
+		pnlSelectedNumA.setBackground(new Color(255, 250, 250));
 		pnlSelectedNumA.setBounds(0, 58, 234, 58);
 		pnlSelectedNum.add(pnlSelectedNumA);
 		pnlSelectedNumA.setLayout(null);
@@ -398,41 +237,36 @@ public class SelectPanel extends JPanel implements ActionListener {
 		
 		//여기서부터 A~E 라벨을 새로 만들었어요 총 5번 만든것이에요!
 		lblSelectedNumA = new JLabel("과연 숫자는?!");
-		lblSelectedNumA.setBounds(50, 0, 1000, 48);
+		lblSelectedNumA.setBounds(35, 20, 199, 18);
 		lblSelectedNumA.setFont(new Font("굴림", Font.BOLD, 15));
 		pnlSelectedNumA.add(lblSelectedNumA);
 		
 		JLabel lblSelectedNumDescA = new JLabel("A");
 		lblSelectedNumDescA.setOpaque(true);
-		lblSelectedNumDescA.setBackground(new Color(255, 255, 255));
+		lblSelectedNumDescA.setBackground(new Color(255, 192, 203));
 		lblSelectedNumDescA.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelectedNumDescA.setFont(new Font("굴림", Font.BOLD, 15));
 		lblSelectedNumDescA.setBounds(0, 0, 23, 58);
 		pnlSelectedNumA.add(lblSelectedNumDescA);
-//		lblSelectedNumA = new JLabel(""); 
-//		lblSelectedNumA.setHorizontalAlignment(SwingConstants.CENTER);
-//		lblSelectedNumA.setFont(new Font("굴림", Font.BOLD, 14));
-//		lblSelectedNumA.setBounds(35, 11, 187, 36);
-//		pnlSelectedNumA.add(lblSelectedNumA); 
 		
 		JLabel lblSelectedNumDesc = new JLabel("선택 번호 확인");
 		lblSelectedNumDesc.setFont(new Font("굴림", Font.BOLD, 14));
-		lblSelectedNumDesc.setBounds(12, 19, 116, 28);
+		lblSelectedNumDesc.setBounds(2, 20, 116, 28);
 		pnlSelectedNum.add(lblSelectedNumDesc);
 		
 		JButton btnResetAllNum = new JButton("초기화");
-		btnResetAllNum.setBackground(new Color(255, 192, 203));
-		btnResetAllNum.setBounds(209, 24, 81, 23);
+		btnResetAllNum.setBackground(SystemColor.menu);
+		btnResetAllNum.setBounds(221, 25, 81, 23);
 		pnlSelectedNum.add(btnResetAllNum);
 		
 		JPanel pnlSelectedNumB = new JPanel();
-		pnlSelectedNumB.setBackground(new Color(240, 248, 255));
+		pnlSelectedNumB.setBackground(new Color(255, 250, 250));
 		pnlSelectedNumB.setBounds(0, 126, 234, 58);
 		pnlSelectedNum.add(pnlSelectedNumB);
 		pnlSelectedNumB.setLayout(null);
 		
 		lblSelectedNumB = new JLabel("과연 숫자는?!");
-		lblSelectedNumB.setBounds(50, 0, 1000, 48);
+		lblSelectedNumB.setBounds(35, 20, 199, 18);
 		lblSelectedNumB.setFont(new Font("굴림", Font.BOLD, 15));
 		pnlSelectedNumB.add(lblSelectedNumB);
 		
@@ -440,18 +274,18 @@ public class SelectPanel extends JPanel implements ActionListener {
 		lblSelectedNumDescB.setOpaque(true);
 		lblSelectedNumDescB.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelectedNumDescB.setFont(new Font("굴림", Font.BOLD, 15));
-		lblSelectedNumDescB.setBackground(Color.WHITE);
+		lblSelectedNumDescB.setBackground(new Color(255, 192, 203));
 		lblSelectedNumDescB.setBounds(0, 0, 23, 58);
 		pnlSelectedNumB.add(lblSelectedNumDescB);
 		
 		JPanel pnlSelectedNumC = new JPanel();
-		pnlSelectedNumC.setBackground(new Color(240, 248, 255));
+		pnlSelectedNumC.setBackground(new Color(255, 250, 250));
 		pnlSelectedNumC.setBounds(0, 194, 234, 58);
 		pnlSelectedNum.add(pnlSelectedNumC);
 		pnlSelectedNumC.setLayout(null);
 		
 		lblSelectedNumC = new JLabel("과연 숫자는?!");
-		lblSelectedNumC.setBounds(50, 0, 1000, 48);
+		lblSelectedNumC.setBounds(35, 20, 199, 18);
 		lblSelectedNumC.setFont(new Font("굴림", Font.BOLD, 15));
 		pnlSelectedNumC.add(lblSelectedNumC);
 		
@@ -459,18 +293,18 @@ public class SelectPanel extends JPanel implements ActionListener {
 		lblSelectedNumDescC.setOpaque(true);
 		lblSelectedNumDescC.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelectedNumDescC.setFont(new Font("굴림", Font.BOLD, 15));
-		lblSelectedNumDescC.setBackground(Color.WHITE);
+		lblSelectedNumDescC.setBackground(new Color(255, 192, 203));
 		lblSelectedNumDescC.setBounds(0, 0, 23, 58);
 		pnlSelectedNumC.add(lblSelectedNumDescC);
 		
 		JPanel pnlSelectedNumD = new JPanel();
-		pnlSelectedNumD.setBackground(new Color(240, 248, 255));
+		pnlSelectedNumD.setBackground(new Color(255, 250, 250));
 		pnlSelectedNumD.setBounds(0, 262, 234, 58);
 		pnlSelectedNum.add(pnlSelectedNumD);
 		pnlSelectedNumD.setLayout(null);
 		
 		lblSelectedNumD = new JLabel("과연 숫자는?!");
-		lblSelectedNumD.setBounds(50, 0, 1000, 48);
+		lblSelectedNumD.setBounds(35, 20, 199, 18);
 		lblSelectedNumD.setFont(new Font("굴림", Font.BOLD, 15));
 		pnlSelectedNumD.add(lblSelectedNumD);
 		
@@ -478,18 +312,18 @@ public class SelectPanel extends JPanel implements ActionListener {
 		lblSelectedNumDescD.setOpaque(true);
 		lblSelectedNumDescD.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelectedNumDescD.setFont(new Font("굴림", Font.BOLD, 15));
-		lblSelectedNumDescD.setBackground(Color.WHITE);
+		lblSelectedNumDescD.setBackground(new Color(255, 192, 203));
 		lblSelectedNumDescD.setBounds(0, 0, 23, 58);
 		pnlSelectedNumD.add(lblSelectedNumDescD);
 		
 		JPanel pnlSelectedNumE = new JPanel();
-		pnlSelectedNumE.setBackground(new Color(240, 248, 255));
+		pnlSelectedNumE.setBackground(new Color(255, 250, 250));
 		pnlSelectedNumE.setBounds(0, 327, 234, 58);
 		pnlSelectedNum.add(pnlSelectedNumE);
 		pnlSelectedNumE.setLayout(null);
 		
 		lblSelectedNumE = new JLabel("과연 숫자는?!");
-		lblSelectedNumE.setBounds(50, 0, 1000, 48);
+		lblSelectedNumE.setBounds(35, 20, 199, 18);
 		lblSelectedNumE.setFont(new Font("굴림", Font.BOLD, 15));
 		pnlSelectedNumE.add(lblSelectedNumE);
 		
@@ -497,9 +331,65 @@ public class SelectPanel extends JPanel implements ActionListener {
 		lblSelectedNumDescE.setOpaque(true);
 		lblSelectedNumDescE.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelectedNumDescE.setFont(new Font("굴림", Font.BOLD, 15));
-		lblSelectedNumDescE.setBackground(Color.WHITE);
+		lblSelectedNumDescE.setBackground(new Color(255, 192, 203));
 		lblSelectedNumDescE.setBounds(0, 0, 23, 58);
 		pnlSelectedNumE.add(lblSelectedNumDescE);
+		
+		
+		// A ~ E 까지 수정, 삭제 버튼
+		JButton btnEditNumA = new JButton("[ 수정 ]");
+		btnEditNumA.setBounds(236, 70, 66, 31);
+		pnlSelectedNum.add(btnEditNumA);
+		btnEditNumA.setBorder(null);
+		btnEditNumA.setBackground(new Color(211, 211, 211));
+		btnEditNumA.setOpaque(false);
+		
+		JButton btnEditNumB = new JButton("[ 수정 ]");
+		btnEditNumB.setBounds(236, 141, 66, 31);
+		pnlSelectedNum.add(btnEditNumB);
+		btnEditNumB.setOpaque(false);
+		btnEditNumB.setBorder(null);
+		btnEditNumB.setBackground(new Color(211, 211, 211));
+
+		JButton btnEditNumC = new JButton("[ 수정 ]");
+		btnEditNumC.setBounds(236, 206, 66, 31);
+		pnlSelectedNum.add(btnEditNumC);
+		btnEditNumC.setOpaque(false);
+		btnEditNumC.setBorder(null);
+		btnEditNumC.setBackground(new Color(211, 211, 211));
+		
+		JButton btnEditNumD = new JButton("[ 수정 ]");
+		btnEditNumD.setBounds(236, 277, 66, 31);
+		pnlSelectedNum.add(btnEditNumD);
+		btnEditNumD.setOpaque(false);
+		btnEditNumD.setBorder(null);
+		btnEditNumD.setBackground(new Color(211, 211, 211));
+		
+		JButton btnEditNumE = new JButton("[ 수정 ]");
+		btnEditNumE.setBounds(236, 341, 66, 31);
+		pnlSelectedNum.add(btnEditNumE);
+		btnEditNumE.setOpaque(false);
+		btnEditNumE.setBorder(null);
+		btnEditNumE.setBackground(new Color(211, 211, 211));
+		
+		// 당첨 확인 버튼 : 다음 페이지 전환
+		JButton btnNextPage_1 = new JButton("당첨 확인");
+		btnNextPage_1.setBounds(209, 395, 93, 23);
+		pnlSelectedNum.add(btnNextPage_1);
+		btnNextPage_1.setBackground(SystemColor.menu);
+		btnNextPage_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (play == 0) {
+					frame.changeResultPanel(play);
+					count = 0;
+				} else {
+					JOptionPane.showMessageDialog(null, play + " 번 남았습니다.", "돈안벌꺼니", JOptionPane.WARNING_MESSAGE);
+				}
+				frame.getResultPanel().setPlayTest(Integer.parseInt(lblCount.getText()));
+				System.out.println(lblCount.getText());
+			}
+		});
 		
 		// 확인 버튼
 		ActionListener confirmNumber = new ActionListener() {
@@ -519,7 +409,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnConfirmNum.addActionListener(confirmNumber);
 	}
 	
-	// 수동 - 숫자 6개 선택
+	// 수동 : 숫자 6개 선택
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		btnConfirmNum.setEnabled(false);
@@ -527,8 +417,9 @@ public class SelectPanel extends JPanel implements ActionListener {
 			if (chkbxNum.get(i).isSelected()) {
 				if (selectedNum.size() <= 5) {
 					selectedNum.add(Integer.parseInt(chkbxNum.get(i).getText()));
-					if (selectedNum.size() == 6) {
+					if (selectedNum.size() >= 6) {
 						btnConfirmNum.setEnabled(true);
+						setCheckBoxNumEnable();
 					}
 				}
 			} else if (chkbxNum.get(i).isSelected() == false) {
@@ -624,6 +515,11 @@ public class SelectPanel extends JPanel implements ActionListener {
 		}
 	}
 	
+	public void setResetPlay() {
+		btnRandomNum.setEnabled(true);
+		btnManualNum.setEnabled(true);
+	}
+	
 	public void ResetCheckBoxNum() {
 		for (int i = 0; i < 45; i++) {
 			chkbxNum.get(i).setSelected(false);
@@ -636,6 +532,11 @@ public class SelectPanel extends JPanel implements ActionListener {
 		}
 	}
 
+	public void setCheckBoxNumEnable() {
+		for (int i = 0; i < 45; i++) {
+			chkbxNum.get(i).setEnabled(false);
+		}
+	}
 	public int getPlay() {
 		return play;
 	}
@@ -644,20 +545,11 @@ public class SelectPanel extends JPanel implements ActionListener {
 		this.play = play;
 	}
 	
+	public void removeAll() {
+		selectNumber1.removeAll(selectNumber1);
+		selectNumber2.removeAll(selectNumber2);
+		selectNumber3.removeAll(selectNumber3);
+		selectNumber4.removeAll(selectNumber4);
+		selectNumber5.removeAll(selectNumber5);
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

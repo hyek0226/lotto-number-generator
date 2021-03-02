@@ -62,6 +62,7 @@ public class LottoFrame extends JFrame {
 		getContentPane().add("BeforeResult", scroll2);
 //		getContentPane().add("BeforeResult", resultMap.get(0));
 		getContentPane().add("Result", scroll);
+		setLocationRelativeTo(null);
 	}
 	
 	
@@ -77,12 +78,14 @@ public class LottoFrame extends JFrame {
 
 	public void changeCountPanel() {
 		cards.show(this.getContentPane(), "Count");
+		selectPanel.removeAll();
 	}
 	
 	public void changeSelectPanel(int play) { 
 		cards.show(this.getContentPane(), "Select");
 		selectPanel.setPlay(play);
 		selectPanel.setLabelText();
+		selectPanel.setResetPlay();
 	}
 	
 	public void changeBeforeResultPanel() {
