@@ -15,8 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
+import javax.swing.JComboBox;
 // 임시 주석
 public class SelectPanel extends JPanel implements ActionListener {
+	LottoFrame lottoFrame;
 	private JLabel lblSelectedNumDescD;
 	private JLabel lblSelectedNumA;
 	private JLabel lblSelectedNumB;
@@ -33,27 +35,34 @@ public class SelectPanel extends JPanel implements ActionListener {
 	List<JCheckBox> chkbxNum = new ArrayList<>();
 	List<TreeSet> listSelectedNum = new ArrayList<>();
 	
+	int count = 0; // 진행 횟수
+	int play = 0; // 총 횟수
+	
 	// 선택된 6개 번호 담는 배열 A ~ E
-	List<Integer> selectedNum = new ArrayList<Integer>();
+	TreeSet<Integer> selectedNum = new TreeSet<Integer>();
+	Set<Integer> temp = new TreeSet<>();
+	private JButton btnNextPage;
+
 	TreeSet<Integer> selectedNumA = new TreeSet<Integer>();
 	TreeSet<Integer> selectedNumB = new TreeSet<Integer>();
 	TreeSet<Integer> selectedNumC = new TreeSet<Integer>();
 	TreeSet<Integer> selectedNumD = new TreeSet<Integer>();
 	TreeSet<Integer> selectedNumE = new TreeSet<Integer>();
-	int countAction = 1;
-	int count = 0;
+	
+//	int countAction = 1;
 
-	void randomnum() {
-		TreeSet<Integer> randomSelectedNum = new TreeSet<Integer>();
-		while(randomSelectedNum.size() < 6) {
-			randomSelectedNum.add((int) (Math.random() * 45) + 1);
-		}
-		str = randomSelectedNum.toString();
-	}
+
 	
 	// 생성자
 	public SelectPanel(LottoFrame frame) {
 		actionBoolean = new ArrayList<>();
+		temp.add(7);
+		temp.add(8);
+		temp.add(9);
+		temp.add(10);
+		temp.add(11);
+		temp.add(12);
+	
 		setBounds(100, 100, 830, 532);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
@@ -126,24 +135,25 @@ public class SelectPanel extends JPanel implements ActionListener {
 //여기 버튼 수정했어요
 		btnRandomNum = new JButton("자동");
 		System.out.println(getCount());
-		if (getCount() <= 0) {
-			btnRandomNum.setEnabled(false);
-		}
+//		if (getCount() <= 0) {
+//			btnRandomNum.setEnabled(false);
+//		}
 		btnRandomNum.setActionCommand("자동");
 		btnRandomNum.setBackground(new Color(176, 224, 230));
 		btnRandomNum.setFont(new Font("돋움", Font.BOLD, 20));
 		btnRandomNum.setBounds(12, 314, 137, 134);
 		btnRandomNum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int i = 0;
 				if(e.getActionCommand().equals("자동")) {
-					randomnum();
-					lblSelectedNumA.setText(str);
-//					lblSelectedNumA = new JLabel(lblSelectedNumA.getText());
+					for (int i = 0; i < 45; i++) {
+						chkbxNum.get(i).setEnabled(false);
+					}
+					count++;
+					setLabelText(randomnum());
 					actionBoolean.add(false);
 				}
 				System.out.println(actionBoolean);
-				--count;
+				
 				System.out.println(count);
 				
 			}
@@ -204,13 +214,13 @@ public class SelectPanel extends JPanel implements ActionListener {
 		lblCount = new JLabel();
 		lblCount.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCount.setFont(new Font("굴림", Font.BOLD, 15));
-		lblCount.setBounds(103, 25, 9, 18);	
+		lblCount.setBounds(103, 29, 22, 18);	
 		pnlCount.add(lblCount);
 		
 		JLabel lblCountDesc = new JLabel("수량"); 
 		lblCountDesc.setFont(new Font("돋움", Font.BOLD, 14));
 		lblCountDesc.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCountDesc.setBounds(23, 9, 46, 49);
+		lblCountDesc.setBounds(12, 13, 46, 49);
 		pnlCount.add(lblCountDesc);
 		
 		
@@ -222,11 +232,14 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnNextPage.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.changeResultPanel();
+				count = 0;
+				frame.changeResultPanel(play);
+				frame.getResultPanel().setPlayTest(Integer.parseInt(lblCount.getText()));
+				System.out.println(lblCount.getText());
 			}
 		});
 		add(btnNextPage);
-		
+		// 민정씨 혹시 이 폴더 위치 열어주실 수 있으신가요!? 넵 ㅠㅠ 이게 지금 합병하려는데, 그..깃허브 웹 상에서 처리가 불가능해서 커맨드로 처리할려고 해요! 잠시만 기다려 주세요! 넵 
 		// A ~ E 까지 수정, 삭제 버튼
 		JButton btnEditNumA = new JButton("[ 수정 ]");
 		btnEditNumA.setBorder(null);
@@ -236,6 +249,12 @@ public class SelectPanel extends JPanel implements ActionListener {
 		add(btnEditNumA);
 		
 		JButton btnDeleteNumA = new JButton("[ 삭제 ]");
+		btnDeleteNumA.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lblSelectedNumA.setText("");
+			}
+		});
 		btnDeleteNumA.setBorder(null);
 		btnDeleteNumA.setBackground(new Color(220, 220, 220));
 		btnDeleteNumA.setOpaque(false);
@@ -250,6 +269,12 @@ public class SelectPanel extends JPanel implements ActionListener {
 		add(btnEditNumB);
 		
 		JButton btnDeleteNumB = new JButton("[ 삭제 ]");
+		btnDeleteNumB.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lblSelectedNumB.setText("");
+			}
+		});
 		btnDeleteNumB.setOpaque(false);
 		btnDeleteNumB.setBorder(null);
 		btnDeleteNumB.setBackground(new Color(220, 220, 220));
@@ -264,6 +289,12 @@ public class SelectPanel extends JPanel implements ActionListener {
 		add(btnEditNumC);
 		
 		JButton btnDeleteNumC = new JButton("[ 삭제 ]");
+		btnDeleteNumC.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lblSelectedNumC.setText("");
+			}
+		});
 		btnDeleteNumC.setOpaque(false);
 		btnDeleteNumC.setBorder(null);
 		btnDeleteNumC.setBackground(new Color(220, 220, 220));
@@ -278,6 +309,12 @@ public class SelectPanel extends JPanel implements ActionListener {
 		add(btnEditNumD);
 		
 		JButton btnDeleteNumD = new JButton("[ 삭제 ]");
+		btnDeleteNumD.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lblSelectedNumD.setText("");
+			}
+		});
 		btnDeleteNumD.setOpaque(false);
 		btnDeleteNumD.setBorder(null);
 		btnDeleteNumD.setBackground(new Color(220, 220, 220));
@@ -292,6 +329,12 @@ public class SelectPanel extends JPanel implements ActionListener {
 		add(btnEditNumE);
 		
 		JButton btnDeleteNumE = new JButton("[ 삭제 ]");
+		btnDeleteNumE.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lblSelectedNumE.setText("");
+			}
+		});
 		btnDeleteNumE.setOpaque(false);
 		btnDeleteNumE.setBorder(null);
 		btnDeleteNumE.setBackground(new Color(220, 220, 220));
@@ -325,7 +368,6 @@ public class SelectPanel extends JPanel implements ActionListener {
 		lblSelectedNumDescA.setFont(new Font("굴림", Font.BOLD, 15));
 		lblSelectedNumDescA.setBounds(0, 0, 23, 58);
 		pnlSelectedNumA.add(lblSelectedNumDescA);
-		
 		lblSelectedNumA = new JLabel("");
 		lblSelectedNumA.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelectedNumA.setFont(new Font("굴림", Font.BOLD, 14));
@@ -418,29 +460,28 @@ public class SelectPanel extends JPanel implements ActionListener {
 		lblSelectedNumDescE.setBounds(0, 0, 23, 58);
 		pnlSelectedNumE.add(lblSelectedNumDescE);
 		
-		if (count <= 0) {
-			btnConfirmNum.setEnabled(false);
-		}
+//		if (count <= 0) {
+//			btnConfirmNum.setEnabled(false);
+//		}
 		
 		// 확인 버튼 - 액션리스너 : 선택된 번호 담긴 배열을 label에 출력
 		ActionListener confirmNumber = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				lblSelectedNumA.setText(selectedNum.toString());
-				actionBoolean.add(true);
-				--count;
+				count++;
 				System.out.println(count);
+				setLabelText(selectedNum);
 				
-				System.out.println(actionBoolean);
-
+//				lblSelectedNumA.setText(selectedNum.toString());
+//				actionBoolean.add(true);
+//				System.out.println(actionBoolean);
 			}
-			
 		};
 		btnConfirmNum.addActionListener(confirmNumber);
-		
 	}
 	
-	// 수동 - 숫자 6개 선택
+	
+	// 수동 버튼 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		for(int i = 0; i < 45; i++) {
@@ -454,9 +495,21 @@ public class SelectPanel extends JPanel implements ActionListener {
 		}
 	}
 	
+	TreeSet randomnum() {
+		TreeSet<Integer> randomSelectedNum = new TreeSet<Integer>();
+		while(randomSelectedNum.size() < 6) {
+			randomSelectedNum.add((int) (Math.random() * 45) + 1);
+		}
+		return randomSelectedNum;
+	}
+	
 	public void setLabelText(int play) {
 		lblCount.setText(String.valueOf(play));
-		lblPrice.setText(String.valueOf(play * 1000));
+		this.play = play;
+	}
+	
+	public Set<Integer> getTemp() {
+		return temp;
 	}
 
 	public int getCount() {
@@ -466,21 +519,19 @@ public class SelectPanel extends JPanel implements ActionListener {
 	public void setCount(int count) {
 		this.count = count;
 	}
-
-	// count 만큼 게임 진행
-//	public void playGame(int count) {
-//		for (int i = 0; i < count; i++) {
-//			Set<Integer> selectedNum = new TreeSet<Integer>();
-//			while (selectedNum.size() < 6) {
-//				int num = (int)(Math.random() * 45 + 1);
-//				selectedNum.add(num);
-//			}
-//			System.out.println(selectedNum);
-//		}
-//	}
 	
-	public void setActionBoolean() {
-		
+	public void setLabelText(TreeSet selectedNum) {
+		if (count == 1) {
+			lblSelectedNumA.setText(selectedNum.toString());
+		} else if (count == 2) {
+			lblSelectedNumB.setText(selectedNum.toString());
+		} else if (count == 3) {
+			lblSelectedNumC.setText(selectedNum.toString());
+		} else if (count == 4) {
+			lblSelectedNumD.setText(selectedNum.toString());
+		} else if (count == 5) {
+			lblSelectedNumE.setText(selectedNum.toString());
+		}
 	}
 }
 
