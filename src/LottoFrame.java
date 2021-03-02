@@ -65,7 +65,6 @@ public class LottoFrame extends JFrame {
 	}
 	
 	
-	
 	public ResultPanel getResultPanel() {
 		return resultPanel;
 	}

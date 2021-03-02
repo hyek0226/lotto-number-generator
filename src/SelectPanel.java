@@ -501,18 +501,19 @@ public class SelectPanel extends JPanel implements ActionListener {
 		lblSelectedNumDescE.setBounds(0, 0, 23, 58);
 		pnlSelectedNumE.add(lblSelectedNumDescE);
 		
-		// 확인 버튼 - 액션리스너 : 선택된 번호 담긴 배열을 label에 출력
+		// 확인 버튼
 		ActionListener confirmNumber = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int cnt = getPlay() - 1;
 				setPlay(cnt);
 				count++;
-				System.out.println(play);
-				System.out.println(count);
 				setLabelText(selectedNum);
+				selectedNum.removeAll(selectedNum);
+				ResetSelectedNum();
 				setPlayEnable();
 				setLabelText();
+				ResetCheckBoxNum();
 			}
 		};
 		btnConfirmNum.addActionListener(confirmNumber);
@@ -521,11 +522,14 @@ public class SelectPanel extends JPanel implements ActionListener {
 	// 수동 - 숫자 6개 선택
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		btnConfirmNum.setEnabled(true);
+		btnConfirmNum.setEnabled(false);
 		for(int i = 0; i < 45; i++) {
 			if (chkbxNum.get(i).isSelected()) {
 				if (selectedNum.size() <= 5) {
 					selectedNum.add(Integer.parseInt(chkbxNum.get(i).getText()));
+					if (selectedNum.size() == 6) {
+						btnConfirmNum.setEnabled(true);
+					}
 				}
 			} else if (chkbxNum.get(i).isSelected() == false) {
 				selectedNum.remove(Integer.parseInt(chkbxNum.get(i).getText()));
@@ -533,7 +537,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 		}
 	}
 	
-	TreeSet randomnum() {
+	public TreeSet randomnum() {
 		TreeSet<Integer> randomSelectedNum = new TreeSet<Integer>();
 		while(randomSelectedNum.size() < 6) {
 			randomSelectedNum.add((int) (Math.random() * 45) + 1);
@@ -543,6 +547,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 	
 	public void setLabelText() {
 		lblCount.setText(String.valueOf(getPlay()));
+		lblPrice.setText(String.valueOf(getPlay() * 1000));
 	}
 	
 	public Set<Integer> getTemp() {
@@ -615,6 +620,18 @@ public class SelectPanel extends JPanel implements ActionListener {
 		if (play == 0) {
 			btnRandomNum.setEnabled(false);
 			btnManualNum.setEnabled(false);
+			btnConfirmNum.setEnabled(false);
+		}
+	}
+	
+	public void ResetCheckBoxNum() {
+		for (int i = 0; i < 45; i++) {
+			chkbxNum.get(i).setSelected(false);
+		}
+	}
+	
+	public void ResetSelectedNum() {
+		if (selectedNum.size() == 0) {
 			btnConfirmNum.setEnabled(false);
 		}
 	}
