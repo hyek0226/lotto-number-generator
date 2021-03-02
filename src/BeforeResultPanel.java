@@ -76,6 +76,15 @@ public class BeforeResultPanel extends JPanel {
 		
 		number6 = n5;
 		
+		for (int i = 0; i < 7; i++) {
+			number.add(i);
+			number2.add(i);
+			number3.add(i);
+			number4.add(i);
+			number5.add(i);
+			number6.add(i);
+		}
+		
 		panel0.setBackground(Color.gray);
 		panel0.setBounds(50, 100, 700, 80);
 		add(panel0);
