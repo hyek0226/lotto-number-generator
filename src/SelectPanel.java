@@ -43,7 +43,15 @@ public class SelectPanel extends JPanel implements ActionListener {
 	TreeSet<Integer> selectedNumD = new TreeSet<Integer>();
 	TreeSet<Integer> selectedNumE = new TreeSet<Integer>();
 	
-
+	public void resetNum() {	//처음으로 돌아왔을 때 초기 화면에 뜨게 할 내용임
+		lblSelectedNumA.setText("과연 숫자는?!");
+		lblSelectedNumB.setText("과연 숫자는?!");
+		lblSelectedNumC.setText("과연 숫자는?!");
+		lblSelectedNumD.setText("과연 숫자는?!");
+		lblSelectedNumE.setText("과연 숫자는?!");
+	}
+	
+	
 	void randomnum() {
 		TreeSet<Integer> randomSelectedNum = new TreeSet<Integer>();
 		while(randomSelectedNum.size() < 6) {
@@ -219,7 +227,6 @@ public class SelectPanel extends JPanel implements ActionListener {
 			}
 		});
 		add(btnNextPage);
-		// 민정씨 혹시 이 폴더 위치 열어주실 수 있으신가요!? 넵 ㅠㅠ 이게 지금 합병하려는데, 그..깃허브 웹 상에서 처리가 불가능해서 커맨드로 처리할려고 해요! 잠시만 기다려 주세요! 넵 
 		// A ~ E 까지 수정, 삭제 버튼
 		JButton btnEditNumA = new JButton("[ 수정 ]");
 		btnEditNumA.setBorder(null);
@@ -232,6 +239,8 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnDeleteNumA.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//숫자를 입력하기 전엔 "과연 숫자는?!" 부분은 삭제를 눌러도 삭제되면 안된다.
+				if(lblSelectedNumA.getText() != "과연 숫자는?!")	
 				lblSelectedNumA.setText("");
 			}
 		});
@@ -252,6 +261,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnDeleteNumB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(lblSelectedNumB.getText() != "과연 숫자는?!")
 				lblSelectedNumB.setText("");
 			}
 		});
@@ -272,6 +282,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnDeleteNumC.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(lblSelectedNumC.getText() != "과연 숫자는?!")
 				lblSelectedNumC.setText("");
 			}
 		});
@@ -292,6 +303,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnDeleteNumD.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(lblSelectedNumD.getText() != "과연 숫자는?!")
 				lblSelectedNumD.setText("");
 			}
 		});
@@ -312,6 +324,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnDeleteNumE.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(lblSelectedNumE.getText() != "과연 숫자는?!")
 				lblSelectedNumE.setText("");
 			}
 		});
@@ -348,11 +361,11 @@ public class SelectPanel extends JPanel implements ActionListener {
 		lblSelectedNumDescA.setFont(new Font("굴림", Font.BOLD, 15));
 		lblSelectedNumDescA.setBounds(0, 0, 23, 58);
 		pnlSelectedNumA.add(lblSelectedNumDescA);
-		lblSelectedNumA = new JLabel("");
-		lblSelectedNumA.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSelectedNumA.setFont(new Font("굴림", Font.BOLD, 14));
-		lblSelectedNumA.setBounds(35, 11, 187, 36);
-		pnlSelectedNumA.add(lblSelectedNumA);
+//		lblSelectedNumA = new JLabel(""); 
+//		lblSelectedNumA.setHorizontalAlignment(SwingConstants.CENTER);
+//		lblSelectedNumA.setFont(new Font("굴림", Font.BOLD, 14));
+//		lblSelectedNumA.setBounds(35, 11, 187, 36);
+//		pnlSelectedNumA.add(lblSelectedNumA); 
 		
 		JLabel lblSelectedNumDesc = new JLabel("선택 번호 확인");
 		lblSelectedNumDesc.setFont(new Font("굴림", Font.BOLD, 14));
@@ -445,11 +458,12 @@ public class SelectPanel extends JPanel implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				lblSelectedNumA.setText(selectedNum.toString());
+				lblSelectedNumA.setText("");
 			}
 		};
 		btnConfirmNum.addActionListener(confirmNumber);
 	}
-	
+
 	// 수동 - 숫자 6개 선택
 	@Override
 	public void actionPerformed(ActionEvent e) {
