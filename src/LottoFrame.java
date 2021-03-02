@@ -82,7 +82,8 @@ public class LottoFrame extends JFrame {
 	
 	public void changeSelectPanel(int play) { 
 		cards.show(this.getContentPane(), "Select");
-		selectPanel.setLabelText(play);
+		selectPanel.setPlay(play);
+		selectPanel.setLabelText();
 	}
 	
 	public void changeBeforeResultPanel() {
