@@ -32,11 +32,18 @@ public class SelectPanel extends JPanel implements ActionListener {
 	List<JCheckBox> chkbxNum = new ArrayList<>();
 	List<TreeSet> listSelectedNum = new ArrayList<>();
 	
-	// 선택된 6개 번호 담는 배열 A ~ E
-	TreeSet<Integer> selectedNum = new TreeSet<Integer>();
-	Set<Integer> temp = new TreeSet<>();
+	
+	Set<Integer> selectNumber1 = new TreeSet<>();
+	Set<Integer> selectNumber2 = new TreeSet<>();
+	Set<Integer> selectNumber3 = new TreeSet<>();
+	Set<Integer> selectNumber4 = new TreeSet<>();
+	Set<Integer> selectNumber5 = new TreeSet<>();
+	
 	int play = 0;
 	private JButton btnNextPage;
+	
+	// 선택된 6개 번호 담는 배열 A ~ E
+	TreeSet<Integer> selectedNum = new TreeSet<Integer>();
 	TreeSet<Integer> selectedNumA = new TreeSet<Integer>();
 	TreeSet<Integer> selectedNumB = new TreeSet<Integer>();
 	TreeSet<Integer> selectedNumC = new TreeSet<Integer>();
@@ -62,13 +69,41 @@ public class SelectPanel extends JPanel implements ActionListener {
 	
 	// 생성자
 	public SelectPanel(LottoFrame frame) {
-		temp.add(7);
-		temp.add(8);
-		temp.add(9);
-		temp.add(10);
-		temp.add(11);
-		temp.add(12);
+		selectNumber1.add(1);
+		selectNumber1.add(2);
+		selectNumber1.add(3);
+		selectNumber1.add(4);
+		selectNumber1.add(5);
+		selectNumber1.add(6);
+		
+		selectNumber2.add(1);
+		selectNumber2.add(2);
+		selectNumber2.add(3);
+		selectNumber2.add(4);
+		selectNumber2.add(5);
+		selectNumber2.add(7);
 	
+		selectNumber3.add(1);
+		selectNumber3.add(2);
+		selectNumber3.add(3);
+		selectNumber3.add(4);
+		selectNumber3.add(5);
+		selectNumber3.add(45);
+		
+		selectNumber4.add(1);
+		selectNumber4.add(2);
+		selectNumber4.add(3);
+		selectNumber4.add(4);
+		selectNumber4.add(43);
+		selectNumber4.add(45);
+		
+		selectNumber5.add(1);
+		selectNumber5.add(2);
+		selectNumber5.add(3);
+		selectNumber5.add(42);
+		selectNumber5.add(43);
+		selectNumber5.add(45);
+		
 		setBounds(100, 100, 830, 532);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(null);
@@ -483,9 +518,6 @@ public class SelectPanel extends JPanel implements ActionListener {
 		this.play = play;
 	}
 	
-	public Set<Integer> getTemp() {
-		return temp;
-	}
 	// count 만큼 게임 진행
 	public void playGame(int count) {
 		for (int i = 0; i < count; i++) {
@@ -496,6 +528,28 @@ public class SelectPanel extends JPanel implements ActionListener {
 			}
 		}
 	}
+
+	public Set<Integer> getSelectNumber1() {
+		return selectNumber1;
+	}
+
+	public Set<Integer> getSelectNumber2() {
+		return selectNumber2;
+	}
+
+	public Set<Integer> getSelectNumber3() {
+		return selectNumber3;
+	}
+
+	public Set<Integer> getSelectNumber4() {
+		return selectNumber4;
+	}
+
+	public Set<Integer> getSelectNumber5() {
+		return selectNumber5;
+	}
+	
+	
 }
 
 
