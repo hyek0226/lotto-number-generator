@@ -63,7 +63,7 @@ public class LottoFrame extends JFrame {
 		resultMap.put(count, resultPanel);
 		
 		scroll = new JScrollPane(resultPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scroll2 = new JScrollPane(beforeResultPanel);
+		scroll2 = new JScrollPane(beforeResultPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(10, 10, 830, 530);
 		getContentPane().setLayout(cards);
@@ -102,12 +102,12 @@ public class LottoFrame extends JFrame {
 	
 	public void changeBeforeResultPanel() {
 		cards.show(this.getContentPane(), "BeforeResult");
-		beforeResultPanel.setCount(resultPanel.getPlayTest());
+		beforeResultPanel.setCount(selectPanel.getFinalPlay());
 		beforeResultPanel.removeRandomList();
 		beforeResultPanel.clearPanel();
 		beforeResultPanel.createRandomCurcle(resultPanel.getNumber(), count);
 		beforeResultPanel.loopResult(
-				resultPanel.getPlayTest(), 
+				selectPanel.getFinalPlay(), 
 				resultPanel.getNumber(), 
 				resultPanel.getNumber2(), 
 				resultPanel.getNumber3(), 

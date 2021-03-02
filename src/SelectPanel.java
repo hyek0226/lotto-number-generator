@@ -62,6 +62,8 @@ public class SelectPanel extends JPanel implements ActionListener {
 	JButton btnEditNumC;
 	JButton btnEditNumD;
 	JButton btnEditNumE;
+	
+	boolean editConfirm;
 
 
 	public void resetNum() {	//처음으로 돌아왔을 때 초기 화면에 뜨게 할 내용임
@@ -199,6 +201,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 				}
 				setPlayEnable();
 				setLabelText();
+				editConfirm = true;
 			}
 		});
 		
@@ -233,19 +236,19 @@ public class SelectPanel extends JPanel implements ActionListener {
 		
 		// Button : 당첨 확인 버튼 , 다음 페이지 전환
 		// 게임 끝나기 전 까지 비활해야함
-		JButton btnNextPage = new JButton("당첨 확인");
-		btnNextPage.setBackground(new Color(255, 192, 203));
-		btnNextPage.setBounds(672, 455, 120, 31);
-		btnNextPage.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				count = 0;
-				frame.changeResultPanel(play);
-				frame.getResultPanel().setPlayTest(Integer.parseInt(lblCount.getText()));
-				System.out.println(lblCount.getText());
-			}
-		});
-		add(btnNextPage);
+//		JButton btnNextPage = new JButton("당첨 확인");
+//		btnNextPage.setBackground(new Color(255, 192, 203));
+//		btnNextPage.setBounds(672, 455, 120, 31);
+//		btnNextPage.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				count = 0;
+//				frame.changeResultPanel(play);
+//				frame.getResultPanel().setPlayTest(Integer.parseInt(lblCount.getText()));
+//				System.out.println(lblCount.getText());
+//			}
+//		});
+//		add(btnNextPage);
 		
 		// A ~ E 까지 수정 버튼
 		btnEditNumA = new JButton("[ 수정 ]");
@@ -256,6 +259,9 @@ public class SelectPanel extends JPanel implements ActionListener {
 				btnRandomNum.setEnabled(true);	// 자동
 				btnManualNum.setEnabled(true);	// 수동
 				setLabelText();
+				selectNumber1.removeAll(selectNumber1);
+				editConfirm = false;
+				
 			}
 		});
 		btnEditNumA.setBorder(null);
@@ -276,6 +282,8 @@ public class SelectPanel extends JPanel implements ActionListener {
 				btnRandomNum.setEnabled(true);	// 자동
 				btnManualNum.setEnabled(true);	// 수동
 				setLabelText();
+				selectNumber2.removeAll(selectNumber2);
+				editConfirm = false;
 			}
 		});
 		add(btnEditNumB);
@@ -288,6 +296,8 @@ public class SelectPanel extends JPanel implements ActionListener {
 				btnRandomNum.setEnabled(true);	// 자동
 				btnManualNum.setEnabled(true);	// 수동
 				setLabelText();
+				selectNumber3.removeAll(selectNumber3);
+				editConfirm = false;
 			}
 		});
 		btnEditNumC.setOpaque(false);
@@ -304,6 +314,8 @@ public class SelectPanel extends JPanel implements ActionListener {
 				btnRandomNum.setEnabled(true);	// 자동
 				btnManualNum.setEnabled(true);	// 수동
 				setLabelText();
+				selectNumber4.removeAll(selectNumber4);
+				editConfirm = false;
 			}
 		});
 		btnEditNumD.setOpaque(false);
@@ -320,6 +332,8 @@ public class SelectPanel extends JPanel implements ActionListener {
 				btnRandomNum.setEnabled(true);	// 자동
 				btnManualNum.setEnabled(true);	// 수동
 				setLabelText();
+				selectNumber5.removeAll(selectNumber5);
+				editConfirm = false;
 			}
 		});
 		btnEditNumE.setOpaque(false);
@@ -328,12 +342,12 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnEditNumE.setBounds(726, 377, 66, 31);
 		add(btnEditNumE);
 
-		btnEditNumA.setEnabled(false);
-		btnEditNumB.setEnabled(false);
-		btnEditNumC.setEnabled(false);
-		btnEditNumD.setEnabled(false);
-		btnEditNumE.setEnabled(false);
-		
+//		btnEditNumA.setEnabled(false);
+//		btnEditNumB.setEnabled(false);
+//		btnEditNumC.setEnabled(false);
+//		btnEditNumD.setEnabled(false);
+//		btnEditNumE.setEnabled(false);
+		editButtonfalse();
 		
 		JPanel pnlSelectedNum = new JPanel();
 		pnlSelectedNum.setBackground(new Color(255, 255, 255));
@@ -380,14 +394,17 @@ public class SelectPanel extends JPanel implements ActionListener {
 				if(btnResetAllNum.getActionCommand().equals("초기화")) {
 				resetNum();
 				count = 0;	
-				if(getPlay() == 0) {
-					play += 5;
-					lblCount.setText(String.valueOf(getPlay()));
-					lblPrice.setText(String.valueOf(getPlay() * 1000));
+				if(getPlay() < getFinalPlay()) {
+					play = getFinalPlay();
+					lblCount.setText(String.valueOf(getFinalPlay()));
+					lblPrice.setText(String.valueOf(getFinalPlay() * 1000));
+					removeAll();
 				}
 				btnRandomNum.setEnabled(true);
 				btnManualNum.setEnabled(true);
 				btnConfirmNum.setEnabled(true);
+				
+				editButtonfalse();
 			
 				}
 			}
@@ -470,42 +487,6 @@ public class SelectPanel extends JPanel implements ActionListener {
 		pnlSelectedNumE.add(lblSelectedNumDescE);
 		
 		
-		// A ~ E 까지 수정, 삭제 버튼
-		JButton btnEditNumA = new JButton("[ 수정 ]");
-		btnEditNumA.setBounds(236, 70, 66, 31);
-		pnlSelectedNum.add(btnEditNumA);
-		btnEditNumA.setBorder(null);
-		btnEditNumA.setBackground(new Color(211, 211, 211));
-		btnEditNumA.setOpaque(false);
-		
-		JButton btnEditNumB = new JButton("[ 수정 ]");
-		btnEditNumB.setBounds(236, 141, 66, 31);
-		pnlSelectedNum.add(btnEditNumB);
-		btnEditNumB.setOpaque(false);
-		btnEditNumB.setBorder(null);
-		btnEditNumB.setBackground(new Color(211, 211, 211));
-
-		JButton btnEditNumC = new JButton("[ 수정 ]");
-		btnEditNumC.setBounds(236, 206, 66, 31);
-		pnlSelectedNum.add(btnEditNumC);
-		btnEditNumC.setOpaque(false);
-		btnEditNumC.setBorder(null);
-		btnEditNumC.setBackground(new Color(211, 211, 211));
-		
-		JButton btnEditNumD = new JButton("[ 수정 ]");
-		btnEditNumD.setBounds(236, 277, 66, 31);
-		pnlSelectedNum.add(btnEditNumD);
-		btnEditNumD.setOpaque(false);
-		btnEditNumD.setBorder(null);
-		btnEditNumD.setBackground(new Color(211, 211, 211));
-		
-		JButton btnEditNumE = new JButton("[ 수정 ]");
-		btnEditNumE.setBounds(236, 341, 66, 31);
-		pnlSelectedNum.add(btnEditNumE);
-		btnEditNumE.setOpaque(false);
-		btnEditNumE.setBorder(null);
-		btnEditNumE.setBackground(new Color(211, 211, 211));
-		
 		// 당첨 확인 버튼 : 다음 페이지 전환
 		JButton btnNextPage_1 = new JButton("당첨 확인");
 		btnNextPage_1.setBounds(209, 395, 93, 23);
@@ -514,14 +495,19 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnNextPage_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (play == 0) {
-					frame.changeResultPanel(play);
+				System.out.println(play);
+				if (play <= 0 && editConfirm == true) { 
+					frame.changeResultPanel(getFinalPlay());
 					count = 0;
+					editButtonfalse();
+				} else if (editConfirm == false)  {
+					JOptionPane.showMessageDialog(null, "수정이 안된 회차가 있습니다.", "돈안벌꺼니", JOptionPane.WARNING_MESSAGE);
 				} else {
 					JOptionPane.showMessageDialog(null, play + " 번 남았습니다.", "돈안벌꺼니", JOptionPane.WARNING_MESSAGE);
 				}
 				frame.getResultPanel().setPlayTest(Integer.parseInt(lblCount.getText()));
 				System.out.println(lblCount.getText());
+				
 			}
 		});
 		
@@ -540,6 +526,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 				setLabelText();
 				ResetCheckBoxNum();
 				setEnableEditBtn();
+				editConfirm = true;
 			}
 		};
 		btnConfirmNum.addActionListener(confirmNumber);
@@ -562,6 +549,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 				selectedNum.remove(Integer.parseInt(chkbxNum.get(i).getText()));
 			}
 		}
+		System.out.println(selectedNum);
 	}
 	
 	public TreeSet randomnum() {
@@ -622,6 +610,14 @@ public class SelectPanel extends JPanel implements ActionListener {
 				selectNumber5.add(iterator.next());
 			}
 		}
+	}
+	
+	public void editButtonfalse() {
+		btnEditNumA.setEnabled(false);
+		btnEditNumB.setEnabled(false);
+		btnEditNumC.setEnabled(false);
+		btnEditNumD.setEnabled(false);
+		btnEditNumE.setEnabled(false);
 	}
 	
 	public Set<Integer> getSelectNumber1() {
@@ -700,11 +696,18 @@ public class SelectPanel extends JPanel implements ActionListener {
 	}
 	public void setEnableEditBtn() {	// 값이 들어있을 때에만 수정버튼 클릭 가능
 		if (getPlay() == 0) {
-			btnEditNumA.setEnabled(true);
-			btnEditNumB.setEnabled(true);
-			btnEditNumC.setEnabled(true);
-			btnEditNumD.setEnabled(true);
-			btnEditNumE.setEnabled(true);
+			switch (getFinalPlay()) {
+			case 5:
+				btnEditNumE.setEnabled(true);
+			case 4:
+				btnEditNumD.setEnabled(true);
+			case 3:
+				btnEditNumC.setEnabled(true);
+			case 2:
+				btnEditNumB.setEnabled(true);
+			case 1:
+				btnEditNumA.setEnabled(true);
+			}
 		}
 	}
 }
