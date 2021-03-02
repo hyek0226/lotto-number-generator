@@ -428,7 +428,6 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnResetAllNum.setBounds(209, 24, 81, 23);
 		pnlSelectedNum.add(btnResetAllNum);
 		
-		
 		btnResetAllNum.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
