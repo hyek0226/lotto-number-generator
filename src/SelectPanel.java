@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -36,7 +37,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 	List<TreeSet> listSelectedNum = new ArrayList<>();
 	
 	int count = 0; // 진행 횟수
-	int play = 0; // 총 횟수
+	int play; // 총 횟수
 	
 	// 선택된 6개 번호 담는 배열 A ~ E
 	TreeSet<Integer> selectedNum = new TreeSet<Integer>();
@@ -61,40 +62,40 @@ public class SelectPanel extends JPanel implements ActionListener {
 	
 	// 생성자
 	public SelectPanel(LottoFrame frame) {
-		selectNumber1.add(1);
-		selectNumber1.add(2);
-		selectNumber1.add(3);
-		selectNumber1.add(4);
-		selectNumber1.add(5);
-		selectNumber1.add(6);
-		
-		selectNumber2.add(1);
-		selectNumber2.add(2);
-		selectNumber2.add(3);
-		selectNumber2.add(4);
-		selectNumber2.add(5);
-		selectNumber2.add(7);
-	
-		selectNumber3.add(1);
-		selectNumber3.add(2);
-		selectNumber3.add(3);
-		selectNumber3.add(4);
-		selectNumber3.add(5);
-		selectNumber3.add(45);
-		
-		selectNumber4.add(1);
-		selectNumber4.add(2);
-		selectNumber4.add(3);
-		selectNumber4.add(4);
-		selectNumber4.add(43);
-		selectNumber4.add(45);
-		
-		selectNumber5.add(1);
-		selectNumber5.add(2);
-		selectNumber5.add(3);
-		selectNumber5.add(42);
-		selectNumber5.add(43);
-		selectNumber5.add(45);
+//		selectNumber1.add(1);
+//		selectNumber1.add(2);
+//		selectNumber1.add(3);
+//		selectNumber1.add(4);
+//		selectNumber1.add(5);
+//		selectNumber1.add(6);
+//		
+//		selectNumber2.add(1);
+//		selectNumber2.add(2);
+//		selectNumber2.add(3);
+//		selectNumber2.add(4);
+//		selectNumber2.add(5);
+//		selectNumber2.add(7);
+//	
+//		selectNumber3.add(1);
+//		selectNumber3.add(2);
+//		selectNumber3.add(3);
+//		selectNumber3.add(4);
+//		selectNumber3.add(5);
+//		selectNumber3.add(45);
+//		
+//		selectNumber4.add(1);
+//		selectNumber4.add(2);
+//		selectNumber4.add(3);
+//		selectNumber4.add(4);
+//		selectNumber4.add(43);
+//		selectNumber4.add(45);
+//		
+//		selectNumber5.add(1);
+//		selectNumber5.add(2);
+//		selectNumber5.add(3);
+//		selectNumber5.add(42);
+//		selectNumber5.add(43);
+//		selectNumber5.add(45);
 		
 		setBounds(100, 100, 830, 532);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -226,9 +227,12 @@ public class SelectPanel extends JPanel implements ActionListener {
 		btnRandomNum.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				play--;
 				for (int i = 0; i < 45; i++) {
 					chkbxNum.get(i).setEnabled(false);
 				}
+				setPlayEnable();
+				setLabelText();
 			}
 		});
 		
@@ -497,23 +501,19 @@ public class SelectPanel extends JPanel implements ActionListener {
 		lblSelectedNumDescE.setBounds(0, 0, 23, 58);
 		pnlSelectedNumE.add(lblSelectedNumDescE);
 		
-//		if (count <= 0) {
-//			btnConfirmNum.setEnabled(false);
-//		}
-		
-		// 확인 버튼 - 액션리스너 : 선택된 번호 담긴 배열을 label에 출력
+		// 확인 버튼
 		ActionListener confirmNumber = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				int cnt = getPlay() - 1;
+				setPlay(cnt);
 				count++;
-				System.out.println(count);
 				setLabelText(selectedNum);
-				
-//				lblSelectedNumA.setText(selectedNum.toString());
-//				actionBoolean.add(true);
-//				System.out.println(actionBoolean);
-				lblSelectedNumA.setText(selectedNum.toString());
-				lblSelectedNumA.setText("");
+				selectedNum.removeAll(selectedNum);
+				ResetSelectedNum();
+				setPlayEnable();
+				setLabelText();
+				ResetCheckBoxNum();
 			}
 		};
 		btnConfirmNum.addActionListener(confirmNumber);
@@ -522,18 +522,22 @@ public class SelectPanel extends JPanel implements ActionListener {
 	// 수동 - 숫자 6개 선택
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		btnConfirmNum.setEnabled(false);
 		for(int i = 0; i < 45; i++) {
 			if (chkbxNum.get(i).isSelected()) {
-				if (selectedNum.size() < 5) {
+				if (selectedNum.size() <= 5) {
 					selectedNum.add(Integer.parseInt(chkbxNum.get(i).getText()));
-				} else {
-					btnConfirmNum.setEnabled(true);
+					if (selectedNum.size() == 6) {
+						btnConfirmNum.setEnabled(true);
+					}
 				}
+			} else if (chkbxNum.get(i).isSelected() == false) {
+				selectedNum.remove(Integer.parseInt(chkbxNum.get(i).getText()));
 			}
 		}
 	}
 	
-	TreeSet randomnum() {
+	public TreeSet randomnum() {
 		TreeSet<Integer> randomSelectedNum = new TreeSet<Integer>();
 		while(randomSelectedNum.size() < 6) {
 			randomSelectedNum.add((int) (Math.random() * 45) + 1);
@@ -541,9 +545,9 @@ public class SelectPanel extends JPanel implements ActionListener {
 		return randomSelectedNum;
 	}
 	
-	public void setLabelText(int play) {
-		lblCount.setText(String.valueOf(play));
-		this.play = play;
+	public void setLabelText() {
+		lblCount.setText(String.valueOf(getPlay()));
+		lblPrice.setText(String.valueOf(getPlay() * 1000));
 	}
 	
 	public Set<Integer> getTemp() {
@@ -558,31 +562,40 @@ public class SelectPanel extends JPanel implements ActionListener {
 		this.count = count;
 	}
 	
-	public void setLabelText(TreeSet selectedNum) {
+	public void setLabelText(TreeSet<Integer> selectedNum) {
 		if (count == 1) {
 			lblSelectedNumA.setText(selectedNum.toString());
+			Iterator<Integer> iterator = selectedNum.iterator();
+			while (iterator.hasNext()) {
+				selectNumber1.add(iterator.next());
+			}
 		} else if (count == 2) {
 			lblSelectedNumB.setText(selectedNum.toString());
+			Iterator<Integer> iterator = selectedNum.iterator();
+			while (iterator.hasNext()) {
+				selectNumber2.add(iterator.next());
+			}
 		} else if (count == 3) {
 			lblSelectedNumC.setText(selectedNum.toString());
+			Iterator<Integer> iterator = selectedNum.iterator();
+			while (iterator.hasNext()) {
+				selectNumber3.add(iterator.next());
+			}
 		} else if (count == 4) {
 			lblSelectedNumD.setText(selectedNum.toString());
+			Iterator<Integer> iterator = selectedNum.iterator();
+			while (iterator.hasNext()) {
+				selectNumber4.add(iterator.next());
+			}
 		} else if (count == 5) {
 			lblSelectedNumE.setText(selectedNum.toString());
-		}
-	}
-			
-	// count 만큼 게임 진행
-	public void playGame(int count) {
-		for (int i = 0; i < count; i++) {
-			if (btnManualNum.isSelected() && btnConfirmNum.isEnabled()) {
-				System.out.println("수동");
-			} else if (btnRandomNum.isSelected() && !(btnConfirmNum.isEnabled())) {
-				System.out.println("자동");
+			Iterator<Integer> iterator = selectedNum.iterator();
+			while (iterator.hasNext()) {
+				selectNumber5.add(iterator.next());
 			}
 		}
 	}
-
+	
 	public Set<Integer> getSelectNumber1() {
 		return selectNumber1;
 	}
@@ -603,6 +616,33 @@ public class SelectPanel extends JPanel implements ActionListener {
 		return selectNumber5;
 	}
 	
+	public void setPlayEnable() {
+		if (play == 0) {
+			btnRandomNum.setEnabled(false);
+			btnManualNum.setEnabled(false);
+			btnConfirmNum.setEnabled(false);
+		}
+	}
+	
+	public void ResetCheckBoxNum() {
+		for (int i = 0; i < 45; i++) {
+			chkbxNum.get(i).setSelected(false);
+		}
+	}
+	
+	public void ResetSelectedNum() {
+		if (selectedNum.size() == 0) {
+			btnConfirmNum.setEnabled(false);
+		}
+	}
+
+	public int getPlay() {
+		return play;
+	}
+
+	public void setPlay(int play) {
+		this.play = play;
+	}
 	
 }
 
