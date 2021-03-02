@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 // 3조 lotto
 public class LottoFrame extends JFrame {
-	int play = 0;
 	int count;
 	private JPanel contentPane;
 	private CardLayout cards = new CardLayout();
@@ -18,6 +17,7 @@ public class LottoFrame extends JFrame {
 	JScrollPane scroll2;
 	private ResultPanel resultPanel;
 	private CountPanel countPanel;
+	int play = 0;
 	Map<Integer, ResultPanel> resultMap = new HashMap<>();
 	BeforeResultPanel beforeResultPanel;
 
@@ -44,6 +44,9 @@ public class LottoFrame extends JFrame {
 	public LottoFrame() {
 		countPanel = new CountPanel(this);
 		selectPanel = new SelectPanel(this);
+		selectPanel = new SelectPanel(this);
+		countPanel = new CountPanel(this);
+		selectPanel = new SelectPanel(this);
 		resultPanel = new ResultPanel(this, selectPanel.getSelectNumber1(), selectPanel.getSelectNumber2(), selectPanel.getSelectNumber3(), selectPanel.getSelectNumber4(), selectPanel.getSelectNumber5());
 		beforeResultPanel = new BeforeResultPanel(this, selectPanel.getSelectNumber1(), selectPanel.getSelectNumber2(), selectPanel.getSelectNumber3(), selectPanel.getSelectNumber4(), selectPanel.getSelectNumber5());
 		resultMap.put(count, resultPanel);
@@ -62,14 +65,14 @@ public class LottoFrame extends JFrame {
 	}
 	
 	
-	
 	public ResultPanel getResultPanel() {
 		return resultPanel;
 	}
 
 	public void changeMainPanel() {
 		cards.show(this.getContentPane(), "Main");
-		countPanel.resetInput();
+		countPanel.resetInput();	// 처음으로 돌아왔을 때 입력했던 횟수를 초기화
+		selectPanel.resetNum();	// 처음으로 돌아왔을 때 과연 숫자는?! 뜰 수 있게
 	}
 
 	public void changeCountPanel() {
@@ -78,8 +81,8 @@ public class LottoFrame extends JFrame {
 	
 	public void changeSelectPanel(int play) { 
 		cards.show(this.getContentPane(), "Select");
-		selectPanel.setLabelText(play);
-		selectPanel.playGame(play);
+		selectPanel.setPlay(play);
+		selectPanel.setLabelText();
 	}
 	
 	public void changeBeforeResultPanel() {

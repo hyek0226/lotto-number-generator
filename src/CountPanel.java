@@ -18,7 +18,7 @@ public class CountPanel extends JPanel implements ActionListener {
 	JTextField palyText;
 	JLabel lblCount;
 	int play = 0;
-	
+
 	public boolean tryParse(String palyText) {
 		try {
 			Integer.parseInt(palyText); 
@@ -102,7 +102,7 @@ public class CountPanel extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(null, "최소 1번 이상 입력해야합니다.", 
 					"경고창임", JOptionPane.WARNING_MESSAGE);
 			}
-			else if(play > 5) {	// 10번까지 가능
+			else if(play > 5) {	// 5번까지 가능
 				JOptionPane.showMessageDialog(null, "너무 많이 하는건 좋지않아요", 
 						"너무 많이 하지마", JOptionPane.WARNING_MESSAGE);
 			}
