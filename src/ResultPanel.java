@@ -1,72 +1,49 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SpringLayout;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneLayout;
-import javax.swing.SwingConstants;
-import javax.swing.text.GapContent;
 
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.GridLayout;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 
 import java.awt.event.ActionListener;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import java.awt.Component;
-import java.awt.Dialog;
-import java.awt.Point;
-import javax.swing.JInternalFrame;
-import java.awt.Rectangle;
-import javax.swing.JScrollBar;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 
 public class ResultPanel extends JPanel {
-	List<Set> resultList = new ArrayList<>();
+	// 랜덤 숫자 담는 배열
 	Set<Integer> number = new TreeSet<>();
+	// 1회차 ~ 5회차 숫자 담는 배열
 	Set<Integer> number2 = new TreeSet<>();
 	Set<Integer> number3 = new TreeSet<>();
 	Set<Integer> number4 = new TreeSet<>();
 	Set<Integer> number5 = new TreeSet<>();
 	Set<Integer> number6 = new TreeSet<>();
+	
 	int count = 0;
 	Random r = new Random();
 	CurcleList curcleList;
-	int amount = 5;
+	
+	// 공을 담는 패널들
 	JPanel panel0 = new JPanel();
 	JPanel panel1 = new JPanel();
 	JPanel panel2 = new JPanel();
 	JPanel panel3 = new JPanel();
 	JPanel panel4 = new JPanel();
 	JPanel panel5 = new JPanel();
+	
 	int play = 0;
 	private final JLabel lblNewLabel_1 = new JLabel("당첨 결과");
 	
 	public ResultPanel(LottoFrame frame, Set<Integer> n1, Set<Integer> n2, Set<Integer> n3, Set<Integer> n4, Set<Integer> n5) {
+		
+		// 숫자 선택 패널 (selectPanel)에서 파라미터로 받아온 배열들과 현재 클래스 필드 안 배열들을 연결
 		number2 = n1;
 		
 		number3 = n2;
@@ -77,6 +54,7 @@ public class ResultPanel extends JPanel {
 		
 		number6 = n5;
 		
+		// 패널 색깔, 사이즈, 위치 선정
 		panel0.setBackground(Color.WHITE);
 		panel0.setBounds(50, 100, 700, 80);
 		add(panel0);
@@ -101,22 +79,13 @@ public class ResultPanel extends JPanel {
 		panel5.setBounds(50, 670, 700, 80);
 		add(panel5);
 		
-	
-		number.add(1);
-		number.add(2);
-		number.add(3);
-		number.add(4);
-		number.add(5);
-		number.add(6);
-		number.add(7);
-		
-		System.out.println(number);
+		// 패널 사이즈 설정
 		setPreferredSize(new Dimension(830, 800));
 		setMaximumSize(new Dimension(830, 800));
 		
-		
+		// 처음으로 가는 버튼
 		JButton btnNewButton_1 = new JButton("처음으로");
-		btnNewButton_1.setFont(new Font("경기천년바탕 Regular", Font.BOLD, 18));
+		btnNewButton_1.setFont(new Font("함초롬바탕", Font.BOLD, 18));
 		btnNewButton_1.setForeground(SystemColor.window);
 		btnNewButton_1.setBackground(SystemColor.activeCaption);
 		btnNewButton_1.setBounds(629, 27, 121, 36);
@@ -125,22 +94,23 @@ public class ResultPanel extends JPanel {
 				frame.changeMainPanel();	
 			}
 		});
-		setLayout(null);
-		setLayout(null);
 		add(btnNewButton_1);
+
+		setLayout(null);
 		
+		// 라벨들
 		JLabel lblNewLabel = new JLabel("로또 결과");
-		lblNewLabel.setFont(new Font("경기천년바탕 Regular", Font.PLAIN, 25));
+		lblNewLabel.setFont(new Font("함초롬바탕", Font.PLAIN, 25));
 		lblNewLabel.setBounds(360, 27, 108, 46);
 		add(lblNewLabel);
 		lblNewLabel_1.setBackground(new Color(240, 240, 240));
-		lblNewLabel_1.setFont(new Font("경기천년바탕 Regular", Font.PLAIN, 25));
+		lblNewLabel_1.setFont(new Font("함초롬바탕", Font.PLAIN, 25));
 		lblNewLabel_1.setBounds(360, 197, 108, 46);
-		
 		add(lblNewLabel_1);
 		
 	}
 	
+	// 랜덤한 숫자를 생성하는 메소드
 	public void randomNumber() {
 		int i = 0;
 		while (number.size() < 7) {
@@ -149,9 +119,11 @@ public class ResultPanel extends JPanel {
 		}
 	}
 	
+	// 랜덤한 공을 생성하는 메소드
 	public void createRandomCurcle() {
 		int x = 10;
 		curcleList = new CurcleList(number, number2);
+		// curcleList에서 만들어진 Curcle을 받아서 패널에 추가
 		for (int j = 0; j < 7; j++) {
 			Curcle curcle = curcleList.getResultList().get(j);
 			curcle.setBounds(x, 1, 100, 100);
@@ -160,12 +132,17 @@ public class ResultPanel extends JPanel {
 		}
 	}
 	
+	// 공을 만드는 클래스를 생성하는 메소드
 	public void curcleResult(Set<Integer> numList, String a, int h, JPanel panel, List<Boolean> bList) {
+		// CurcleList 클래스 생성 (랜덤 배열과 선택한 배열을 파라미터로 받음)
 		curcleList = new CurcleList(number, numList);
-		int x = 10;
+		// 알파벳 생성
 		JLabel alphabet = new JLabel(a);
-		alphabet.setFont(new Font("경기천년바탕 Regular", Font.PLAIN, 25));
+		alphabet.setFont(new Font("함초롬바탕", Font.PLAIN, 25));
 		panel.add(alphabet);
+		
+		int x = 10;
+		// curcleList에서 만들어진 Curcle을 받아서 패널에 추가
 		for (int i = 0; i < 6; i++) {
 			Curcle curcle = curcleList.getSelectList().get(i);
 			curcle.setBounds(x, h, 100, 100);
@@ -173,6 +150,8 @@ public class ResultPanel extends JPanel {
 			panel.add(curcle);
 		}
 		
+		// 1등 ~ 5등 가르는 if문 구절
+		// 갯수와 1등 2등을 가르는 boolean 값으로 구별함
 		JLabel rank;
 		if (curcleList.getCount() == 6 && curcleList.isOneTwo() == false) {
 			rank = new JLabel("1 등");
@@ -190,12 +169,14 @@ public class ResultPanel extends JPanel {
 			rank = new JLabel("5 등");
 			System.out.println("5등" + curcleList.isOneTwo() + count);
 		} else {
-			rank = new JLabel("낙점");
+			rank = new JLabel("낙첨");
 		} 
-		rank.setFont(new Font("경기천년바탕 Regular", Font.PLAIN, 20));
+		rank.setFont(new Font("함초롬바탕", Font.PLAIN, 20));
 		panel.add(rank);
 	}
 	
+	// 패널에 생긴 공을 지워주는 메소드
+	// 반복 게임을 수행하면 계속 공이 추가되기 때문에 사용
 	public void clearPanel() {
 		panel0.removeAll();
 		panel1.removeAll();
@@ -205,6 +186,8 @@ public class ResultPanel extends JPanel {
 		panel5.removeAll();
 	}
 	
+	// 횟수를 받아와 curcleResult를 횟수만큼 호출하는 메소드
+	// 스위치문 케이스를 거꾸로 설정
 	public void loopResult() {
 		System.out.println(getPlayTest());
 		switch (getPlayTest()) {
