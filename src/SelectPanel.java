@@ -407,6 +407,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				if(btnResetAllNum.getActionCommand().equals("초기화")) {
 				resetNum();
+				setPanelColor();
 				count = 0;	
 				if(getPlay() < getFinalPlay()) {
 					play = getFinalPlay();
