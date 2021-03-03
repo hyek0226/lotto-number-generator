@@ -54,9 +54,15 @@ public class CountPanel extends JPanel implements ActionListener {
 					JOptionPane.showMessageDialog(null, "적어도 한 개 이상은 해야겠죠??", 
 							"구매 안하고는 못해여", JOptionPane.WARNING_MESSAGE);
 				}
+				else if(play > 5 || play < 0) {
+					JOptionPane.showMessageDialog(null, "1 ~ 5개만 구매 가능합니다.", 
+							"수량 확인해주세용", JOptionPane.WARNING_MESSAGE);
+				}
+				
 				else {
 					frame.changeSelectPanel(play);	// 수량 넘어가는 부분
 				}
+				
 			} 
 		});
 		btn.addActionListener(this);
