@@ -10,6 +10,7 @@ public class LottoFrame extends JFrame {
 	int count;
 	private CardLayout cards = new CardLayout();
 	private SelectPanel selectPanel;
+	NoResultPanel noResultPanel;
 	JScrollPane scroll;
 	JScrollPane scroll2;
 	private ResultPanel resultPanel;
@@ -17,6 +18,7 @@ public class LottoFrame extends JFrame {
 	int play = 0;
 	Map<Integer, ResultPanel> resultMap = new HashMap<>();
 	BeforeResultPanel beforeResultPanel;
+	boolean nextPanel = false;
 
 
 	public static void main(String[] args) {
@@ -50,7 +52,8 @@ public class LottoFrame extends JFrame {
 				selectPanel.getSelectNumber2(), 
 				selectPanel.getSelectNumber3(), 
 				selectPanel.getSelectNumber4(), 
-				selectPanel.getSelectNumber5());		
+				selectPanel.getSelectNumber5());
+		noResultPanel = new NoResultPanel(this);
 		scroll = new JScrollPane(resultPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll2 = new JScrollPane(beforeResultPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		
@@ -62,6 +65,7 @@ public class LottoFrame extends JFrame {
 		getContentPane().add("Main", new MainPanel(this));
 		getContentPane().add("Count", countPanel);
 		getContentPane().add("Select", selectPanel); 
+		getContentPane().add("NoResult", noResultPanel); 
 		getContentPane().add("BeforeResult", scroll2);
 		getContentPane().add("Result", scroll);
 		setLocationRelativeTo(null);
@@ -94,22 +98,27 @@ public class LottoFrame extends JFrame {
 		selectPanel.setResetPlay();
 	}
 	
-	// 전 결과 확인할 수 있는 패널로 전환하는 메소드
+	// 전 결과 확인할 수 있는 패널로 전환하는 메소드,
+	// 전 결과가 없으면 NoResultPanel을, 있으면 BeforeResultPanel 출력
 	public void changeBeforeResultPanel() {
-		cards.show(this.getContentPane(), "BeforeResult");
-		beforeResultPanel.setCount(selectPanel.getFinalPlay());
-		beforeResultPanel.removeRandomList();
-		beforeResultPanel.clearPanel();
-		beforeResultPanel.createRandomCurcle(resultPanel.getNumber(), count);
-		beforeResultPanel.loopResult(
-				selectPanel.getFinalPlay(), 
-				resultPanel.getNumber(), 
-				resultPanel.getNumber2(), 
-				resultPanel.getNumber3(), 
-				resultPanel.getNumber4(), 
-				resultPanel.getNumber5(), 
-				resultPanel.getNumber6(), 
-				resultPanel.getCurcleList());
+		if (!nextPanel) {
+			cards.show(this.getContentPane(), "NoResult");
+		} else {
+			cards.show(this.getContentPane(), "BeforeResult");
+			beforeResultPanel.setCount(selectPanel.getFinalPlay());
+			beforeResultPanel.removeRandomList();
+			beforeResultPanel.clearPanel();
+			beforeResultPanel.createRandomCurcle(resultPanel.getNumber(), count);
+			beforeResultPanel.loopResult(
+					selectPanel.getFinalPlay(), 
+					resultPanel.getNumber(), 
+					resultPanel.getNumber2(), 
+					resultPanel.getNumber3(), 
+					resultPanel.getNumber4(), 
+					resultPanel.getNumber5(), 
+					resultPanel.getNumber6(), 
+					resultPanel.getCurcleList());
+		}
 	}
 	
 	// 결과 패널로 전환하는 메소드
@@ -121,7 +130,7 @@ public class LottoFrame extends JFrame {
 		resultPanel.randomNumber();
 		resultPanel.createRandomCurcle();
 		resultPanel.loopResult();
-		System.out.println(count);
+		nextPanel = true;
 		++count;
 	}
 	
