@@ -524,11 +524,11 @@ public class SelectPanel extends JPanel implements ActionListener {
 					frame.changeResultPanel(getFinalPlay());
 					count = 0;
 					editButtonfalse();
+				} else if (play > 0){
+					JOptionPane.showMessageDialog(null, play + " 번 남았습니다.", "돈안벌꺼니", JOptionPane.WARNING_MESSAGE);
 				} else if (editConfirm == false)  {
 					JOptionPane.showMessageDialog(null, "수정이 안된 회차가 있습니다.", "돈안벌꺼니", JOptionPane.WARNING_MESSAGE);
-				} else {
-					JOptionPane.showMessageDialog(null, play + " 번 남았습니다.", "돈안벌꺼니", JOptionPane.WARNING_MESSAGE);
-				}
+				} 
 				frame.getResultPanel().setPlayTest(Integer.parseInt(lblCount.getText()));
 				System.out.println(lblCount.getText());
 				
