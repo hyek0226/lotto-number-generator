@@ -502,9 +502,9 @@ public class SelectPanel extends JPanel implements ActionListener {
 				resetNum();
 				count = 0;	
 				if(getPlay() == 0) {
-					play += 5;
-					lblCount.setText(String.valueOf(getPlay()));
-					lblPrice.setText(String.valueOf(getPlay() * 1000));
+					play = getFinalPlay();
+					lblCount.setText(String.valueOf(getFinalPlay()));
+					lblPrice.setText(String.valueOf(getFinalPlay() * 1000));
 				}
 				btnRandomNum.setEnabled(true);
 				btnManualNum.setEnabled(true);
