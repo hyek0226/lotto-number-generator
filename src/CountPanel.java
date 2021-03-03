@@ -62,7 +62,6 @@ public class CountPanel extends JPanel implements ActionListener {
 				else {
 					frame.changeSelectPanel(play);	// 수량 넘어가는 부분
 				}
-				
 			} 
 		});
 		btn.addActionListener(this);
