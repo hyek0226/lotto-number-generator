@@ -159,7 +159,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 				}
 				setEnableEditBtn();
 				System.out.println(count);
-				
+				afterChangeNum();
 			}
 		});
 		
@@ -201,8 +201,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 				}
 				setPlayEnable();
 				setLabelText();
-				
-				
+				afterChangeNum();
 			}
 		});
 		
@@ -263,9 +262,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 				selectNumber1.removeAll(selectNumber1);
 				editConfirm = false;
 				lblSelectedNumA.setBackground(Color.yellow);
-				
-
-				
+				setEditBtnEnable(0);
 			}
 		});
 		btnEditNumA.setBorder(null);
@@ -289,6 +286,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 				selectNumber2.removeAll(selectNumber2);
 				editConfirm = false;
 				lblSelectedNumB.setBackground(Color.yellow);
+				setEditBtnEnable(count);
 			}
 		});
 		add(btnEditNumB);
@@ -304,7 +302,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 				selectNumber3.removeAll(selectNumber3);
 				editConfirm = false;
 				lblSelectedNumC.setBackground(Color.yellow);
-
+				setEditBtnEnable(count);
 			}
 		});
 		btnEditNumC.setOpaque(false);
@@ -324,7 +322,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 				selectNumber4.removeAll(selectNumber4);
 				editConfirm = false;
 				lblSelectedNumD.setBackground(Color.yellow);
-
+				setEditBtnEnable(count);
 			}
 		});
 		btnEditNumD.setOpaque(false);
@@ -344,7 +342,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 				selectNumber5.removeAll(selectNumber5);
 				editConfirm = false;
 				lblSelectedNumE.setBackground(Color.yellow);
-
+				setEditBtnEnable(count);
 			}
 		});
 		btnEditNumE.setOpaque(false);
@@ -551,10 +549,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 				setLabelText();
 				ResetCheckBoxNum();
 				setEnableEditBtn();
-				
-				if (selectNumber1.size() == 6) {
-					lblSelectedNumA.setBackground(Color.cyan);
-				}
+				afterChangeNum();
 			}
 		};
 		btnConfirmNum.addActionListener(confirmNumber);
@@ -741,7 +736,6 @@ public class SelectPanel extends JPanel implements ActionListener {
 		}
 	}
 	public void setPanelColor() {
-
 		lblSelectedNumA.setBackground(new Color(255, 250, 250));
 		lblSelectedNumB.setBackground(new Color(255, 250, 250));
 		lblSelectedNumC.setBackground(new Color(255, 250, 250));
@@ -783,16 +777,24 @@ public class SelectPanel extends JPanel implements ActionListener {
 			
 		}
 	}
+	public void afterChangeNum() {
+		lblSelectedNumA.setBackground(new Color(255, 250, 250));
+		lblSelectedNumB.setBackground(new Color(255, 250, 250));
+		lblSelectedNumC.setBackground(new Color(255, 250, 250));
+		lblSelectedNumD.setBackground(new Color(255, 250, 250));
+		lblSelectedNumE.setBackground(new Color(255, 250, 250));
+	}
+	public void setEditBtnEnable(int btnEditNum) {
+		JButton[] arr = {btnEditNumA, btnEditNumB, btnEditNumC, btnEditNumD, btnEditNumE}; 
+		for (int i = 0; i < arr.length; i++) {
+			if (i == btnEditNum) {
+				arr[i].setEnabled(true);
+			} else {
+				arr[i].setEnabled(false);
+			}
+		}
+	}
 }
-	
-
-
-
-
-
-
-
-
 
 
 
