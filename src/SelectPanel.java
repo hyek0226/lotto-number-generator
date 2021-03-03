@@ -405,6 +405,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				if(btnResetAllNum.getActionCommand().equals("초기화")) {
 				resetNum();
+				setPanelColor();
 				count = 0;	
 				if(getPlay() < getFinalPlay()) {
 					play = getFinalPlay();
@@ -643,7 +644,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 	}
 	
 	public Set<Integer> getSelectNumber1() {
-		return selectNumber1;
+		return selectNumber1; 
 	}
 
 	public Set<Integer> getSelectNumber2() {
@@ -701,6 +702,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 		this.play = play;
 	}
 
+
 	public int getFinalPlay() {
 		return finalPlay;
 	}
@@ -708,6 +710,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 	public void setFinalPlay(int finalPlay) {
 		this.finalPlay = finalPlay;
 	}
+
 	
 	public void removeAll() {
 		selectNumber1.removeAll(selectNumber1);
