@@ -4,10 +4,10 @@
 </br>
 
 ## authors
-- 강민정 (ming-do-o)
-- 김은채 (chaesssy)
-- 김혜리 (hyek0226)
-- 서지영 (Jii-Yeong)
+- 강민정
+- 김은채 
+- 김혜리 
+- 서지영 
 
 </br>
 
