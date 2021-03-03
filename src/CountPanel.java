@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class CountPanel extends JPanel implements ActionListener { 
 //	SelectPanel selectPanel;
@@ -62,24 +63,30 @@ public class CountPanel extends JPanel implements ActionListener {
 
 		pnl.add(lbl);
 		pnl.add(palyText);
-		pnl.add(btn);
-		pnl.add(nextBtn);
-
-		add(Box.createVerticalGlue());
-		
-		add(pnl);
+//		pnl.add(btn);
+//		pnl.add(nextBtn);
 		
 		// 중간
 		JPanel pnl2 = new JPanel();
 		JLabel lblPlay = new JLabel("수량  : ");	 // 수량 글자 출력
 		lblCount = new JLabel();
-		pnl2.setPreferredSize(new Dimension(200, 100));
-		pnl2.setMaximumSize(new Dimension(150, 30)); 
+		pnl2.setPreferredSize(new Dimension(200, 50));
+		pnl2.setMaximumSize(new Dimension(120, 10)); 
 		pnl2.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		pnl2.add(lblPlay);
 		pnl2.add(lblCount);
+
+		JPanel btnPnl = new JPanel();
+		btnPnl.add(btn);
+		btnPnl.add(nextBtn);
+		pnl.setAlignmentX(0.5F);
+		pnl.setAlignmentX(0.5F);
+		pnl2.setAlignmentX(0.5F);
 		
+		add(Box.createVerticalGlue());
+		add(pnl);
+		add(btnPnl);
 		add(pnl2);
 		add(Box.createVerticalGlue());
 	}
