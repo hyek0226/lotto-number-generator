@@ -56,7 +56,6 @@ public class MainPanel extends JPanel {
 			}
 		});	
 		pnl1.setLayout(null);
-		
 		pnl1.add(btn1);
 		pnl2.setLayout(null);
 		pnl2.add(btn2);
