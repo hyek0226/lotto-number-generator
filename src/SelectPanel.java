@@ -122,7 +122,6 @@ public class SelectPanel extends JPanel implements ActionListener {
 		add(btnManualNum);
 		
 		btnRandomNum = new JButton("자동");
-		System.out.println(getCount());
 		btnRandomNum.setActionCommand("자동");
 		btnRandomNum.setBackground(new Color(175, 238, 238));
 		btnRandomNum.setFont(new Font("돋움", Font.BOLD, 20));
@@ -472,7 +471,6 @@ public class SelectPanel extends JPanel implements ActionListener {
 					JOptionPane.showMessageDialog(null, "수정이 안된 회차가 있습니다.", "돈안벌꺼니", JOptionPane.WARNING_MESSAGE);
 				} 
 				frame.getResultPanel().setPlayTest(Integer.parseInt(lblCount.getText()));
-				System.out.println(lblCount.getText());
 				
 			}
 		});

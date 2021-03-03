@@ -155,19 +155,14 @@ public class ResultPanel extends JPanel {
 		JLabel rank;
 		if (curcleList.getCount() == 6 && curcleList.isOneTwo() == false) {
 			rank = new JLabel("1 등");
-			System.out.println("1등" + curcleList.isOneTwo());
 		} else if (curcleList.getCount() == 6 && curcleList.isOneTwo() == true) {
 			rank = new JLabel("2 등");
-			System.out.println("2등" + curcleList.isOneTwo());
 		} else if (curcleList.getCount() == 5 && curcleList.isOneTwo() == false) {
 			rank = new JLabel("3 등");
-			System.out.println("3등" + curcleList.isOneTwo());
 		} else if (curcleList.getCount() == 4 && curcleList.isOneTwo() == false) {
 			rank = new JLabel("4 등");
-			System.out.println("4등" + curcleList.isOneTwo());
 		} else if (curcleList.getCount() == 3 && curcleList.isOneTwo() == false) {
 			rank = new JLabel("5 등");
-			System.out.println("5등" + curcleList.isOneTwo() + count);
 		} else {
 			rank = new JLabel("낙첨");
 		} 
@@ -189,23 +184,17 @@ public class ResultPanel extends JPanel {
 	// 횟수를 받아와 curcleResult를 횟수만큼 호출하는 메소드
 	// 스위치문 케이스를 거꾸로 설정
 	public void loopResult() {
-		System.out.println(getPlayTest());
 		switch (getPlayTest()) {
 			case 5:
 				curcleResult(number6, "E", 500, panel5, curcleList.getList2());
-				System.out.println("5");
 			case 4:
 				curcleResult(number5, "D", 400, panel4, curcleList.getList2());
-				System.out.println("4");
 			case 3:
 				curcleResult(number4, "C", 300, panel3, curcleList.getList2());
-				System.out.println("3");
 			case 2:
 				curcleResult(number3, "B", 200, panel2, curcleList.getList2());
-				System.out.println("2");
 			case 1:
 				curcleResult(number2, "A", 100, panel1, curcleList.getList2());
-				System.out.println("1");
 		}
 	}
 

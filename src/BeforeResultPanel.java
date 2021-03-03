@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
+import java.awt.Color;
 
 public class BeforeResultPanel extends JPanel {
 	// 랜덤 숫자 넣는 배열
@@ -45,16 +46,8 @@ public class BeforeResultPanel extends JPanel {
 	
 	public BeforeResultPanel(LottoFrame frame, Set<Integer> n1, Set<Integer> n2, Set<Integer> n3, Set<Integer> n4, Set<Integer> n5) {
 		
-		// 정수 배열들에게 임시의 값을 넣어줌
-		// (오류 방지)
-		for (int i = 0; i < 7; i++) {
-			number.add(i);
-			number2.add(i);
-			number3.add(i);
-			number4.add(i);
-			number5.add(i);
-			number6.add(i);
-		}
+		// number2에 파라미터로 받아온 n2를 넣어줌
+		number2 = n2;
 		
 		// 정수 넣는 패널의 색깔과 위치 선정
 		panel0.setBackground(SystemColor.window);
@@ -88,6 +81,7 @@ public class BeforeResultPanel extends JPanel {
 		
 		// 처음으로 돌아가는 버튼
 		JButton btnNewButton_1 = new JButton("처음으로");
+		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.setBackground(SystemColor.activeCaption);
 		btnNewButton_1.setFont(new Font("함초롬바탕", Font.PLAIN, 20));
 		btnNewButton_1.setBounds(622, 15, 128, 39);
@@ -200,7 +194,6 @@ public class BeforeResultPanel extends JPanel {
 	// 횟수를 받아와 curcleResult를 횟수만큼 호출하는 메소드
 	// 스위치문 케이스를 거꾸로 설정
 	public void loopResult(int play, Set<Integer> number, Set<Integer> number2, Set<Integer> number3, Set<Integer>number4, Set<Integer> number5, Set<Integer> number6, CurcleList curcleList) {
-		System.out.println(play);
 		switch (play) {
 			case 5:
 				curcleResult(number, number6, "E", 500, panel5, curcleList.getList2());
