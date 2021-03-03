@@ -21,9 +21,9 @@ public class CountPanel extends JPanel implements ActionListener {
 	
 	public boolean tryParse(String palyText) {	// 텍스트 타일에 입력된 값이 문자열인지 정수 값인지 구분하기 위한 boolean
 		try {
-			Integer.parseInt(palyText); // 정수 값일 때
+			Integer.parseInt(palyText); // 정수 값일 때 true값 반환
 			return true;
-		} catch (NumberFormatException e) {	// 문자열일 때
+		} catch (NumberFormatException e) {	// 문자열일 때	false값 반환
 			return false;	
 		}
 	}
