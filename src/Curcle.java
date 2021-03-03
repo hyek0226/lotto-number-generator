@@ -32,10 +32,14 @@ public class Curcle extends JPanel {
 		setLayout(springLayout);
 		
 		JLabel label = new JLabel(String.valueOf(n));
-		springLayout.putConstraint(SpringLayout.NORTH, label, 10, SpringLayout.NORTH, this);
+		springLayout.putConstraint(SpringLayout.NORTH, label, 15, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, label, 20, SpringLayout.WEST, this);
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Arial", Font.PLAIN, 30));
+		label.setFont(new Font("함초롬바탕", Font.BOLD, 21));
+		if (b == true) {
+			label.setForeground(Color.white);
+		} else {
+			label.setForeground(Color.black);
+		}
 		add(label);
 	}
 		
@@ -47,12 +51,16 @@ public class Curcle extends JPanel {
 		} else {
 			if (number <= 0) {
 				g.setColor(new Color(0, 0, 0, 0));
-			} else if (number < 16) {
-				g.setColor(Color.DARK_GRAY);
+			} else if (number < 11) {
+				g.setColor(new Color(255, 228, 0));
+			} else if (number < 21) {
+				g.setColor(new Color(90, 174, 255));
 			} else if (number < 31) {
-				g.setColor(Color.blue);
+				g.setColor(new Color(255, 108, 108));
+			} else if (number < 41) {
+				g.setColor(new Color(213, 213, 213));
 			} else if (number < 46) {
-				g.setColor(Color.CYAN);
+				g.setColor(new Color(207, 255, 36));
 			}
 		}
 		g.fillOval(0, 0, 60, 60);
