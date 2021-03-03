@@ -76,27 +76,36 @@ public class BeforeResultPanel extends JPanel {
 		
 		number6 = n5;
 		
-		panel0.setBackground(Color.gray);
+		for (int i = 0; i < 7; i++) {
+			number.add(i);
+			number2.add(i);
+			number3.add(i);
+			number4.add(i);
+			number5.add(i);
+			number6.add(i);
+		}
+		
+		panel0.setBackground(SystemColor.window);
 		panel0.setBounds(50, 100, 700, 80);
 		add(panel0);
 		
-		panel1.setBackground(Color.gray);
+		panel1.setBackground(SystemColor.window);
 		panel1.setBounds(50, 270, 700, 80);
 		add(panel1);
 		
-		panel2.setBackground(Color.gray);
+		panel2.setBackground(SystemColor.window);
 		panel2.setBounds(50, 370, 700, 80);
 		add(panel2);
 		
-		panel3.setBackground(Color.gray);
+		panel3.setBackground(SystemColor.window);
 		panel3.setBounds(50, 470, 700, 80);
 		add(panel3);
 		
-		panel4.setBackground(Color.gray);
+		panel4.setBackground(SystemColor.window);
 		panel4.setBounds(50, 570, 700, 80);
 		add(panel4);
 		
-		panel5.setBackground(Color.gray);
+		panel5.setBackground(SystemColor.window);
 		panel5.setBounds(50, 670, 700, 80);
 		add(panel5);
 		
@@ -106,7 +115,9 @@ public class BeforeResultPanel extends JPanel {
 		
 		
 		JButton btnNewButton_1 = new JButton("처음으로");
-		btnNewButton_1.setBounds(671, 15, 142, 40);
+		btnNewButton_1.setBackground(SystemColor.activeCaption);
+		btnNewButton_1.setFont(new Font("경기천년바탕 Regular", Font.PLAIN, 20));
+		btnNewButton_1.setBounds(622, 15, 128, 39);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.changeMainPanel();	
@@ -117,9 +128,11 @@ public class BeforeResultPanel extends JPanel {
 		add(btnNewButton_1);
 		
 		JLabel lblNewLabel = new JLabel("로또 결과");
-		lblNewLabel.setBounds(370, 39, 82, 21);
+		lblNewLabel.setFont(new Font("경기천년바탕 Regular", Font.PLAIN, 25));
+		lblNewLabel.setBounds(370, 39, 104, 32);
 		add(lblNewLabel);
-		lblNewLabel_1.setBounds(380, 220, 82, 21);
+		lblNewLabel_1.setFont(new Font("경기천년바탕 Regular", Font.PLAIN, 25));
+		lblNewLabel_1.setBounds(370, 209, 104, 32);
 		
 		add(lblNewLabel_1);
 		
@@ -144,6 +157,7 @@ public class BeforeResultPanel extends JPanel {
 		curcleList = new CurcleList(number, numList);
 		int x = 10;
 		JLabel alphabet = new JLabel(a);
+		alphabet.setFont(new Font("경기천년바탕 Regular", Font.PLAIN, 20));
 		panel.add(alphabet);
 		for (int i = 0; i < 6; i++) {
 			Curcle curcle = curcleList.getSelectList().get(i);
@@ -169,8 +183,9 @@ public class BeforeResultPanel extends JPanel {
 			rank = new JLabel("5 등");
 			System.out.println("5등" + curcleList.isOneTwo() + count);
 		} else {
-			rank = new JLabel("꽝");
+			rank = new JLabel("낙점");
 		} 
+		rank.setFont(new Font("경기천년바탕 Regular", Font.PLAIN, 20));
 		panel.add(rank);
 		
 	}

@@ -47,12 +47,23 @@ public class LottoFrame extends JFrame {
 		selectPanel = new SelectPanel(this);
 		countPanel = new CountPanel(this);
 		selectPanel = new SelectPanel(this);
-		resultPanel = new ResultPanel(this, selectPanel.getSelectNumber1(), selectPanel.getSelectNumber2(), selectPanel.getSelectNumber3(), selectPanel.getSelectNumber4(), selectPanel.getSelectNumber5());
-		beforeResultPanel = new BeforeResultPanel(this, selectPanel.getSelectNumber1(), selectPanel.getSelectNumber2(), selectPanel.getSelectNumber3(), selectPanel.getSelectNumber4(), selectPanel.getSelectNumber5());
+		resultPanel = new ResultPanel(
+				this, selectPanel.getSelectNumber1(), 
+				selectPanel.getSelectNumber2(), 
+				selectPanel.getSelectNumber3(), 
+				selectPanel.getSelectNumber4(), 
+				selectPanel.getSelectNumber5());
+		
+		beforeResultPanel = new BeforeResultPanel(
+				this, selectPanel.getSelectNumber1(), 
+				selectPanel.getSelectNumber2(), 
+				selectPanel.getSelectNumber3(), 
+				selectPanel.getSelectNumber4(), 
+				selectPanel.getSelectNumber5());
 		resultMap.put(count, resultPanel);
 		
 		scroll = new JScrollPane(resultPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scroll2 = new JScrollPane(beforeResultPanel);
+		scroll2 = new JScrollPane(beforeResultPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(10, 10, 830, 530);
 		getContentPane().setLayout(cards);
@@ -84,17 +95,26 @@ public class LottoFrame extends JFrame {
 	public void changeSelectPanel(int play) { 
 		cards.show(this.getContentPane(), "Select");
 		selectPanel.setPlay(play);
+		selectPanel.setFinalPlay(play);
 		selectPanel.setLabelText();
 		selectPanel.setResetPlay();
 	}
 	
 	public void changeBeforeResultPanel() {
 		cards.show(this.getContentPane(), "BeforeResult");
-		beforeResultPanel.setCount(resultPanel.getPlayTest());
+		beforeResultPanel.setCount(selectPanel.getFinalPlay());
 		beforeResultPanel.removeRandomList();
 		beforeResultPanel.clearPanel();
 		beforeResultPanel.createRandomCurcle(resultPanel.getNumber(), count);
-		beforeResultPanel.loopResult(resultPanel.getPlayTest(), resultPanel.getNumber(), resultPanel.getNumber2(), resultPanel.getNumber3(), resultPanel.getNumber4(), resultPanel.getNumber5(), resultPanel.getNumber6(), resultPanel.getCurcleList());
+		beforeResultPanel.loopResult(
+				selectPanel.getFinalPlay(), 
+				resultPanel.getNumber(), 
+				resultPanel.getNumber2(), 
+				resultPanel.getNumber3(), 
+				resultPanel.getNumber4(), 
+				resultPanel.getNumber5(), 
+				resultPanel.getNumber6(), 
+				resultPanel.getCurcleList());
 	}
 	
 	public void changeResultPanel(int play) {
