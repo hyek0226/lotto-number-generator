@@ -55,7 +55,6 @@ public class MainPanel extends JPanel {
 				frame.changeBeforeResultPanel();
 			}
 		});	
-		f.setSize(new Dimension(500,500));
 		pnl1.setLayout(null);
 		
 		pnl1.add(btn1);
