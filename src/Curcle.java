@@ -1,14 +1,9 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.Set;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
@@ -20,21 +15,31 @@ public class Curcle extends JPanel {
 	Random r = new Random();
 	JLabel lblNewLabel;
 	boolean b = false;
+	
 	public Curcle(int n, boolean b) {
+		// 숫자와 불린 값을 파라미터와 연결
 		number = n;
 		this.b = b;
+		
+		// 기본 배경 설정 (투명)
 		setBackground(new Color(0,0,0,0));
+		
+		// 사이즈 설정
 		setPreferredSize(new Dimension(60, 60));
 		setSize(new Dimension(176, 176));
 		setMinimumSize(new Dimension(60, 60));
 		setMaximumSize(new Dimension(60, 60));
+		
 		SpringLayout springLayout = new SpringLayout();
 		setLayout(springLayout);
 		
+		// 받아온 숫자를 라벨에 삽입
 		JLabel label = new JLabel(String.valueOf(n));
 		springLayout.putConstraint(SpringLayout.NORTH, label, 15, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, label, 20, SpringLayout.WEST, this);
 		label.setFont(new Font("함초롬바탕", Font.BOLD, 21));
+		
+		// boolean 값 (true = 맞은 숫자, false = 틀린숫자) 에 따라 흰색, 검은색 글자가 뜨도록 설정
 		if (b == true) {
 			label.setForeground(Color.white);
 		} else {
@@ -43,9 +48,12 @@ public class Curcle extends JPanel {
 		add(label);
 	}
 		
+	// 공을 만드는 메소드
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		// 배경 색깔 지정하는 if문 구절
+		// 틀린 숫자면 투명, 맞은 숫자면 숫자에 따라 다른 색깔 나타나게 만듬
 		if (!b) {
 			g.setColor(new Color(1, 1, 1, 0));
 		} else {
@@ -63,6 +71,7 @@ public class Curcle extends JPanel {
 				g.setColor(new Color(207, 255, 36));
 			}
 		}
+		// 원 생성
 		g.fillOval(0, 0, 60, 60);
 	}
 }

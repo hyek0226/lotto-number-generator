@@ -18,6 +18,8 @@ public class MainPanel extends JPanel {
 	private LottoFrame frame;
 	MainPanel(LottoFrame f) {
 		frame = f;
+		
+		
 		JPanel pnl1 = new JPanel();
 		pnl1.setBackground(SystemColor.control);
 		JPanel pnl2 = new JPanel();
@@ -39,8 +41,6 @@ public class MainPanel extends JPanel {
 		lbl2.setBounds(209, 45, 168, 21);
 		lbl2.setFont(new Font("함초롬돋움", Font.BOLD, 14));
 		
-//		lbl1.setBorder(BorderFactory.createLineBorder(Color.black));
-//		lbl2.setBorder(BorderFactory.createLineBorder(Color.black));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 	
 		btn1.addActionListener(new ActionListener() {
