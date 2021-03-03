@@ -689,7 +689,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 	}
 	
 	public Set<Integer> getSelectNumber1() {
-		return selectNumber1;
+		return selectNumber1; 
 	}
 
 	public Set<Integer> getSelectNumber2() {
@@ -737,8 +737,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 		this.play = play;
 	}
 
-<<<<<<< HEAD
-=======
+
 	public int getFinalPlay() {
 		return finalPlay;
 	}
@@ -746,7 +745,7 @@ public class SelectPanel extends JPanel implements ActionListener {
 	public void setFinalPlay(int finalPlay) {
 		this.finalPlay = finalPlay;
 	}
->>>>>>> a2d7908a178d807108b538de2fbf2deffc46d82c
+
 	
 	public void setEnableEditBtn() {	// 값이 들어있을 때에만 수정버튼 클릭 가능
 		if (getPlay() == 0) {
