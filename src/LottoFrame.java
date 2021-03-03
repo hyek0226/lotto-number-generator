@@ -75,7 +75,7 @@ public class LottoFrame extends JFrame {
 	public void changeMainPanel() {
 		cards.show(this.getContentPane(), "Main");
 		countPanel.resetInput();	// 처음으로 돌아왔을 때 입력했던 횟수를 초기화
-		selectPanel.resetNum();	// 처음으로 돌아왔을 때 과연 숫자는?! 뜰 수 있게
+		selectPanel.resetNum();		// 처음으로 돌아왔을 때 과연 숫자는?! 뜰 수 있게
 	}
 
 	// 수량 선택 패널로 전환하는 메소드
