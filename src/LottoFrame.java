@@ -33,6 +33,7 @@ public class LottoFrame extends JFrame {
 	}
 
 	public LottoFrame() {
+		setTitle("Lotto");
 		// 각 패널 생성
 		countPanel = new CountPanel(this);
 		selectPanel = new SelectPanel(this);

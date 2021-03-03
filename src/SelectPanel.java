@@ -685,36 +685,33 @@ public class SelectPanel extends JPanel implements ActionListener {
 		lblSelectedNumD.setBackground(new Color(255, 250, 250));
 		lblSelectedNumE.setBackground(new Color(255, 250, 250));
 	}
+	
+	// 수정이 완료되었는지 확인하는 메소드, 최종 횟수에 따라 각 개수의 배열에 값이 다들어갔는지 확인
 	public void confirmEditSuccess() {
 		switch (getFinalPlay()) {
 		case 1:
 			if (selectNumber1.size() == 6) {
 				editConfirm = true;
-				System.out.println("********" + 1);
 			}
 			break;
 		case 2:
 			if (selectNumber1.size() == 6 && selectNumber2.size() == 6) {
 				editConfirm = true;
-				System.out.println("*****" + 2);
 			}
 			break;
 		case 3:
 			if (selectNumber1.size() == 6 && selectNumber2.size() == 6 && selectNumber3.size() == 6) {
 				editConfirm = true;
-				System.out.println("*****" + 3);
 			}
 			break;
 		case 4:
 			if (selectNumber1.size() == 6 && selectNumber2.size() == 6 && selectNumber3.size() == 6 && selectNumber4.size() == 6) {
 				editConfirm = true;
-				System.out.println("*****" + 4);
 			}
 			break;
 		case 5:
 			if (selectNumber1.size() == 6 && selectNumber2.size() == 6 && selectNumber3.size() == 6 && selectNumber4.size() == 6 && selectNumber5.size() == 6) {
 				editConfirm = true;
-				System.out.println("*****" + 5);
 			}
 			break;
 			
