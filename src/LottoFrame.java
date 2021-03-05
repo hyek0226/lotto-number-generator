@@ -7,18 +7,18 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 // 3조 lotto
 public class LottoFrame extends JFrame {
-	int count;
+	private int count;
 	private CardLayout cards = new CardLayout();
 	private SelectPanel selectPanel;
-	NoResultPanel noResultPanel;
-	JScrollPane scroll;
-	JScrollPane scroll2;
+	private NoResultPanel noResultPanel;
+	private JScrollPane scroll;
+	private JScrollPane scroll2;
 	private ResultPanel resultPanel;
 	private CountPanel countPanel;
-	int play = 0;
-	Map<Integer, ResultPanel> resultMap = new HashMap<>();
-	BeforeResultPanel beforeResultPanel;
-	boolean nextPanel = false;
+	private int play = 0;
+	private Map<Integer, ResultPanel> resultMap = new HashMap<>();
+	private BeforeResultPanel beforeResultPanel;
+	private boolean nextPanel = false;
 
 
 	public static void main(String[] args) {

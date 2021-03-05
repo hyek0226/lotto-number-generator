@@ -5,30 +5,26 @@ import java.util.Set;
 
 public class CurcleList {
 	// Curcle 클래스를 담는 List
-	List<Curcle> list;
+	private List<Curcle> list;
 	// boolean (틀린 숫자(false)인지 맞은 숫자(true)인지) 값을 넣는 배열
-	List<Boolean> list2;
+	private List<Boolean> list2;
 	// 랜덤한 숫자를 담는 List
-	List<Integer> resultList;
+	private List<Integer> resultList;
 	// 선택한 숫자를 담는 List
-	List<Integer> selectList;
+	private List<Integer> selectList;
 	// 랜덤한 숫자와 선택한 숫자 중 맞는 배열만 넣는 List
-	List<Integer> equalList;
+	private List<Integer> equalList;
 	// true : 2등 false : 1, 3~5등
-	boolean oneTwo = false;
-	int count = 0;
-	public CurcleList(Set<Integer> num, Set<Integer> num2) {
+	private boolean oneTwo = false;
+	private int count = 0;
+	public CurcleList(List<Integer> num, Set<Integer> num2) {
 		list = new ArrayList<>();
 		list2 = new ArrayList<>();
-		resultList = new ArrayList<>();
+		resultList = num;
 		selectList = new ArrayList<>();
 		equalList = new ArrayList<>();
 		
-		// 파라미터로 받아온 랜덤 숫자와 선택한 숫자 Set을 List에 새로 담음
-		Iterator<Integer> iterator = num.iterator();
-		while (iterator.hasNext()) {
-			resultList.add(iterator.next());
-		}
+		// 파라미터로 받아온 선택한 숫자 Set을 List에 새로 담음
 		Iterator<Integer> iterator2 = num2.iterator();
 		while (iterator2.hasNext()) {
 			selectList.add(iterator2.next());

@@ -9,6 +9,8 @@ import java.awt.Font;
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -18,27 +20,27 @@ import java.awt.SystemColor;
 
 public class ResultPanel extends JPanel {
 	// 랜덤 숫자 담는 배열
-	Set<Integer> number = new TreeSet<>();
+	private List<Integer> number = new ArrayList<>();
 	// 1회차 ~ 5회차 숫자 담는 배열
-	Set<Integer> number2 = new TreeSet<>();
-	Set<Integer> number3 = new TreeSet<>();
-	Set<Integer> number4 = new TreeSet<>();
-	Set<Integer> number5 = new TreeSet<>();
-	Set<Integer> number6 = new TreeSet<>();
+	private Set<Integer> number2 = new TreeSet<>();
+	private Set<Integer> number3 = new TreeSet<>();
+	private Set<Integer> number4 = new TreeSet<>();
+	private Set<Integer> number5 = new TreeSet<>();
+	private Set<Integer> number6 = new TreeSet<>();
 	
-	int count = 0;
-	Random r = new Random();
-	CurcleList curcleList;
+	private int count = 0;
+	private Random r = new Random();
+	private CurcleList curcleList;
 	
 	// 공을 담는 패널들
-	JPanel panel0 = new JPanel();
-	JPanel panel1 = new JPanel();
-	JPanel panel2 = new JPanel();
-	JPanel panel3 = new JPanel();
-	JPanel panel4 = new JPanel();
-	JPanel panel5 = new JPanel();
+	private JPanel panel0 = new JPanel();
+	private JPanel panel1 = new JPanel();
+	private JPanel panel2 = new JPanel();
+	private JPanel panel3 = new JPanel();
+	private JPanel panel4 = new JPanel();
+	private JPanel panel5 = new JPanel();
 	
-	int play = 0;
+	private int play = 0;
 	private final JLabel lblNewLabel_1 = new JLabel("당첨 결과");
 	
 	public ResultPanel(LottoFrame frame, Set<Integer> n1, Set<Integer> n2, Set<Integer> n3, Set<Integer> n4, Set<Integer> n5) {
@@ -110,14 +112,29 @@ public class ResultPanel extends JPanel {
 		
 	}
 	
-	// 랜덤한 숫자를 생성하는 메소드
-	public void randomNumber() {
-		int i = 0;
-		while (number.size() < 7) {
-			int ranNum = r.nextInt(45) + 1;
-			number.add(ranNum);
-		}
+	// 랜덤한 보너스 숫자를 생성하는 메소드
+	public int randomBonusNumber() {
+		int bonus = 0;
+		do {
+			bonus = r.nextInt(45) + 1;
+		} while (number.contains(bonus));
+		return bonus;
 	}
+	
+	// 랜덤한 결과 리스트를 생성하는 메소드
+	public void randomNumber() {
+		Set<Integer> set = new TreeSet<>();
+		while (set.size() < 6) {
+			int ranNum = r.nextInt(45) + 1;
+			set.add(ranNum);
+		}
+		Iterator<Integer> iterator = set.iterator();
+		while (iterator.hasNext()) {
+			number.add(iterator.next());
+		}
+		number.add(randomBonusNumber());
+	}
+	
 	
 	// 랜덤한 공을 생성하는 메소드
 	public void createRandomCurcle() {
@@ -218,7 +235,7 @@ public class ResultPanel extends JPanel {
 		this.count = count;
 	}
 
-	public Set<Integer> getNumber() {
+	public List<Integer> getNumber() {
 		return number;
 	}
 
