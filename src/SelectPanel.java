@@ -20,7 +20,7 @@ import javax.swing.UIManager;
 import java.awt.SystemColor;
 
 public class SelectPanel extends JPanel implements ActionListener {
-	LottoFrame lottoFrame;
+	private LottoFrame lottoFrame;
 	private JLabel lblSelectedNumA;
 	private JLabel lblSelectedNumB;
 	private JLabel lblSelectedNumC;
@@ -31,29 +31,29 @@ public class SelectPanel extends JPanel implements ActionListener {
 	private JButton btnRandomNum;
 	private JLabel lblCount;
 	private JLabel lblPrice;
-	List<JCheckBox> chkbxNum = new ArrayList<>();
+	private List<JCheckBox> chkbxNum = new ArrayList<>();
 	
-	int play; // 사용자가 입력한 횟수
-	int count = 0; // 진행 횟수
+	private int play; // 사용자가 입력한 횟수
+	private int count = 0; // 진행 횟수
 	
 	// 사용자가 선택한 숫자 6개 담는 배열
-	TreeSet<Integer> selectedNum = new TreeSet<Integer>();
-	Set<Integer> temp = new TreeSet<>();
+	private TreeSet<Integer> selectedNum = new TreeSet<Integer>();
+	private Set<Integer> temp = new TreeSet<>();
 	
-	Set<Integer> selectNumber1 = new TreeSet<>();
-	Set<Integer> selectNumber2 = new TreeSet<>();
-	Set<Integer> selectNumber3 = new TreeSet<>();
-	Set<Integer> selectNumber4 = new TreeSet<>();
-	Set<Integer> selectNumber5 = new TreeSet<>();
+	private Set<Integer> selectNumber1 = new TreeSet<>();
+	private Set<Integer> selectNumber2 = new TreeSet<>();
+	private Set<Integer> selectNumber3 = new TreeSet<>();
+	private Set<Integer> selectNumber4 = new TreeSet<>();
+	private Set<Integer> selectNumber5 = new TreeSet<>();
 	
-	JButton btnEditNumA;
-	JButton btnEditNumB;
-	JButton btnEditNumC;
-	JButton btnEditNumD;
-	JButton btnEditNumE;
+	private JButton btnEditNumA;
+	private JButton btnEditNumB;
+	private JButton btnEditNumC;
+	private JButton btnEditNumD;
+	private JButton btnEditNumE;
 	
-	int finalPlay;
-	boolean editConfirm;
+	private int finalPlay;
+	private boolean editConfirm;
 
 
 	public void resetNum() {	//처음으로 돌아왔을 때 초기 화면에 뜨게 할 내용임

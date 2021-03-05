@@ -15,9 +15,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class CountPanel extends JPanel implements ActionListener { 
-	JTextField palyText;
-	JLabel lblCount;
-	int play = 0;
+	private JTextField palyText;
+	private JLabel lblCount;
+	private int play = 0;
 	
 	public boolean tryParse(String palyText) {	// 텍스트 타일에 입력된 값이 문자열인지 정수 값인지 구분하기 위한 boolean
 		try {

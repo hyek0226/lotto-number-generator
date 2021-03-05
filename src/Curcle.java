@@ -7,14 +7,16 @@ import java.util.Random;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
+import javax.swing.SwingConstants;
+
 import java.awt.Font;
 
 public class Curcle extends JPanel {
-	int number = 45;
-	Map<Integer, Color> colorMap = new HashMap<>();
-	Random r = new Random();
-	JLabel lblNewLabel;
-	boolean b = false;
+	private int number = 45;
+	private Map<Integer, Color> colorMap = new HashMap<>();
+	private Random r = new Random();
+	private JLabel lblNewLabel;
+	private boolean b = false;
 	
 	public Curcle(int n, boolean b) {
 		// 숫자와 불린 값을 파라미터와 연결
@@ -38,6 +40,8 @@ public class Curcle extends JPanel {
 		springLayout.putConstraint(SpringLayout.NORTH, label, 15, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, label, 20, SpringLayout.WEST, this);
 		label.setFont(new Font("함초롬바탕", Font.BOLD, 21));
+		setAlignmentY(SwingConstants.CENTER);
+		setAlignmentX(SwingConstants.CENTER);
 		
 		// boolean 값 (true = 맞은 숫자, false = 틀린숫자) 에 따라 흰색, 검은색 글자가 뜨도록 설정
 		if (b == true) {

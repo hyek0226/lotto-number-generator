@@ -18,27 +18,27 @@ import java.awt.Color;
 
 public class BeforeResultPanel extends JPanel {
 	// 랜덤 숫자 넣는 배열
-	Set<Integer> number = new TreeSet<>();
+	private Set<Integer> number = new TreeSet<>();
 	// 1~5회차에 선택한 숫자 넣는 배열
-	Set<Integer> number2 = new TreeSet<>();
-	Set<Integer> number3 = new TreeSet<>();
-	Set<Integer> number4 = new TreeSet<>();
-	Set<Integer> number5 = new TreeSet<>();
-	Set<Integer> number6 = new TreeSet<>();
+	private Set<Integer> number2 = new TreeSet<>();
+	private Set<Integer> number3 = new TreeSet<>();
+	private Set<Integer> number4 = new TreeSet<>();
+	private Set<Integer> number5 = new TreeSet<>();
+	private Set<Integer> number6 = new TreeSet<>();
 	
-	int count = 0;
-	Random r = new Random();
+	private int count = 0;
+	private Random r = new Random();
 	
 	// CurcleList
-	CurcleList curcleList;
+	private CurcleList curcleList;
 	// 로또 결과 넣는 패널
-	JPanel panel0 = new JPanel();
+	private JPanel panel0 = new JPanel();
 	// 당첨 결과 넣는 패널
-	JPanel panel1 = new JPanel();
-	JPanel panel2 = new JPanel();
-	JPanel panel3 = new JPanel();
-	JPanel panel4 = new JPanel();
-	JPanel panel5 = new JPanel();
+	private JPanel panel1 = new JPanel();
+	private JPanel panel2 = new JPanel();
+	private JPanel panel3 = new JPanel();
+	private JPanel panel4 = new JPanel();
+	private JPanel panel5 = new JPanel();
 	
 	// 플레이 횟수 받아오는 정수
 	int play = 0;
@@ -47,7 +47,7 @@ public class BeforeResultPanel extends JPanel {
 	public BeforeResultPanel(LottoFrame frame, Set<Integer> n1, Set<Integer> n2, Set<Integer> n3, Set<Integer> n4, Set<Integer> n5) {
 		
 		// number2에 파라미터로 받아온 n2를 넣어줌
-		number2 = n2;
+		number2 = n1;
 		
 		// 정수 넣는 패널의 색깔과 위치 선정
 		panel0.setBackground(SystemColor.window);
@@ -128,7 +128,7 @@ public class BeforeResultPanel extends JPanel {
 	}
 
 	// 전에 랜덤으로 뽑힌 결과의 정수 배열을 받아와 공 리스트를 생성해주는 메소드
-	public void createRandomCurcle(Set<Integer> number, int count) {
+	public void createRandomCurcle(List<Integer> number, int count) {
 		int x = 10;
 		curcleList = new CurcleList(number, number2);
 		if (count > 0) {
@@ -143,7 +143,7 @@ public class BeforeResultPanel extends JPanel {
 	}
 	
 	// 전에 선택한 결과의 정수 배열을 받아와 공 리스트를 생성해주는 메소드
-	public void curcleResult(Set<Integer> number, Set<Integer> numList, String a, int h, JPanel panel, List<Boolean> bList) {
+	public void curcleResult(List<Integer> number, Set<Integer> numList, String a, int h, JPanel panel, List<Boolean> bList) {
 		// CurcleList 클래스 생성 (랜덤 배열과 선택한 배열을 파라미터로 받음)
 		curcleList = new CurcleList(number, numList);
 		// 알파벳 생성 (파라미터로 A~E 받음)
@@ -193,7 +193,7 @@ public class BeforeResultPanel extends JPanel {
 	
 	// 횟수를 받아와 curcleResult를 횟수만큼 호출하는 메소드
 	// 스위치문 케이스를 거꾸로 설정
-	public void loopResult(int play, Set<Integer> number, Set<Integer> number2, Set<Integer> number3, Set<Integer>number4, Set<Integer> number5, Set<Integer> number6, CurcleList curcleList) {
+	public void loopResult(int play, List<Integer> number, Set<Integer> number2, Set<Integer> number3, Set<Integer>number4, Set<Integer> number5, Set<Integer> number6, CurcleList curcleList) {
 		switch (play) {
 			case 5:
 				curcleResult(number, number6, "E", 500, panel5, curcleList.getList2());
